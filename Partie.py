@@ -106,6 +106,7 @@ class Partie:
             des = Des()
             somme_des, double = des.lancer_des()
 
+            #tests pour la prison
             # if joueur.nom == "testprison":
             #     somme_des = 6
             # elif joueur.nom == "save" :
