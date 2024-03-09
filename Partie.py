@@ -5,9 +5,9 @@ from Case import *
 from Joueur import *
 from Des import *
 from Case_Depart import *
-from Case_Visite_Prison import *
 from Case_Prison import *
 from Case_Propriete import *
+from Case_Visite_Prison import *
 from Case_Police import *
 from Case_Professeur import *
 
@@ -93,7 +93,7 @@ class Partie:
             Propriete("Sous Sol", 4, "bleu Clair", 100, 45),
             Propriete("Toilette", 5, "bleu Clair", 125, 60),
             Propriete("Chambre forte", 6, "bleu Clair", 150, 75),
-            Prison("prison de Azkaban", 7),
+            Prison("prison d'Azkaban", 7),
             Visite_Prison("Visite Prison", 8),
             Propriete("Toit", 9, "rose", 175, 87),
             Case_Professeur("Professeur", 10),
@@ -114,6 +114,7 @@ class Partie:
             print(f"{joueur.nom} a fait une somme de dés de {somme_des}.")
             if double:
                 print(f"{joueur.nom} a fait un double !")
+                joueur.pouvoir()
             else:
                 print(f"{joueur.nom} n'a pas fait de double.")
 
@@ -147,15 +148,15 @@ class Partie:
             else:
                 pass
         elif isinstance(case_actuelle, Visite_Prison):
-            case_actuelle.visite(joueur)
+            case_actuelle.visite(joueur,self.__joueurs)
         elif isinstance(case_actuelle, Prison):
             case_actuelle.bloquerMouvement(joueur)
         elif isinstance(case_actuelle, Depart):
             case_actuelle.donner_argent(joueur)
         elif isinstance(case_actuelle, Case_Police):
-            case_actuelle.Action01(joueur) or case_actuelle.Action02(joueur)
+            case_actuelle.malus(joueur)
         elif isinstance(case_actuelle, Case_Professeur):
-            case_actuelle.Action01(joueur) or case_actuelle.Action02(joueur)
+            case_actuelle.bonus(joueur)
         else:
             pass
 

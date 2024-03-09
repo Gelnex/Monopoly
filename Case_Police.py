@@ -5,6 +5,7 @@ Case police qui donne des malus
 """
 ### Imports nécessaires ###
 from Case import *
+import random
 
 ### Définition de la classe ###
 class Case_Police (Case):
@@ -12,14 +13,26 @@ class Case_Police (Case):
         super().__init__(nom, coordonee)
 
     ### Action que la case peut faire ###
-    def Action01 (self, joueur):
-        joueur.bouger(-3)
-        print (joueur.position)
-
-    def Action02 (self, joueur):
-        joueur.donner_argent(-100)
-        print (joueur.argent)
+    def malus(self, joueur):
+        
+        match random.randint(1,2):
+            case 1:
+                joueur.position -= 3
+                print("La police vous a descendu de trois cases")
+            case 2:
+                joueur.donner_argent(-100)
+                print("La police vous a descendu de trois cases")
+            case _ :
+                raise TypeError("entrée invalide")
+        
 
 
 ### Tests ###
-case = Case_Police("Police", 3)
+if __name__ == "__main__":
+    
+    from Joueur import *
+    
+    case = Case_Police("Police", 3)
+    monJoueur = Joueur("george")
+    case.malus(monJoueur)
+    
