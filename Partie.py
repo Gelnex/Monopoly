@@ -99,7 +99,19 @@ class Partie:
             Case_Professeur("Professeur", 10),
             Propriete("Tante", 11, "rose", 200, 100),
             Propriete("Aire de chargement", 12, "rose", 250, 150),
-            Case_Police("Police", 13)
+            Case_Police("Police", 13),
+            Propriete("Jardin public", 14, "vert", 275, 175),
+            Propriete("Place du marché", 15, "vert", 300, 200),
+            Propriete("Parking", 16, "vert", 325, 225),
+            Prison("Électricité", 17),
+            Propriete("Allée sombre", 18, "violet", 350, 250),
+            Propriete("Bibliothèque", 19, "violet", 375, 275),
+            Propriete("Ruelle étroite", 20, "violet", 400, 300),
+            Visite_Prison("Communauté", 21),
+            Propriete("Galerie d'art", 22, "orange", 425, 325),
+            Propriete("Cinéma", 23, "orange", 450, 350),
+            Propriete("Gare", 24, "orange", 475, 375),
+            Propriete("Théâtre", 25, "rouge", 500, 400),
         ]
         return plateau
 
