@@ -98,6 +98,20 @@ class Joueur:
                 else:
                     print(f"{reponse} n'est pas une entrée valide, veuiller entrer O ou N")
                     
+    def pouvoir(self) -> None:
+        match self.__pouvoir:
+            case "argent":
+                self.donner_argent(200)
+            case "position":
+                while True:
+                    posPouvoir = input("de combien de case voulez vous sauter ? ")
+                    if posPouvoir >= 5:
+                        self.position += posPouvoir
+                        break
+                    else:
+                        print(f"l'entrée {posPouvoir} est incorrect")
+                    
+                    
 
     def incrementer_nombre_tours(self):
         self.nombre_tours += 1
