@@ -23,7 +23,10 @@ class Joueur:
         self.__position = 0
         self.__propriete = []
         self.__nombre_tours = 0
+        self.__pouvoir = ""
         self.__bloquerMouvement = False
+        
+        self.set_pouvoir()
 
     # ============================================================================#
     # = ACCESSEURS                                                               =#
@@ -51,6 +54,10 @@ class Joueur:
     @property
     def bloquerMouvement(self):
         return self.__bloquerMouvement
+    
+    @property
+    def pouvoir(self):
+        return self.__pouvoir
 
     # ============================================================================#
     # = MUTATEURS                                                                =#
@@ -75,7 +82,7 @@ class Joueur:
     @bloquerMouvement.setter
     def bloquerMouvement(self, nvbm):
         self.__bloquerMouvement = nvbm
-
+        
     # ============================================================================#
     # = METHODE                                                                  =#
     # ============================================================================#
@@ -110,6 +117,25 @@ class Joueur:
                         break
                     else:
                         print(f"l'entrée {posPouvoir} est incorrect")
+            case _ :
+                raise TypeError("case n'existe pas, veuiller verfier le constructeur")
+        
+    def set_pouvoir(self):
+        setIn = input(" choisisser un pouvoir : 1. Voleur pro (+200€) \n 2. Roi de l'evasion \n rentrer une valeur -> ")
+
+        while True:
+                
+            match setIn:
+                case '1':
+                    self.__pouvoir = "argent"
+                    break
+                case '2':
+                    self.__pouvoir = "position"
+                    break
+                case _ :
+                    setIn = input(f"l'entrée {setIn} est incorrect, réessayer avec 1 ou 2")
+                    
+                
                     
                     
 

@@ -119,6 +119,7 @@ class Partie:
             print(f"{joueur.nom} a fait une somme de dés de {somme_des}.")
             if double:
                 print(f"{joueur.nom} a fait un double !")
+                joueur.pouvoir()
             else:
                 print(f"{joueur.nom} n'a pas fait de double.")
 
