@@ -68,15 +68,12 @@ class Propriete(Case):
         )
 
     def acheter(self, joueur):
-        if self.proprietaire is not None:
-            self.payer_loyer(joueur)
-        else:
-            joueur.propriete.append(self)
-            joueur.argent -= self.__prix
-            self.proprietaire = joueur
-            print(
-                f"{joueur.nom} a acheté la propriété {self.nom} pour {self.__prix} euros."
-            )
+        joueur.propriete.append(self)
+        joueur.argent -= self.__prix
+        self.proprietaire = joueur
+        print(
+            f"{joueur.nom} a acheté la propriété {self.nom} pour {self.__prix} euros."
+        )
             
     def actionOr(self, joueur, listeJoueurs):
         if self.__carte_or != None :
@@ -84,17 +81,17 @@ class Propriete(Case):
             match self.__carte_or:
                 case "argent":
                     joueur.donner_argent(200)
-                    print(f"vous avez grace a la carte or {joueur.argent} €")
+                    print(f"Vous avez grace a la carte or {joueur.argent} €")
                 case "position":
-                    posPouvoir = int(input("combien de case voulez vous sauter ? (max 5) -> "))
+                    posPouvoir = int(input("Combien de case voulez vous sauter ? (max 5) -> "))
                     while True:
                         if 0 < posPouvoir <= 5:
                             joueur.position += posPouvoir
                             break
                         else:
-                            posPouvoir = int(input(f"l'entrée {posPouvoir} est incorrect. entrer un nombre entre 1 et 5 -> "))
+                            posPouvoir = int(input(f"L'entrée {posPouvoir} est incorrect. entrer un nombre entre 1 et 5 -> "))
                 case "vol":
-                    iptVol = input("rentrer le nom du joueur au quel vous vouler voler 150€ -> ")
+                    iptVol = input("Rentrer le nom du joueur au quel vous vouler voler 150€ -> ")
                     vrf = True
                     while vrf:
                         for iJoueur in listeJoueurs:
@@ -104,9 +101,9 @@ class Propriete(Case):
                                 vrf = False
                                 break
                         if vrf:
-                            iptVol = input("le joueur n'a pas été trouver, verifier le nom et réentrer le -> ")
+                            iptVol = input("Le joueur n'a pas été trouver, verifier le nom et réentrer le -> ")
                 case _ :
-                    raise TypeError("case n'existe pas, veuiller verfier le constructeur")
+                    raise TypeError("Case n'existe pas, veuiller verfier le constructeur")
             self.__carte_or = None
             print("##########################")
         

@@ -94,16 +94,19 @@ class Joueur:
         if propriete in self.__propriete:
             print("Vous possédez déjà cette propriété.")
         else:
-            while True:
-                reponse = input("Voulez vous acheter cette propriété ? O/N ")
-                if reponse == "O":
-                    propriete.acheter(self)
-                    break
-                elif reponse == "N":
-                    print(f"{self.nom} n'a pas acheté {propriete.nom}")
-                    break
-                else:
-                    print(f"{reponse} n'est pas une entrée valide, veuiller entrer O ou N")
+            if propriete.proprietaire is not None:
+                propriete.payer_loyer(self)
+            else:
+                while True:
+                    reponse = input("Voulez vous acheter cette propriété ? O/N ")
+                    if reponse == "O":
+                        propriete.acheter(self)
+                        break
+                    elif reponse == "N":
+                        print(f"{self.nom} n'a pas acheté {propriete.nom}")
+                        break
+                    else:
+                        print(f"{reponse} n'est pas une entrée valide, veuiller entrer O ou N")
                     
     def pouvoir(self) -> None:
         match self.__pouvoir:
