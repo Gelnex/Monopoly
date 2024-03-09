@@ -5,9 +5,11 @@ from Case import *
 from Joueur import *
 from Des import *
 from Case_Depart import *
+from Case_Visite_Prison import *
 from Case_Prison import *
 from Case_Propriete import *
-from Case_Visite_Prison import *
+from Case_Police import *
+from Case_Professeur import *
 
 
 # ============================================================================#
@@ -91,11 +93,13 @@ class Partie:
             Propriete("Sous Sol", 4, "bleu Clair", 100, 45),
             Propriete("Toilette", 5, "bleu Clair", 125, 60),
             Propriete("Chambre forte", 6, "bleu Clair", 150, 75),
-            Prison("prison d'Azkaban", 7),
+            Prison("prison de Azkaban", 7),
             Visite_Prison("Visite Prison", 8),
             Propriete("Toit", 9, "rose", 175, 87),
-            Propriete("Tante", 10, "rose", 200, 100),
-            Propriete("Aire de chargement", 11, "rose", 250, 150),
+            Case_Professeur("Professeur", 10),
+            Propriete("Tante", 11, "rose", 200, 100),
+            Propriete("Aire de chargement", 12, "rose", 250, 150),
+            Case_Police("Police", 13)
         ]
         return plateau
 
@@ -106,20 +110,10 @@ class Partie:
             des = Des()
             somme_des, double = des.lancer_des()
 
-            #tests pour la prison
-            # if joueur.nom == "testprison":
-            #     somme_des = 6
-            # elif joueur.nom == "save" :
-            #     somme_des = 7 
-            # else:
-            #     somme_des = 3
-
-
             # Affiche la somme des dés et de l'état du doublé
             print(f"{joueur.nom} a fait une somme de dés de {somme_des}.")
             if double:
                 print(f"{joueur.nom} a fait un double !")
-                joueur.pouvoir()
             else:
                 print(f"{joueur.nom} n'a pas fait de double.")
 
@@ -153,11 +147,15 @@ class Partie:
             else:
                 pass
         elif isinstance(case_actuelle, Visite_Prison):
-            case_actuelle.visite(joueur,self.__joueurs)
+            case_actuelle.visite(joueur)
         elif isinstance(case_actuelle, Prison):
             case_actuelle.bloquerMouvement(joueur)
         elif isinstance(case_actuelle, Depart):
             case_actuelle.donner_argent(joueur)
+        elif isinstance(case_actuelle, Case_Police):
+            case_actuelle.Action01(joueur) or case_actuelle.Action02(joueur)
+        elif isinstance(case_actuelle, Case_Professeur):
+            case_actuelle.Action01(joueur) or case_actuelle.Action02(joueur)
         else:
             pass
 
@@ -229,7 +227,5 @@ if __name__ == "__main__":
     joueurs = [
         Joueur(input(f"Entrez le nom du {i+1}e joueur: ")) for i in range(nmbrJoueur)
     ]
-            
-    
     jeu = Partie(joueurs)
     jeu.jouer()
