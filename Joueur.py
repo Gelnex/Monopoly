@@ -109,19 +109,20 @@ class Joueur:
         match self.__pouvoir:
             case "argent":
                 self.donner_argent(200)
+                print(f"vous avez maintenant {self.__argent} €")
             case "position":
+                posPouvoir = input("de combien de case voulez vous sauter ? (max 5) -> ")
                 while True:
-                    posPouvoir = input("de combien de case voulez vous sauter ? ")
-                    if posPouvoir >= 5:
+                    if 0 < posPouvoir <= 5:
                         self.position += posPouvoir
                         break
                     else:
-                        print(f"l'entrée {posPouvoir} est incorrect")
+                        print(f"l'entrée {posPouvoir} est incorrect. entrer un nombre entre 1 et 5 -> ")
             case _ :
                 raise TypeError("case n'existe pas, veuiller verfier le constructeur")
         
     def set_pouvoir(self):
-        setIn = input(" choisisser un pouvoir : 1. Voleur pro (+200€) \n 2. Roi de l'evasion \n rentrer une valeur -> ")
+        setIn = input(" choisisser un pouvoir :\n 1. Voleur pro (+200€) \n 2. Roi de l'evasion \n rentrer une valeur -> ")
 
         while True:
                 
@@ -133,7 +134,7 @@ class Joueur:
                     self.__pouvoir = "position"
                     break
                 case _ :
-                    setIn = input(f"l'entrée {setIn} est incorrect, réessayer avec 1 ou 2")
+                    setIn = input(f"l'entrée {setIn} est incorrect, réessayer avec 1 ou 2 -> ")
                     
                 
                     
