@@ -18,10 +18,10 @@ class Case_Professeur (Case):
         match random.randint(1,2):
             case 1:
                 joueur.position += 3
-                print("La police vous a descendu de trois cases")
+                print("Le professeur vous a remonté de 3 cases")
             case 2:
                 joueur.donner_argent(100)
-                print("La police vous a descendu de trois cases")
+                print("Le professeur vous a donné 100")
             case _ :
                 raise TypeError("entrée invalide")
 

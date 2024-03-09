@@ -21,7 +21,7 @@ class Case_Police (Case):
                 print("La police vous a descendu de trois cases")
             case 2:
                 joueur.donner_argent(-100)
-                print("La police vous a descendu de trois cases")
+                print("La police vous a retirer 100")
             case _ :
                 raise TypeError("entrée invalide")
         
