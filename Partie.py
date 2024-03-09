@@ -143,6 +143,7 @@ class Partie:
 
         # Effectuer l'action de la case actuelle
         if isinstance(case_actuelle, Propriete):
+            case_actuelle.actionOr(joueur,self.__joueurs)
             if joueur.peut_acheter(case_actuelle):
                 joueur.acheter_propriete(case_actuelle)
             else:

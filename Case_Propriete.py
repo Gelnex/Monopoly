@@ -28,6 +28,7 @@ class Propriete(Case):
         self.__prix = prix
         self.__loyer = loyer
         self.__proprietaire = None
+        self.__carte_or = random.choice(["argent", "position", "vol"])
 
     # ============================================================================#
     # = ACCESSEURS                                                               =#
@@ -76,10 +77,40 @@ class Propriete(Case):
             print(
                 f"{joueur.nom} a acheté la propriété {self.nom} pour {self.__prix} euros."
             )
-
-    def generer_carte_or(self):
-        self.carte_or = random.choice(["argent", "position", "feur"])
-
+            
+    def actionOr(self, joueur, listeJoueurs):
+        if self.__carte_or != None :
+            print("######## carte or ########")
+            match self.__carte_or:
+                case "argent":
+                    joueur.donner_argent(200)
+                    print(f"vous avez grace a la carte or {joueur.argent} €")
+                case "position":
+                    posPouvoir = int(input("combien de case voulez vous sauter ? (max 5) -> "))
+                    while True:
+                        if 0 < posPouvoir <= 5:
+                            joueur.position += posPouvoir
+                            break
+                        else:
+                            posPouvoir = int(input(f"l'entrée {posPouvoir} est incorrect. entrer un nombre entre 1 et 5 -> "))
+                case "vol":
+                    iptVol = input("rentrer le nom du joueur au quel vous vouler voler 150€ -> ")
+                    vrf = True
+                    while vrf:
+                        for iJoueur in listeJoueurs:
+                            if iJoueur.nom == iptVol:                          
+                                iJoueur.argent -= 150
+                                joueur.argent += 150
+                                vrf = False
+                                break
+                        if vrf:
+                            iptVol = input("le joueur n'a pas été trouver, verifier le nom et réentrer le -> ")
+                case _ :
+                    raise TypeError("case n'existe pas, veuiller verfier le constructeur")
+            self.__carte_or = None
+            print("##########################")
+        
+        
 
 # ============================================================================#
 # = test                                                                     =#

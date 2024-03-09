@@ -111,7 +111,7 @@ class Joueur:
                 self.donner_argent(200)
                 print(f"vous avez grace a votre pouvoir {self.__argent} €")
             case "position":
-                posPouvoir = int(input(f"vous etes sur la case N°{self.__position}de combien de case voulez vous sauter ? (max 5) -> "))
+                posPouvoir = int(input(f"vous etes sur la case N°{self.__position} de combien de case voulez vous sauter ? (max 5) -> "))
                 while True:
                     if 0 < posPouvoir <= 5:
                         self.__position += posPouvoir
