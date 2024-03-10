@@ -10,6 +10,7 @@ from Case_Propriete import *
 from Case_Visite_Prison import *
 from Case_Police import *
 from Case_Professeur import *
+from Case_Parc import *
 
 
 # ============================================================================#
@@ -33,6 +34,7 @@ class Partie:
         self.__plateau = self.mise_en_place()
         self.__joueur_actif = 0
         self.__joueurs = joueurs
+        self.__argentPlateau = 0
 
     # ============================================================================#
     # = ACCESSEURS                                                               =#
@@ -56,6 +58,10 @@ class Partie:
     @property
     def joueurs(self):
         return self.__joueurs
+    
+    @property
+    def argentPlateau(self):
+        return self.__argentPlateau
 
     # ============================================================================#
     # = MUTATEUR                                                                 =#
@@ -80,6 +86,13 @@ class Partie:
     @joueurs.setter
     def joueurs(self, nvJoueurs):
         self.__joueurs = nvJoueurs
+    
+    @argentPlateau.setter
+    def argentPlateau(self, nvArgent):
+        if nvArgent >= 0:
+            self.__argentPlateau = nvArgent
+        else:
+            raise TypeError("l'argent plateau doit etre un entier positif")
 
     # ============================================================================#
     # = METHODE                                                                  =#
@@ -107,11 +120,12 @@ class Partie:
             Propriete("Allée sombre", 18, "violet", 350, 250),
             Propriete("Bibliothèque", 19, "violet", 375, 275),
             Propriete("Ruelle étroite", 20, "violet", 400, 300),
-            Visite_Prison("Communauté", 21),
-            Propriete("Galerie d'art", 22, "orange", 425, 325),
-            Propriete("Cinéma", 23, "orange", 450, 350),
-            Propriete("Gare", 24, "orange", 475, 375),
-            Propriete("Théâtre", 25, "rouge", 500, 400),
+            Parc("Parc gratuit", 21),
+            Visite_Prison("Communauté", 22),
+            Propriete("Galerie d'art", 23, "orange", 425, 325),
+            Propriete("Cinéma", 24, "orange", 450, 350),
+            Propriete("Gare", 25, "orange", 475, 375),
+            Propriete("Théâtre", 26, "rouge", 500, 400),
         ]
         return plateau
 
@@ -170,6 +184,8 @@ class Partie:
             case_actuelle.malus(joueur)
         elif isinstance(case_actuelle, Case_Professeur):
             case_actuelle.bonus(joueur)
+        elif isinstance(case_actuelle, Parc):
+            case_actuelle.donnerArgentPlateau(joueur, self.__argentPlateau)
         else:
             pass
 
