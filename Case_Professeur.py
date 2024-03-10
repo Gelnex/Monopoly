@@ -16,7 +16,7 @@ class Case_Professeur (Case):
     ### Action que la case peut faire ###
     def bonus(self, joueur, argentPlateau):
         
-        match random.randint(1,3):
+        match 3: #random.randint(1,3)
             case 1:
                 joueur.position += 3
                 print("Le professeur vous a remonté de 3 cases")
@@ -24,11 +24,14 @@ class Case_Professeur (Case):
                 joueur.donner_argent(100)
                 print("Le professeur vous a donné 100")
             case 3:
-                donnerArgentPlateau(joueur, argentPlateau)
+                Parc.donnerArgentPlateau(joueur, argentPlateau)
             case _ :
                 raise TypeError("entrée invalide")
 
 
 ### Tests ###
 if __name__ == "__main__":
+    from Joueur import *
+    from Partie import *
     case = Case_Professeur("Prof", 3)
+    case.bonus(Joueur, 100)
