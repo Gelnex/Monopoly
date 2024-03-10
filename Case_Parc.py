@@ -20,7 +20,7 @@ class Parc(Case):
     # = METHODES                                                                 =#
     # ============================================================================#
 
-    def DonnerArgentPlateau(joueur, argentPlateau):
+    def donnerArgentPlateau(joueur, argentPlateau) -> None:
         joueur.donner_argent(argentPlateau)
         argentPlateau = 0
         

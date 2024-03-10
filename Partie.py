@@ -177,11 +177,11 @@ class Partie:
         elif isinstance(case_actuelle, Visite_Prison):
             case_actuelle.visite(joueur,self.__joueurs)
         elif isinstance(case_actuelle, Prison):
-            case_actuelle.bloquerMouvement(joueur)
+            case_actuelle.bloquerMouvement(joueur, self.__argentPlateau)
         elif isinstance(case_actuelle, Depart):
             case_actuelle.donner_argent(joueur)
         elif isinstance(case_actuelle, Case_Police):
-            case_actuelle.malus(joueur)
+            case_actuelle.malus(joueur, self.__argentPlateau)
         elif isinstance(case_actuelle, Case_Professeur):
             case_actuelle.bonus(joueur, self.__argentPlateau)
         elif isinstance(case_actuelle, Parc):

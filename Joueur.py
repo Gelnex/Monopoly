@@ -123,7 +123,7 @@ class Joueur:
                     else:
                         posPouvoir = int(input(f"l'entrée {posPouvoir} est incorrect. entrer un nombre entre 1 et 5 -> "))
             case "parc":
-                DonnerArgentPlateau(self, argentPlateau)
+                donnerArgentPlateau(self, argentPlateau)
             case _ :
                 raise TypeError("case n'existe pas, veuiller verfier le constructeur")
         
@@ -141,7 +141,7 @@ class Joueur:
                     break
                 case '3':
                     self.__pouvoir = "parc"
-                
+                    break                
                 case _ :
                     setIn = input(f"l'entrée {setIn} est incorrect, réessayer avec 1 ou 2 -> ")
                     
