@@ -28,7 +28,7 @@ class Prison(Case):
     # = METHODES                                                                 =#
     # ============================================================================#
 
-    def bloquerMouvement(self, joueur):
+    def bloquerMouvement(self, joueur, argentPlateau):
         # Condition pour sortir
         if joueur.bloquerMouvement == True:
             # Appel de la classe Des
@@ -45,6 +45,7 @@ class Prison(Case):
                     if reponse == "O":
                         joueur.bloquerMouvement = False
                         joueur.donner_argent(-200)
+                        argentPlateau += 200
                         print(f"{joueur.nom} a payer et sort donc de prison")
                         break
                     elif reponse == "N":

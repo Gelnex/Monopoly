@@ -5,6 +5,7 @@ Case professeur qui donne des bonus
 """
 ### Imports nécessaires ###
 from Case import *
+from Case_Parc import *
 import random
 
 ### Définition de la classe ###
@@ -13,15 +14,17 @@ class Case_Professeur (Case):
         super().__init__(nom, coordonee)
 
     ### Action que la case peut faire ###
-    def bonus(self, joueur):
+    def bonus(self, joueur, argent):
         
-        match random.randint(1,2):
+        match random.randint(1,3):
             case 1:
                 joueur.position += 3
                 print("Le professeur vous a remonté de 3 cases")
             case 2:
                 joueur.donner_argent(100)
                 print("Le professeur vous a donné 100")
+            case 3:
+                donnerArgentPlateau(joueur, argent)
             case _ :
                 raise TypeError("entrée invalide")
 

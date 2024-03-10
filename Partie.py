@@ -140,7 +140,7 @@ class Partie:
             print(f"{joueur.nom} a fait une somme de dés de {somme_des}.")
             if double:
                 print(f"{joueur.nom} a fait un double !")
-                joueur.pouvoir()
+                joueur.pouvoir(self.__argentPlateau)
             else:
                 print(f"{joueur.nom} n'a pas fait de double.")
 
@@ -183,7 +183,7 @@ class Partie:
         elif isinstance(case_actuelle, Case_Police):
             case_actuelle.malus(joueur)
         elif isinstance(case_actuelle, Case_Professeur):
-            case_actuelle.bonus(joueur)
+            case_actuelle.bonus(joueur, self.__argentPlateau)
         elif isinstance(case_actuelle, Parc):
             case_actuelle.donnerArgentPlateau(joueur, self.__argentPlateau)
         else:

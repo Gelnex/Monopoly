@@ -1,3 +1,4 @@
+from Case_Parc import *
 # ============================================================================#
 # = DEFINITION DE LA CLASSE                                                  =#
 # ============================================================================#
@@ -108,7 +109,7 @@ class Joueur:
                     else:
                         print(f"{reponse} n'est pas une entrée valide, veuiller entrer O ou N")
                     
-    def pouvoir(self) -> None:
+    def pouvoir(self, argentPlateau) -> None:
         match self.__pouvoir:
             case "argent":
                 self.donner_argent(200)
@@ -121,11 +122,13 @@ class Joueur:
                         break
                     else:
                         posPouvoir = int(input(f"l'entrée {posPouvoir} est incorrect. entrer un nombre entre 1 et 5 -> "))
+            case "Parc":
+                DonnerArgentPlateau(self, argentPlateau)
             case _ :
                 raise TypeError("case n'existe pas, veuiller verfier le constructeur")
         
     def set_pouvoir(self):
-        setIn = input(" choisisser un pouvoir :\n 1. Voleur pro (+200€) \n 2. Roi de l'evasion \n rentrer une valeur -> ")
+        setIn = input(" choisisser un pouvoir :\n 1. Voleur pro (+200€) \n 2. Roi de l'evasion \n 3. Voleur de l'etat \n rentrer une valeur -> ")
 
         while True:
                 
@@ -136,6 +139,9 @@ class Joueur:
                 case '2':
                     self.__pouvoir = "position"
                     break
+                case '3':
+                    self.__pouvoir = "parc"
+                
                 case _ :
                     setIn = input(f"l'entrée {setIn} est incorrect, réessayer avec 1 ou 2 -> ")
                     
