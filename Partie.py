@@ -174,7 +174,7 @@ class Partie:
         elif isinstance(case_actuelle, Visite_Prison):
             case_actuelle.visite(joueur,self.__joueurs)
         elif isinstance(case_actuelle, Prison):
-            case_actuelle.bloquerMouvement(joueur)
+            case_actuelle.bloquerMouvement(joueur, self)
         elif isinstance(case_actuelle, Depart):
             case_actuelle.donner_argent(joueur)
         elif isinstance(case_actuelle, Case_Police):
