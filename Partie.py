@@ -33,7 +33,7 @@ class Partie:
         self.__plateau = self.mise_en_place()
         self.__joueur_actif = 0
         self.__joueurs = joueurs
-        self.__argentPlateau = 0
+        self.__argentPlateau = 10
 
     # ============================================================================#
     # = ACCESSEURS                                                               =#
@@ -113,15 +113,16 @@ class Partie:
             Propriete("Jardin public", 14, "vert", 275, 175),
             Propriete("Place du marché", 15, "vert", 300, 200),
             Propriete("Parking", 16, "vert", 325, 225),
-            Prison("Électricité", 17),
-            Propriete("Allée sombre", 18, "violet", 350, 250),
-            Propriete("Bibliothèque", 19, "violet", 375, 275),
-            Propriete("Ruelle étroite", 20, "violet", 400, 300),
-            Visite_Prison("Communauté", 21),
-            Propriete("Galerie d'art", 22, "orange", 425, 325),
-            Propriete("Cinéma", 23, "orange", 450, 350),
-            Propriete("Gare", 24, "orange", 475, 375),
-            Propriete("Théâtre", 25, "rouge", 500, 400),
+            Case("Parc gratuit", 17),
+            Prison("Électricité", 18),
+            Propriete("Allée sombre", 19, "violet", 350, 250),
+            Propriete("Bibliothèque", 20, "violet", 375, 275),
+            Propriete("Ruelle étroite", 21, "violet", 400, 300),
+            Visite_Prison("Communauté", 22),
+            Propriete("Galerie d'art", 23, "orange", 425, 325),
+            Propriete("Cinéma", 24, "orange", 450, 350),
+            Propriete("Gare", 25, "orange", 475, 375),
+            Propriete("Théâtre", 26, "rouge", 500, 400),
         ]
         return plateau
 
@@ -136,7 +137,7 @@ class Partie:
             print(f"{joueur.nom} a fait une somme de dés de {somme_des}.")
             if double:
                 print(f"{joueur.nom} a fait un double !")
-                joueur.pouvoir()
+                joueur.pouvoir(self)
             else:
                 print(f"{joueur.nom} n'a pas fait de double.")
 
@@ -177,9 +178,11 @@ class Partie:
         elif isinstance(case_actuelle, Depart):
             case_actuelle.donner_argent(joueur)
         elif isinstance(case_actuelle, Case_Police):
-            case_actuelle.malus(joueur)
+            case_actuelle.malus(joueur,self)
         elif isinstance(case_actuelle, Case_Professeur):
-            case_actuelle.bonus(joueur)
+            case_actuelle.bonus(joueur,self)
+        elif case_actuelle.nom == "Parc gratuit":
+            self.donner_argent_plateau(joueur)
         else:
             pass
 

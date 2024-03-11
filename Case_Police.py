@@ -13,7 +13,7 @@ class Case_Police (Case):
         super().__init__(nom, coordonee)
 
     ### Action que la case peut faire ###
-    def malus(self, joueur):
+    def malus(self, joueur,partie):
         
         match random.randint(1,2):
             case 1:
@@ -22,6 +22,7 @@ class Case_Police (Case):
             case 2:
                 joueur.donner_argent(-100)
                 print("La police vous a retirer 100")
+                partie.argentPlateau += 100
             case _ :
                 raise TypeError("entrée invalide")
         
