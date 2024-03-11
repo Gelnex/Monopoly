@@ -125,6 +125,26 @@ class Partie:
             Propriete("Théâtre", 26, "rouge", 500, 400),
         ]
         return plateau
+    
+    def nombre_joueur(self):
+        nmbrJoueur = 0
+        while True:
+            try:
+                nmbrJoueur = int(input("Entrez le nombre de joueur (entre 2 et 6): "))
+                if 2 <= nmbrJoueur <= 6:
+                    return nmbrJoueur
+                else:
+                    print("Le nombre de joueurs doit être compris entre 2 et 6.")
+            except ValueError:
+                print("Veuillez entrer un nombre entier valide.")
+
+    def identifier_joueur(self, i):
+            while True:
+                pseudoJoueur = input(f"Entrez le nom du {i+1}e joueur: ")
+                if pseudoJoueur != "0.0":
+                    return pseudoJoueur
+                else:
+                    print("Erreur : Veuillez entrer un pseudo différent de '0.0'.")
 
     # Fonction de deplacement Joueur
     def deplacement(self, joueur):
@@ -244,19 +264,23 @@ class Partie:
 # ============================================================================#
 
 if __name__ == "__main__":
-    nmbrJoueur = 0
-    while True:
-        try:
-            nmbrJoueur = int(input("Entrez le nombre de joueur (entre 2 et 6): "))
-            if 2 <= nmbrJoueur <= 6:
-                break  # Sort de la boucle si l'entrée est un nombre entre 2 et 6 inclus
-            else:
-                print("Le nombre de joueurs doit être compris entre 2 et 6.")
-        except ValueError:
-            print("Veuillez entrer un nombre entier valide.")
+    # Création d'une instance de la classe Partie avec une liste de joueurs vide
+    partie = Partie([])
+    
+    # Demande du nombre de joueurs à l'utilisateur et récupération de la valeur
+    nJoueur = partie.nombre_joueur()
 
-    joueurs = [
-        Joueur(input(f"Entrez le nom du {i+1}e joueur: ")) for i in range(nmbrJoueur)
-    ]
+    # Initialisation de l'indice i
+    i = 1
+
+    # Demande des noms des joueurs à l'utilisateur et stockage dans une liste
+    joueur_noms = [partie.identifier_joueur(i) for i in range(nJoueur)]
+
+    # Création d'instances de la classe Joueur à partir des noms fournis par l'utilisateur
+    joueurs = [Joueur(nom) for nom in joueur_noms]
+
+    # Création d'une nouvelle instance de la classe Partie avec les joueurs créés
     jeu = Partie(joueurs)
+
+    # Début du jeu
     jeu.jouer()
