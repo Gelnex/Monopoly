@@ -10,7 +10,6 @@ from Case_Propriete import *
 from Case_Visite_Prison import *
 from Case_Police import *
 from Case_Professeur import *
-from Case_Parc import *
 
 
 # ============================================================================#
@@ -34,7 +33,7 @@ class Partie:
         self.__plateau = self.mise_en_place()
         self.__joueur_actif = 0
         self.__joueurs = joueurs
-        self.__argentPlateau = 0
+        self.__argentPlateau = 10
 
     # ============================================================================#
     # = ACCESSEURS                                                               =#
@@ -86,13 +85,11 @@ class Partie:
     @joueurs.setter
     def joueurs(self, nvJoueurs):
         self.__joueurs = nvJoueurs
-    
+        
     @argentPlateau.setter
-    def argentPlateau(self, nvArgent):
-        if nvArgent >= 0:
-            self.__argentPlateau = nvArgent
-        else:
-            raise TypeError("l'argent plateau doit etre un entier positif")
+    def argentPlateau(self, argent):       
+        self.__argentPlateau = argent
+        print(f"le plateau contient maintenant {self.__argentPlateau}€ ")
 
     # ============================================================================#
     # = METHODE                                                                  =#
@@ -116,11 +113,11 @@ class Partie:
             Propriete("Jardin public", 14, "vert", 275, 175),
             Propriete("Place du marché", 15, "vert", 300, 200),
             Propriete("Parking", 16, "vert", 325, 225),
-            Prison("Électricité", 17),
-            Propriete("Allée sombre", 18, "violet", 350, 250),
-            Propriete("Bibliothèque", 19, "violet", 375, 275),
-            Propriete("Ruelle étroite", 20, "violet", 400, 300),
-            Parc("Parc gratuit", 21),
+            Case("Parc gratuit", 17),
+            Prison("Électricité", 18),
+            Propriete("Allée sombre", 19, "violet", 350, 250),
+            Propriete("Bibliothèque", 20, "violet", 375, 275),
+            Propriete("Ruelle étroite", 21, "violet", 400, 300),
             Visite_Prison("Communauté", 22),
             Propriete("Galerie d'art", 23, "orange", 425, 325),
             Propriete("Cinéma", 24, "orange", 450, 350),
@@ -140,7 +137,7 @@ class Partie:
             print(f"{joueur.nom} a fait une somme de dés de {somme_des}.")
             if double:
                 print(f"{joueur.nom} a fait un double !")
-                joueur.pouvoir(self.__argentPlateau)
+                joueur.pouvoir(self)
             else:
                 print(f"{joueur.nom} n'a pas fait de double.")
 
@@ -177,15 +174,15 @@ class Partie:
         elif isinstance(case_actuelle, Visite_Prison):
             case_actuelle.visite(joueur,self.__joueurs)
         elif isinstance(case_actuelle, Prison):
-            case_actuelle.bloquerMouvement(joueur, self.__argentPlateau)
+            case_actuelle.bloquerMouvement(joueur)
         elif isinstance(case_actuelle, Depart):
             case_actuelle.donner_argent(joueur)
         elif isinstance(case_actuelle, Case_Police):
-            case_actuelle.malus(joueur, self.__argentPlateau)
+            case_actuelle.malus(joueur,self)
         elif isinstance(case_actuelle, Case_Professeur):
-            case_actuelle.bonus(joueur, self.__argentPlateau)
-        elif isinstance(case_actuelle, Parc):
-            case_actuelle.donnerArgentPlateau(joueur, self.__argentPlateau)
+            case_actuelle.bonus(joueur,self)
+        elif case_actuelle.nom == "Parc gratuit":
+            self.donner_argent_plateau(joueur)
         else:
             pass
 
@@ -236,7 +233,11 @@ class Partie:
                         # Afficher le message du joueur en faillite et continuer le jeu
                         print(f"{nom_perdant} est en faillite.")
                         break
-
+    
+    def donner_argent_plateau(self, joueur):
+        joueur.argent += self.__argentPlateau
+        print(f"vous avez reçu {self.__argentPlateau}€ et l'argent plateau est vide")
+        self.__argentPlateau = 0
 
 # ============================================================================#
 # = AFFICHAGE                                                                =#
