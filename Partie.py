@@ -141,10 +141,10 @@ class Partie:
     def identifier_joueur(self, i):
             while True:
                 pseudoJoueur = input(f"Entrez le nom du {i+1}e joueur: ")
-                if pseudoJoueur != "0.0":
+                if isinstance(pseudoJoueur, str):
                     return pseudoJoueur
                 else:
-                    print("Erreur : Veuillez entrer un pseudo différent de '0.0'.")
+                    print("Erreur : Veuillez entrer un pseudo sous forme de texte.")
 
     # Fonction de deplacement Joueur
     def deplacement(self, joueur):
