@@ -33,6 +33,7 @@ class Partie:
         self.__plateau = self.mise_en_place()
         self.__joueur_actif = 0
         self.__joueurs = joueurs
+        self.__argentPlateau = 0
 
     # ============================================================================#
     # = ACCESSEURS                                                               =#
@@ -56,6 +57,10 @@ class Partie:
     @property
     def joueurs(self):
         return self.__joueurs
+    
+    @property
+    def argentPlateau(self):
+        return self.__argentPlateau
 
     # ============================================================================#
     # = MUTATEUR                                                                 =#
@@ -80,6 +85,11 @@ class Partie:
     @joueurs.setter
     def joueurs(self, nvJoueurs):
         self.__joueurs = nvJoueurs
+        
+    @argentPlateau.setter
+    def argentPlateau(self, argent):       
+        self.__argentPlateau = argent
+        print(f"le plateau contient maintenant {self.__argentPlateau}€ ")
 
     # ============================================================================#
     # = METHODE                                                                  =#
@@ -220,7 +230,11 @@ class Partie:
                         # Afficher le message du joueur en faillite et continuer le jeu
                         print(f"{nom_perdant} est en faillite.")
                         break
-
+    
+    def donner_argent_plateau(self, joueur):
+        joueur.argent += self.__argentPlateau
+        print(f"vous avez reçu {self.__argentPlateau}€ et l'argent plateau est vide")
+        self.__argentPlateau = 0
 
 # ============================================================================#
 # = AFFICHAGE                                                                =#

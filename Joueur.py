@@ -108,7 +108,7 @@ class Joueur:
                     else:
                         print(f"{reponse} n'est pas une entrée valide, veuiller entrer O ou N")
                     
-    def pouvoir(self) -> None:
+    def pouvoir(self, partie) -> None:
         match self.__pouvoir:
             case "argent":
                 self.donner_argent(200)
@@ -121,6 +121,8 @@ class Joueur:
                         break
                     else:
                         posPouvoir = int(input(f"l'entrée {posPouvoir} est incorrect. entrer un nombre entre 1 et 5 -> "))
+            case "parc":
+                partie.donner_argent_plateau(self)
             case _ :
                 raise TypeError("case n'existe pas, veuiller verfier le constructeur")
         
@@ -136,8 +138,11 @@ class Joueur:
                 case '2':
                     self.__pouvoir = "position"
                     break
+                case '3':
+                    self.__pouvoir = "parc"
+                    break
                 case _ :
-                    setIn = input(f"l'entrée {setIn} est incorrect, réessayer avec 1 ou 2 -> ")
+                    setIn = input(f"l'entrée {setIn} est incorrect, réessayer avec 1, 2 ou 3 -> ")
                     
                 
                     
@@ -147,4 +152,4 @@ class Joueur:
         self.nombre_tours += 1
 
     def donner_argent(self, argent):
-        self.argent += argent
+        self.argent += argent   
