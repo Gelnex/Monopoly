@@ -38,11 +38,12 @@ class Tunnel(Case):
     # = METHODE                                                                  =#
     # ============================================================================#
     
-    def transporter(joueur):
+    def transporter(self, joueur):
         ipt = input("de combien de case vouler vous sauter (max 9) -> ")
         while True:
             if isinstance(ipt,int) and 0 < ipt <= 9:
-                print("vous etes maitenant sur la case N°{joueur.position}")
+                joueur.position += ipt
+                print(f"vous etes maitenant sur la case N°{joueur.position}")
             else:
                 ipt = input(f"L'entrée {ipt} est incorrect. entrer un nombre entre 1 et 9 -> ")
 

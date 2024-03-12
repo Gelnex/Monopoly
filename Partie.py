@@ -167,7 +167,7 @@ class Partie:
             if joueur.position + somme_des > len(self.plateau) + 1:
                 print(f"{joueur.nom} a recu 200€ car il est passé par la case départ")
                 joueur.donner_argent(200)
-            joueur.position = (joueur.position + somme_des) % len(self.plateau)
+            joueur.position = 3 #(joueur.position + somme_des) % len(self.plateau)
         else:
             print(f"Le joueur {joueur.nom} est emprisonné")
 
