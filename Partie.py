@@ -11,7 +11,7 @@ from Case_Visite_Prison import *
 from Case_Police import *
 from Case_Professeur import *
 
-
+#test pour voir si ca fonctionne sur mon pc portable
 # ============================================================================#
 # = DEFINITION DE LA CLASSE                                                  =#
 # ============================================================================#
