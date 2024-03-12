@@ -10,6 +10,7 @@ from Case_Propriete import *
 from Case_Visite_Prison import *
 from Case_Police import *
 from Case_Professeur import *
+from Case_Tunnel import *
 
 
 # ============================================================================#
@@ -100,29 +101,30 @@ class Partie:
             Depart("Départ", 1),
             Propriete("Café", 2, "brune", 50, 15),
             Propriete("Décharge", 3, "brune", 75, 30),
-            Propriete("Sous Sol", 4, "bleu Clair", 100, 45),
-            Propriete("Toilette", 5, "bleu Clair", 125, 60),
-            Propriete("Chambre forte", 6, "bleu Clair", 150, 75),
-            Prison("prison d'Azkaban", 7),
-            Visite_Prison("Visite Prison", 8),
-            Propriete("Toit", 9, "rose", 175, 87),
-            Case_Professeur("Professeur", 10),
-            Propriete("Tante", 11, "rose", 200, 100),
-            Propriete("Aire de chargement", 12, "rose", 250, 150),
-            Case_Police("Police", 13),
-            Propriete("Jardin public", 14, "vert", 275, 175),
-            Propriete("Place du marché", 15, "vert", 300, 200),
-            Propriete("Parking", 16, "vert", 325, 225),
-            Case("Parc gratuit", 17),
-            Prison("Électricité", 18),
-            Propriete("Allée sombre", 19, "violet", 350, 250),
-            Propriete("Bibliothèque", 20, "violet", 375, 275),
-            Propriete("Ruelle étroite", 21, "violet", 400, 300),
-            Visite_Prison("Communauté", 22),
-            Propriete("Galerie d'art", 23, "orange", 425, 325),
-            Propriete("Cinéma", 24, "orange", 450, 350),
-            Propriete("Gare", 25, "orange", 475, 375),
-            Propriete("Théâtre", 26, "rouge", 500, 400),
+            Tunnel("tunnel", 4),
+            Propriete("Sous Sol", 5, "bleu Clair", 100, 45),
+            Propriete("Toilette", 6, "bleu Clair", 125, 60),
+            Propriete("Chambre forte", 7, "bleu Clair", 150, 75),
+            Prison("prison d'Azkaban", 8),
+            Visite_Prison("Visite Prison", 9),
+            Propriete("Toit", 10, "rose", 175, 87),
+            Case_Professeur("Professeur", 11),
+            Propriete("Tante", 12, "rose", 200, 100),
+            Propriete("Aire de chargement", 13, "rose", 250, 150),
+            Case_Police("Police", 14),
+            Propriete("Jardin public", 15, "vert", 275, 175),
+            Propriete("Place du marché", 16, "vert", 300, 200),
+            Propriete("Parking", 17, "vert", 325, 225),
+            Case("Parc gratuit", 18),
+            Prison("Électricité", 19),
+            Propriete("Allée sombre", 20, "violet", 350, 250),
+            Propriete("Bibliothèque", 21, "violet", 375, 275),
+            Propriete("Ruelle étroite", 22, "violet", 400, 300),
+            Visite_Prison("Communauté", 23),
+            Propriete("Galerie d'art", 24, "orange", 425, 325),
+            Propriete("Cinéma", 25, "orange", 450, 350),
+            Propriete("Gare", 26, "orange", 475, 375),
+            Propriete("Théâtre", 27, "rouge", 500, 400),
         ]
         return plateau
     
@@ -201,6 +203,8 @@ class Partie:
                 case_actuelle.malus(joueur, self)
             case Case_Professeur():
                 case_actuelle.bonus(joueur, self)
+            case Tunnel():
+                case_actuelle.transporter(joueur)
             case _ if case_actuelle.nom == "Parc gratuit":
                 self.donner_argent_plateau(joueur)
             case _:
