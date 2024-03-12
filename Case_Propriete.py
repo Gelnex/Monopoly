@@ -72,7 +72,7 @@ class Propriete(Case):
         joueur.argent -= self.__prix
         self.proprietaire = joueur
         print(
-            f"{joueur.nom} a acheté la propriété {self.nom} pour {self.__prix} euros."
+            f"{joueur.nom} a acheté la propriété {self.nom} pour {self.__prix}€ "
         )
             
     def actionOr(self, joueur, listeJoueurs):
@@ -81,7 +81,7 @@ class Propriete(Case):
             match self.__carte_or:
                 case "argent":
                     joueur.donner_argent(200)
-                    print(f"Vous avez grace a la carte or {joueur.argent} €")
+                    print(f"Vous avez grace a la carte or gagné 200€")
                 case "position":
                     posPouvoir = int(input("Combien de case voulez vous sauter ? (max 5) -> "))
                     while True:
@@ -95,7 +95,8 @@ class Propriete(Case):
                     vrf = True
                     while vrf:
                         for iJoueur in listeJoueurs:
-                            if iJoueur.nom == iptVol:                          
+                            if iJoueur.nom == iptVol:
+                                print(f"{joueur.nom} a volé 150€ à {iptVol} !")                          
                                 iJoueur.argent -= 150
                                 joueur.argent += 150
                                 vrf = False

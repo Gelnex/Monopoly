@@ -18,13 +18,13 @@ class Case_Police (Case):
         match random.randint(1,2):
             case 1:
                 joueur.position -= 3
-                print("La police vous a descendu de trois cases")
+                print("La police vous a reculer de trois cases")
             case 2:
                 joueur.donner_argent(-100)
-                print("La police vous a retirer 100")
+                print("La police vous a retirer 100€")
                 partie.argentPlateau += 100
             case _ :
-                raise TypeError("entrée invalide")
+                raise TypeError("Entrée invalide")
         
 
 

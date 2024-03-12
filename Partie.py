@@ -11,7 +11,7 @@ from Case_Visite_Prison import *
 from Case_Police import *
 from Case_Professeur import *
 
-#test pour voir si ca fonctionne sur mon pc portable
+
 # ============================================================================#
 # = DEFINITION DE LA CLASSE                                                  =#
 # ============================================================================#
@@ -130,7 +130,7 @@ class Partie:
         nmbrJoueur = 0
         while True:
             try:
-                nmbrJoueur = int(input("Entrez le nombre de joueur (entre 2 et 6): "))
+                nmbrJoueur = int(input("Entrez le nombre de joueur (entre 2 et 6) -> "))
                 if 2 <= nmbrJoueur <= 6:
                     return nmbrJoueur
                 else:
@@ -140,7 +140,7 @@ class Partie:
 
     def identifier_joueur(self, i):
             while True:
-                pseudoJoueur = input(f"Entrez le nom du {i+1}e joueur: ")
+                pseudoJoueur = input(f"Entrez le nom du {i+1}e joueur -> ")
                 if isinstance(pseudoJoueur, str):
                     return pseudoJoueur
                 else:
@@ -163,11 +163,11 @@ class Partie:
 
             # Donne 200 d'argent au joueurs quand il dépasse est sur ou dépasse la case départ
             if joueur.position + somme_des > len(self.plateau) + 1:
-                print(f"{joueur.nom} a recu 200 car il est passé par la case départ")
+                print(f"{joueur.nom} a recu 200€ car il est passé par la case départ")
                 joueur.donner_argent(200)
             joueur.position = (joueur.position + somme_des) % len(self.plateau)
         else:
-            print(f"le joueur {joueur.nom} est emprisonné")
+            print(f"Le joueur {joueur.nom} est emprisonné")
 
     # Fonction du tour du joueur
     def tour_joueur(self):
@@ -180,8 +180,7 @@ class Partie:
         self.deplacement(joueur)
         case_actuelle = self.__plateau[joueur.position]
         print(
-            f"{joueur.nom} est sur la case {self.__plateau[joueur.position].nom}. \n Case N°",
-            case_actuelle.coordonee,
+            f"{joueur.nom} est sur la case {self.__plateau[joueur.position].nom}. \n Case N° {case_actuelle.coordonee}"
         )
 
         # Effectuer l'action de la case actuelle
@@ -209,7 +208,7 @@ class Partie:
 
         # Passer au prochain joueur
         self.__joueur_actif = (self.__joueur_actif + 1) % len(self.__joueurs)
-        print(f"Il lui reste {joueur.argent}")
+        print(f"Il lui reste {joueur.argent}€")
         input("Appuyez pour passer au tour suivant")
 
     # Verifie si il y a un gagnant
@@ -257,7 +256,7 @@ class Partie:
     
     def donner_argent_plateau(self, joueur):
         joueur.argent += self.__argentPlateau
-        print(f"vous avez reçu {self.__argentPlateau}€ et l'argent plateau est vide")
+        print(f"Vous avez reçu {self.__argentPlateau}€ et l'argent plateau est vide")
         self.__argentPlateau = 0
 
 # ============================================================================#

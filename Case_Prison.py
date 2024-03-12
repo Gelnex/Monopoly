@@ -41,7 +41,7 @@ class Prison(Case):
 
             else:
                 while True:
-                    reponse = input("vouler vous payer pour sortir (200€) ? O/N ")
+                    reponse = input("Vouler vous payer pour sortir (200€) ? O/N ")
                     if reponse == "O":
                         joueur.bloquerMouvement = False
                         joueur.donner_argent(-200)

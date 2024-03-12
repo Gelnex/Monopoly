@@ -97,7 +97,7 @@ class Joueur:
                 propriete.payer_loyer(self)
             else:
                 while True:
-                    reponse = input("Voulez vous acheter cette propriété ? O/N ")
+                    reponse = input(f"Voulez vous acheter cette propriété pour {propriete.prix}€ ? O/N ")
                     if reponse == "O":
                         propriete.acheter(self)
                         break
@@ -111,7 +111,7 @@ class Joueur:
         match self.__pouvoir:
             case "argent":
                 self.donner_argent(200)
-                print(f"vous avez grace a votre pouvoir {self.__argent} €")
+                print(f"Vous avez grace a votre pouvoir {self.__argent} €")
             case "position":
                 posPouvoir = int(input(f"vous etes sur la case N°{self.__position} de combien de case voulez vous sauter ? (max 5) -> "))
                 while True:
@@ -119,14 +119,14 @@ class Joueur:
                         self.__position += posPouvoir
                         break
                     else:
-                        posPouvoir = int(input(f"l'entrée {posPouvoir} est incorrect. entrer un nombre entre 1 et 5 -> "))
+                        posPouvoir = int(input(f"L'entrée {posPouvoir} est incorrect. entrer un nombre entre 1 et 5 -> "))
             case "parc":
                 partie.donner_argent_plateau(self)
             case _ :
-                raise TypeError("case n'existe pas, veuiller verfier le constructeur")
+                raise TypeError("Case n'existe pas, veuiller verfier le constructeur")
         
     def set_pouvoir(self):
-        setIn = input(f"{self.nom} choisisser un pouvoir :\n 1. Voleur pro (+200€) \n 2. Roi de l'evasion \n 3. voleur de l'etat \n rentrer une valeur -> ")
+        setIn = input(f"{self.nom} choisis un pouvoir :\n 1. Voleur pro (+200€) \n 2. Roi de l'evasion \n 3. voleur de l'etat \n rentrer une valeur -> ")
 
         while True:
                 
@@ -141,7 +141,7 @@ class Joueur:
                     self.__pouvoir = "parc"
                     break
                 case _ :
-                    setIn = input(f"l'entrée {setIn} est incorrect, réessayer avec 1, 2 ou 3 -> ")
+                    setIn = input(f"L'entrée {setIn} est incorrect, réessayer avec 1, 2 ou 3 -> ")
                     
                 
                     
