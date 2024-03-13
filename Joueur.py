@@ -98,10 +98,10 @@ class Joueur:
             else:
                 while True:
                     reponse = input(f"Voulez vous acheter cette propriété pour {propriete.prix}€ ? O/N ")
-                    if reponse == "O":
+                    if reponse == "O" or "o":
                         propriete.acheter(self)
                         break
-                    elif reponse == "N":
+                    elif reponse == "N" or "n":
                         print(f"{self.nom} n'a pas acheté {propriete.nom}")
                         break
                     else:
@@ -113,7 +113,7 @@ class Joueur:
                 self.donner_argent(200)
                 print(f"Vous avez grace a votre pouvoir {self.__argent} €")
             case "position":
-                posPouvoir = int(input(f"vous etes sur la case N°{self.__position} de combien de case voulez vous sauter ? (max 5) -> "))
+                posPouvoir = int(input(f"Vous etes sur la case N°{self.__position} de combien de case voulez vous sauter ? (max 5) -> "))
                 while True:
                     if 0 < posPouvoir <= 5:
                         self.__position += posPouvoir
@@ -142,8 +142,6 @@ class Joueur:
                     break
                 case _ :
                     setIn = input(f"L'entrée {setIn} est incorrect, réessayer avec 1, 2 ou 3 -> ")
-                    
-                
                     
                     
 
