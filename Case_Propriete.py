@@ -28,7 +28,7 @@ class Propriete(Case):
         self.__prix = prix
         self.__loyer = loyer
         self.__proprietaire = None
-        self.__carte_or = random.choice(["argent", "position", "vol"])
+        self.__carte_or = random.choice(["argent", "parc", "vol"])
 
     # ============================================================================#
     # = ACCESSEURS                                                               =#
@@ -75,26 +75,20 @@ class Propriete(Case):
             f"{joueur.nom} a acheté la propriété {self.nom} pour {self.__prix}€ "
         )
             
-    def actionOr(self, joueur, listeJoueurs):
+    def actionOr(self, joueur, partie):
         if self.__carte_or != None :
             print("######## carte or ########")
             match self.__carte_or:
                 case "argent":
                     joueur.donner_argent(200)
                     print(f"Vous avez grace a la carte or gagné 200€")
-                case "position":
-                    posPouvoir = int(input("Combien de case voulez vous sauter ? (max 5) -> "))
-                    while True:
-                        if 0 < posPouvoir <= 5:
-                            joueur.position += posPouvoir
-                            break
-                        else:
-                            posPouvoir = int(input(f"L'entrée {posPouvoir} est incorrect. entrer un nombre entre 1 et 5 -> "))
+                case "parc":
+                   partie.donner_argent_plateau(joueur)
                 case "vol":
                     iptVol = input("Rentrer le nom du joueur au quel vous vouler voler 150€ -> ")
                     vrf = True
                     while vrf:
-                        for iJoueur in listeJoueurs:
+                        for iJoueur in partie.joueurs:
                             if iJoueur.nom == iptVol:
                                 print(f"{joueur.nom} a volé 150€ à {iptVol} !")                          
                                 iJoueur.argent -= 150

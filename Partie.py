@@ -188,7 +188,7 @@ class Partie:
         # Effectuer l'action de la case actuelle
         match case_actuelle:
             case Propriete():
-                case_actuelle.actionOr(joueur, self.__joueurs)
+                case_actuelle.actionOr(joueur, self)
                 if joueur.peut_acheter(case_actuelle):
                     joueur.acheter_propriete(case_actuelle)
                 else:
