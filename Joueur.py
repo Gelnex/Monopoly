@@ -97,11 +97,12 @@ class Joueur:
                 propriete.payer_loyer(self)
             else:
                 while True:
-                    reponse = input(f"Voulez vous acheter cette propriété pour {propriete.prix}€ ? O/N ")
-                    if reponse == "O" or "o":
+                    reponse = input(f"Voulez vous acheter cette propriété pour {propriete.prix}€ ? O/N ")   
+                    reponse = reponse.lower()
+                    if reponse == "o":
                         propriete.acheter(self)
                         break
-                    elif reponse == "N" or "n":
+                    elif reponse == "n":
                         print(f"{self.nom} n'a pas acheté {propriete.nom}")
                         break
                     else:
