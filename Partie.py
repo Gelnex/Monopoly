@@ -103,7 +103,6 @@ class Partie:
             Propriete("Café", 1, "brune", 60, 30),
             Case_Professeur("Professeur", 2),
             Taxe()
-            
         ]
         return plateau
     
@@ -225,17 +224,7 @@ class Partie:
                     # Afficher le message du joueur en faillite et continuer le jeu
                     print(f"{nom_perdant} est en faillite.")
             else:
-                for joueur in self.__joueurs:
-                    if joueur.argent < 0:
-                        # Stocker le nom du joueur en faillite
-                        nom_perdant = joueur.nom
-
-                        # Retirer le joueur en faillite de la liste
-                        self.__joueurs.remove(joueur)
-
-                        # Afficher le message du joueur en faillite et continuer le jeu
-                        print(f"{nom_perdant} est en faillite.")
-                        break
+                pass
     
     def donner_argent_plateau(self, joueur):
         joueur.argent += self.__argentPlateau
