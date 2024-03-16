@@ -15,7 +15,7 @@ class Taxe (Case):
     ### Action que la case peut faire ###
     def malus(self, joueur,partie):
             joueur.donner_argent(-self.__prix)
-            print(f"La police vous a retirer {self.__prix}€")
+            print(f"Vous avez dû payer {self.__prix}€")
             partie.argentPlateau += self.__prix
             
     

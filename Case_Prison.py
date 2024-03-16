@@ -30,20 +30,22 @@ class Prison(Case):
 
     def bloquerMouvement(self, joueur, partie):
         # Condition pour sortir
-        if joueur.bloquerMouvement == True:
+        if joueur.mouvement == True:
             # Appel de la classe Des
             des = Des()
             somme_des, double = des.lancer_des()
 
             if double:
                 print(f"{joueur.nom} a fait un double et sort donc de prison")
-                joueur.bloquerMouvement = False
+                joueur.position = 10
+                joueur.mouvement = False
 
             else:
                 while True:
                     reponse = input("Vouler vous payer pour sortir (200€) ? O/N ")
                     if reponse == "O":
-                        joueur.bloquerMouvement = False
+                        joueur.position = 10
+                        joueur.mouvement = False
                         joueur.donner_argent(-200)
                         partie.argentPlateau += 200
                         print(f"{joueur.nom} a payer et sort donc de prison")
@@ -53,7 +55,7 @@ class Prison(Case):
                     else:
                         print(f"{reponse} n'est pas une entrée valide, veuiller entrer O ou N")
         else:
-            joueur.bloquerMouvement = True
+            joueur.mouvement = True
 
     # ============================================================================#
     # = AFFICHAGE DE LA CLASSE                                                   =#

@@ -164,7 +164,7 @@ class Partie:
 
     # Fonction de deplacement Joueur
     def deplacement(self, joueur):
-        if joueur.bloquerMouvement == False:
+        if joueur.mouvement == False:
             # Appel la classe Des
             des = Des()
             somme_des, double = des.lancer_des()

@@ -24,7 +24,7 @@ class Joueur:
         self.__propriete = []
         self.__nombre_tours = 0
         self.__pouvoir = ""
-        self.__bloquerMouvement = False
+        self.__mouvement = False
         
         self.set_pouvoir()
 
@@ -52,8 +52,8 @@ class Joueur:
         return self.__nombre_tours
 
     @property
-    def bloquerMouvement(self):
-        return self.__bloquerMouvement
+    def mouvement(self):
+        return self.__mouvement
     
     @property
     def pouvoir(self):
@@ -79,9 +79,9 @@ class Joueur:
     def nombre_tours(self, nvTour):
         self.__nombre_tours = nvTour
 
-    @bloquerMouvement.setter
-    def bloquerMouvement(self, nvbm):
-        self.__bloquerMouvement = nvbm
+    @mouvement.setter
+    def mouvement(self, nvbm):
+        self.__mouvement = nvbm
         
     # ============================================================================#
     # = METHODE                                                                  =#
