@@ -108,7 +108,7 @@ class Partie:
             Propriete("Sous-sol", 6, "blanche", 100),
             Police("Police", 7),
             Propriete("Toilettes", 8, "blanche", 100),
-            Propriete("Chambre forte deux", 9, "blanche", 1200),
+            Propriete("Chambre forte deux", 9, "blanche", 120),
             Visite_Prison("Visite Prison", 10),
             Propriete("Toit", 11, "violet", 140),
             Propriete("Pioche", 12 , "outil", 150),
@@ -173,15 +173,17 @@ class Partie:
             print(f"{joueur.nom} a fait une somme de dés de {somme_des}.")
             if double:
                 print(f"{joueur.nom} a fait un double !")
+                joueur.position = (joueur.position + somme_des) % len(self.plateau)
                 joueur.pouvoir(self)
             else:
                 print(f"{joueur.nom} n'a pas fait de double.")
+                joueur.position = (joueur.position + somme_des) % len(self.plateau)
 
             # Donne 200 d'argent au joueurs quand il dépasse est sur ou dépasse la case départ
             if joueur.position + somme_des > len(self.plateau) + 1:
                 print(f"{joueur.nom} a recu 200€ car il est passé par la case départ")
                 joueur.donner_argent(200)
-            joueur.position = (joueur.position + somme_des) % len(self.plateau)
+                joueur.position = (joueur.position + somme_des) % len(self.plateau)
         else:
             print(f"Le joueur {joueur.nom} est emprisonné")
 
@@ -279,18 +281,21 @@ if __name__ == "__main__":
     
     # Demande du nombre de joueurs à l'utilisateur et récupération de la valeur
     nJoueur = partie.nombre_joueur()
+    print("")
 
     # Initialisation de l'indice i
     i = 1
 
     # Demande des noms des joueurs à l'utilisateur et stockage dans une liste
     joueur_noms = [partie.identifier_joueur(i) for i in range(nJoueur)]
+    print("")
 
     # Création d'instances de la classe Joueur à partir des noms fournis par l'utilisateur
     joueurs = [Joueur(nom) for nom in joueur_noms]
 
     # Création d'une nouvelle instance de la classe Partie avec les joueurs créés
     jeu = Partie(joueurs)
+    print("Ce pouvoir s'activera quand le joueur fera un double !")
 
     # Début du jeu
     jeu.jouer()
