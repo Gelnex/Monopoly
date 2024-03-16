@@ -127,7 +127,8 @@ class Joueur:
                 raise TypeError("Case n'existe pas, veuiller verfier le constructeur")
         
     def set_pouvoir(self):
-        setIn = input(f"{self.nom} choisis un pouvoir :\n 1. Voleur pro \n 2. Roi de l'evasion \n 3. voleur de l'etat \n rentrer une valeur -> ")
+        setIn = input(f"{self.nom} choisis un pouvoir :\n 1. Voleur pro : Commencer le jeu avec 200€ en plus \n 2. Roi de l'evasion : Pouvoir sauter des cases max. 5\n 3. Voleur de l'etat : Voler l'argent qui est déposé au milieu de plateau \n Rentrer une valeur (entre 1 et 3) -> ")
+        print("")
 
         while True:
                 
@@ -144,10 +145,6 @@ class Joueur:
                 case _ :
                     setIn = input(f"L'entrée {setIn} est incorrect, réessayer avec 1, 2 ou 3 -> ")
                     
-                    
-
-    def incrementer_nombre_tours(self):
-        self.nombre_tours += 1
 
     def donner_argent(self, argent):
         self.argent += argent   
