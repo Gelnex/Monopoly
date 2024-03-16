@@ -25,8 +25,8 @@ class Visite_Prison(Case):
     def visite(self, joueur, joueurs):
         print(f"{joueur.nom} est en visite à la prison.")
         for joueur in joueurs:
-            if joueur.bloquerMouvement:
-                joueur.bloquerMouvement = False
+            if joueur.mouvement:
+                joueur.mouvement = False
                 print(f"Vous avez libéré {joueur.nom} de prison.")
 
 
