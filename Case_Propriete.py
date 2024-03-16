@@ -21,12 +21,12 @@ class Propriete(Case):
     # ============================================================================#
     # = CONSTRUCTEURS / DESTRUCTEUR                                              =#
     # ============================================================================#
-    def __init__(self, nom, numero, couleur, prix, loyer):
+    def __init__(self, nom, numero, couleur, prix):
         super().__init__(nom, numero)
         self.__type = "propriete"
         self.__couleur = couleur
         self.__prix = prix
-        self.__loyer = loyer
+        self.__loyer = prix / 2
         self.__proprietaire = None
         self.__carte_or = random.choice(["argent", "parc", "vol"])
 

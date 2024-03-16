@@ -8,7 +8,7 @@ from Case import *
 import random
 
 ### Définition de la classe ###
-class Case_Professeur (Case):
+class Professeur (Case):
     def __init__(self, nom: str, coordonee: int) -> None:
         super().__init__(nom, coordonee)
 
@@ -30,4 +30,4 @@ class Case_Professeur (Case):
 
 ### Tests ###
 if __name__ == "__main__":
-    case = Case_Professeur("Prof", 3)
+    case = Professeur("Prof", 3)

@@ -8,7 +8,7 @@ from Case import *
 import random
 
 ### Définition de la classe ###
-class Case_Police (Case):
+class Police(Case):
     def __init__(self, nom: str, coordonee: int) -> None:
         super().__init__(nom, coordonee)
 
@@ -33,7 +33,7 @@ if __name__ == "__main__":
     
     from Joueur import *
     
-    case = Case_Police("Police", 3)
+    case = Police("Police", 3)
     monJoueur = Joueur("george")
     case.malus(monJoueur)
     
