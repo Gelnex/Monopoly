@@ -26,6 +26,7 @@ class Visite_Prison(Case):
         print(f"{joueur.nom} est en visite à la prison.")
         for joueur in joueurs:
             if joueur.mouvement:
+                # si nimporte quelle joueur est emprisonnée, il sera libéré.
                 joueur.mouvement = False
                 print(f"Vous avez libéré {joueur.nom} de prison.")
 

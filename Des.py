@@ -38,6 +38,7 @@ class Des:
     # = METHODE                                                                  =#
     # ============================================================================#
     def lancer_des(self):
+        # generer deux valeur de 1 a 6 pour simuler des dés
         self.__des_1 = randint(1, 6)
         self.__des_2 = randint(1, 6)
 
