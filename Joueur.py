@@ -138,7 +138,6 @@ class Joueur:
     # Permet au joueur de choisir un pouvoir
     def set_pouvoir(self):
         setIn = input(f"{self.nom} choisis un pouvoir :\n 1. Voleur pro : Commencer le jeu avec 200€ en plus \n 2. Roi de l'evasion : Pouvoir sauter des cases max. 5\n 3. Voleur de l'etat : Voler l'argent qui est déposé au milieu de plateau \n Rentrer une valeur (entre 1 et 3) -> ")
-        print("")
 
         while True:
                 

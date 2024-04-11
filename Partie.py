@@ -276,28 +276,40 @@ class Partie:
         self.__argentPlateau = 0
         
     def mettre_aux_encheres(self, propriete:Propriete):
-        prix = propriete.prix / 1.5
-        print("/n /n *****les encheres ont commencéent !******")
+        prix = int(propriete.prix / 1.5)
+        print("\n \n *****les encheres ont commencéent !******")
         print(f"le prix de depart est {prix}")
         
-        inputEnchere = input("Quel joueur souhaite mettre une enchere ? (laisser vide pour arreter l'enchere) >>> ")
-        if inputEnchere != "":
-            while True:
-                for iJoueur in self.joueurs:
-                    if iJoueur.nom == inputEnchere:
-                        while True:
-                            try:
-                                prixPropose = int(input("Quel est le prix auquel vous voudriez monter l'enchere ? >>> "))
-                            except:
-                                print("L'entrée doit etre un entier.")
-                            else:
-                                if prixPropose > prix:
-                                    prix = prixPropose
-                                    break
-                                
-                inputEnchere = input("Le joueur n'a pas été trouver, verifier le nom et réeassayer >>>  ")
-        else:
-            propriete.acheter(self.joueurs[inputEnchere])
+        enchere_en_cours = True
+        while enchere_en_cours:
+            inputEnchere = input("Quel joueur souhaite mettre une enchere ? (laisser vide pour arreter l'enchere) >>> ")
+            if inputEnchere != "":
+                boucle = True
+                while boucle:
+                    for iJoueur in self.joueurs:
+                        if iJoueur.nom == inputEnchere:
+                            boucle = False
+                            enchere_en_cours = False
+                        if enchere_en_cours:
+                            inputEnchere = input("Le joueur n'a pas été trouver, verifier le nom et réeassayer >>>  ")
+                        
+                negociation_en_cours = True
+                while negociation_en_cours:   
+                    try:
+                        prixPropose = int(input("Quel est le prix auquel vous voudriez monter l'enchere ? >>> "))
+                    except:
+                        print("L'entrée doit etre un entier.")
+                    else:
+                        if prixPropose > prix:
+                            prix = prixPropose
+                            negociation_en_cours = False
+            else:
+                enchere_en_cours = False
+                if inputEnchere != "":
+                    propriete.acheter_enchere(self.joueurs[inputEnchere], prix)
+                else:
+                    propriete.acheter_enchere(self.joueurs[self.joueur_actif], prix)
+                
 
                     
                 

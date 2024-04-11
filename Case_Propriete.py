@@ -73,6 +73,14 @@ class Propriete(Case):
         print(
             f"{joueur.nom} a acheté la propriété {self.nom} pour {self.__prix}€ "
         )
+        
+    def acheter_enchere(self, joueur, prix):
+        joueur.propriete.append(self)
+        joueur.argent -= prix
+        self.proprietaire = joueur
+        print(
+            f"{joueur.nom} a acheté la propriété {self.nom} pour {prix}€ "
+        )
     
     # Action de la carte or
     def actionOr(self, joueur, partie):
