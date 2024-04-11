@@ -274,6 +274,22 @@ class Partie:
         joueur.argent += self.__argentPlateau
         print(f"Vous avez reçu {self.__argentPlateau}€ et l'argent plateau est vide")
         self.__argentPlateau = 0
+        
+    def mettre_aux_encheres(self, propriete:Propriete , joueurGagnant:Joueur):
+        prixBase = propriete.prix / 2
+        print("/n /n *****les encheres ont commencéent !******")
+        print(f"le prix de depart est {prixBase}")
+        
+        inputEnchere = input("Rentrer le nom du joueur au quel vous vouler voler 150€ -> ")
+                    while True:
+                        for iJoueur in self.joueurs:
+                            if iJoueur.nom == inputEnchere:
+                                
+                                break
+                        inputEnchere = input("Le joueur n'a pas été trouver, verifier le nom et réentrer le -> ")
+                    
+                
+        
 
 # ============================================================================#
 # = AFFICHAGE                                                                =#

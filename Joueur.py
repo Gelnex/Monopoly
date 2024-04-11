@@ -1,3 +1,5 @@
+from Partie import mettre_aux_encheres
+
 # ============================================================================#
 # = DEFINITION DE LA CLASSE                                                  =#
 # ============================================================================#
@@ -110,6 +112,7 @@ class Joueur:
                         break
                     elif reponse == "n":
                         print(f"{self.nom} n'a pas acheté {propriete.nom}")
+                        mettre_aux_encheres(propriete)
                         break
                     else:
                         print(f"{reponse} n'est pas une entrée valide, veuiller entrer O ou N")
