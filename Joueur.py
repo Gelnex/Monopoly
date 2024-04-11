@@ -86,16 +86,18 @@ class Joueur:
     # ============================================================================#
     # = METHODE                                                                  =#
     # ============================================================================#
+    
+    # Vérifie si le joueur peut achter ou non la propriété
     def peut_acheter(self, propriete):
-        # retouner un booleén vrai ou faux si l'agent nécessaire est disponible
+        # Retouner un booleén vrai ou faux si l'agent nécessaire est disponible
         return self.argent >= propriete.prix
 
     def acheter_propriete(self, propriete):
-        # verifier si la propriété appartient deja au joueur
+        # Vérifie si la propriété appartient deja au joueur
         if propriete in self.__propriete:
             print("Vous possédez déjà cette propriété.")
         else:
-            # verification que la propriétée est libre ou non, si elle est prise, le joueur paye le loyer au propriétaire
+            # Vérifie que la propriétée est libre ou non, si elle est prise, le joueur paye le loyer au propriétaire
             if propriete.proprietaire is not None:
                 propriete.payer_loyer(self)
             else:

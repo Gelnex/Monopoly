@@ -142,6 +142,7 @@ class Partie:
         ]
         return plateau
     
+    # Demande le nombre de joueur
     def nombre_joueur(self):
         nmbrJoueur = 0
         while True:
@@ -154,6 +155,7 @@ class Partie:
             except ValueError:
                 print("Veuillez entrer un nombre entier valide.")
 
+    # Demande le nom de chaque joueur
     def identifier_joueur(self, i):
             while True:
                 pseudoJoueur = input(f"Entrez le nom du {i+1}e joueur -> ")
@@ -169,7 +171,7 @@ class Partie:
             des = Des()
             somme_des, double = des.lancer_des()
 
-            # Affiche la somme des dés et de l'état du doublé
+            # Affiche la somme des dés et de l'état du double
             print(f"{joueur.nom} a fait une somme de dés de {somme_des}.")
             if double:
                 print(f"{joueur.nom} a fait un double !")
@@ -265,7 +267,8 @@ class Partie:
                     print(f"{nom_perdant} est en faillite.")
             else:
                 pass
-    
+
+    # Donne l'argent du plateau à un joueur
     def donner_argent_plateau(self, joueur):
         joueur.argent += self.__argentPlateau
         print(f"Vous avez reçu {self.__argentPlateau}€ et l'argent plateau est vide")
