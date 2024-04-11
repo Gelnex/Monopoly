@@ -12,6 +12,7 @@ from Case_Police import *
 from Case_Professeur import *
 from Case_Tunnel import *
 from Case_Taxe import *
+from ursina import *
 
 
 # ============================================================================#
@@ -274,6 +275,12 @@ class Partie:
         joueur.argent += self.__argentPlateau
         print(f"Vous avez reçu {self.__argentPlateau}€ et l'argent plateau est vide")
         self.__argentPlateau = 0
+
+
+# ============================================================================#
+# = Ursina                                                                   =#
+# ============================================================================#
+
 
 # ============================================================================#
 # = AFFICHAGE                                                                =#
