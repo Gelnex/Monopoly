@@ -92,6 +92,7 @@ class Joueur:
         # Retouner un booleén vrai ou faux si l'agent nécessaire est disponible
         return self.argent >= propriete.prix
 
+    # Permet d'acheter la propriété
     def acheter_propriete(self, propriete):
         # Vérifie si la propriété appartient deja au joueur
         if propriete in self.__propriete:
@@ -112,13 +113,14 @@ class Joueur:
                         break
                     else:
                         print(f"{reponse} n'est pas une entrée valide, veuiller entrer O ou N")
-                    
+    
+    # Active le pouvoir du joueur
     def pouvoir(self, partie) -> None:
         # regarder pour la valeur correspondante du pouvoir et l'executer
         match self.__pouvoir:
             case "argent":
                 self.donner_argent(200)
-                print(f"Vous avez grace a votre pouvoir {self.__argent} €")
+                print(f"Vous avez grace a votre pouvoir gagner {self.__argent} €")
             case "position":
                 posPouvoir = int(input(f"Vous etes sur la case N°{self.__position} de combien de case voulez vous sauter ? (max 5) -> "))
                 while True:
@@ -131,7 +133,8 @@ class Joueur:
                 partie.donner_argent_plateau(self)
             case _ :
                 raise TypeError("Case n'existe pas, veuiller verfier le constructeur")
-        
+    
+    # Permet au joueur de choisir un pouvoir
     def set_pouvoir(self):
         setIn = input(f"{self.nom} choisis un pouvoir :\n 1. Voleur pro : Commencer le jeu avec 200€ en plus \n 2. Roi de l'evasion : Pouvoir sauter des cases max. 5\n 3. Voleur de l'etat : Voler l'argent qui est déposé au milieu de plateau \n Rentrer une valeur (entre 1 et 3) -> ")
         print("")
@@ -151,6 +154,6 @@ class Joueur:
                 case _ :
                     setIn = input(f"L'entrée {setIn} est incorrect, réessayer avec 1, 2 ou 3 -> ")
                     
-
+    # Permet de donner de l'argent au plateau
     def donner_argent(self, argent):
         self.argent += argent   

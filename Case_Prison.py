@@ -28,6 +28,7 @@ class Prison(Case):
     # = METHODES                                                                 =#
     # ============================================================================#
 
+    # Permet de bloquer le joueur quand il se trouve en prison
     def bloquerMouvement(self, joueur, partie):
         # Condition pour sortir
         if joueur.mouvement == True:
@@ -35,6 +36,7 @@ class Prison(Case):
             des = Des()
             somme_des, double = des.lancer_des()
 
+            # Condition pour que le joueur puisse sortir
             if double:
                 print(f"{joueur.nom} a fait un double et sort donc de prison")
                 joueur.position = 10

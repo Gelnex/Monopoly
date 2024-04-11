@@ -1,18 +1,28 @@
-"""
-Arriaga Diogo 
-08-03-2024
-Case police qui donne des malus 
-"""
-### Imports nécessaires ###
+# ============================================================================#
+# = IMPORTS DES BIBLIOTHEQUES ET DES CLASSES                                 =#
+# ============================================================================#
 from Case import *
 import random
 
-### Définition de la classe ###
+# ============================================================================#
+# = DEFINITION DE LA CLASSE                                                  =#
+# ============================================================================#
 class Police(Case):
+    """
+    Qui : Arriaga Diogo
+    Quand : 08/03/2024
+    Quoi : Case police qui donne des malus 
+    """
+    
+    # ============================================================================#
+    # = CONSTRUCTEURS / DESTRUCTEUR                                              =#
+    # ============================================================================#
     def __init__(self, nom: str, coordonee: int) -> None:
         super().__init__(nom, coordonee)
 
-    ### Action que la case peut faire ###
+    # ============================================================================#
+    # = METHODES                                                                 =#
+    # ============================================================================#
     def malus(self, joueur,partie):
         
         match random.randint(1,2):

@@ -207,10 +207,11 @@ class Partie:
         match case_actuelle:
             case Propriete():
                 case_actuelle.actionOr(joueur, self)
-                if joueur.peut_acheter(case_actuelle):
+                # Vérifie si le joueur peut acheter
+                if joueur.peut_acheter(case_actuelle) == True:
                     joueur.acheter_propriete(case_actuelle)
                 else:
-                    pass
+                    print(joueur, " n'a pas assez d'argent !")
             case Visite_Prison():
                 case_actuelle.visite(joueur, self.__joueurs)
             case Prison():

@@ -39,6 +39,8 @@ class Depart(Case):
     # ============================================================================#
     # = METHODE                                                                  =#
     # ============================================================================#
+    
+    # Donner l'argent de la case départ au joueur
     def donner_argent(self, joueur):
         print(f"{joueur.nom} est arrivé sur la case Départ. Il reçoit 200 euros.")
         joueur.argent += 200
