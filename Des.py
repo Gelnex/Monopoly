@@ -37,13 +37,16 @@ class Des:
     # ============================================================================#
     # = METHODE                                                                  =#
     # ============================================================================#
+    
+    # Lance deux dés
     def lancer_des(self):
-        # generer deux valeur de 1 a 6 pour simuler des dés
+        # Génerer deux valeur de 1 a 6 pour simuler des dés
         self.__des_1 = randint(1, 6)
         self.__des_2 = randint(1, 6)
 
         self.__somme = self.__des_1 + self.__des_2
 
+        # Vérifier si c'est un double
         if self.__des_1 == self.__des_2:
             self.__double = True
         else:

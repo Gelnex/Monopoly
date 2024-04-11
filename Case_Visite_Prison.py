@@ -22,14 +22,6 @@ class Visite_Prison(Case):
     def __init__(self, nom, coordonnee):
         super().__init__(nom, coordonnee)
 
-    def visite(self, joueur, joueurs):
-        print(f"{joueur.nom} est en visite à la prison.")
-        for joueur in joueurs:
-            if joueur.mouvement:
-                # si nimporte quelle joueur est emprisonnée, il sera libéré.
-                joueur.mouvement = False
-                print(f"Vous avez libéré {joueur.nom} de prison.")
-
 
     # ============================================================================#
     # = ACCESSEURS                                                               =#
@@ -38,3 +30,15 @@ class Visite_Prison(Case):
     @property
     def type(self):
         return self.__type
+
+    # ============================================================================#
+    # = METHODE                                                               =#
+    # ============================================================================#
+    
+    def visite(self, joueur, joueurs):
+        print(f"{joueur.nom} est en visite à la prison.")
+        for joueur in joueurs:
+            if joueur.mouvement:
+                # si nimporte quelle joueur est emprisonnée, il sera libéré.
+                joueur.mouvement = False
+                print(f"Vous avez libéré {joueur.nom} de prison.")

@@ -9,15 +9,12 @@ import random
 # ============================================================================#
 # = DEFINITION DE LA CLASSE                                                  =#
 # ============================================================================#
-"""
+class Propriete(Case):
+    """
     Qui : Félix Engels
     Quand : 04/03/2024
     Quoi : tests
-"""
-
-
-class Propriete(Case):
-
+    """
     # ============================================================================#
     # = CONSTRUCTEURS / DESTRUCTEUR                                              =#
     # ============================================================================#
@@ -61,12 +58,14 @@ class Propriete(Case):
     # = METHODE                                                                  =#
     # ============================================================================#
 
+    # Retire l'argent du joueur quand il tombe sur la case d'un autre joueur
     def payer_loyer(self, joueur) -> None:
         joueur.argent -= self.__loyer
         print(
             f"La propriété {self.nom} appartient déjà à {self.proprietaire.nom}. {joueur.nom} a donc payé {self.__loyer} euros de loyer à {self.proprietaire.nom}."
         )
 
+    # Achat de la case par un joueur
     def acheter(self, joueur):
         joueur.propriete.append(self)
         joueur.argent -= self.__prix
@@ -74,8 +73,10 @@ class Propriete(Case):
         print(
             f"{joueur.nom} a acheté la propriété {self.nom} pour {self.__prix}€ "
         )
-            
+    
+    # Action de la carte or
     def actionOr(self, joueur, partie):
+        # Vérifier si il y a une carte or
         if self.__carte_or != None :
             print("######## carte or ########")
             match self.__carte_or:
@@ -99,6 +100,7 @@ class Propriete(Case):
                             iptVol = input("Le joueur n'a pas été trouver, verifier le nom et réentrer le -> ")
                 case _ :
                     raise TypeError("Case n'existe pas, veuiller verfier le constructeur")
+            # Enleve la carte or de la case
             self.__carte_or = None
             print("##########################")
         

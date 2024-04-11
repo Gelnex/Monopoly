@@ -1,31 +1,51 @@
-"""
-Arriaga Diogo 
-08-03-2024
-Case police qui donne des malus 
-"""
-### Imports nécessaires ###
+# ============================================================================#
+# = IMPORTS DES BIBLIOTHEQUES ET DES CLASSES                                 =#
+# ============================================================================#
 from Case import *
 
-### Définition de la classe ###
+
+# ============================================================================#
+# = DEFINITION DE LA CLASSE                                                  =#
+# ============================================================================#
 class Taxe (Case):
+    """
+    Qui : Arriaga Diogo
+    Quand : 08/03/2024
+    Quoi : Case police qui donne des malus 
+    """
+    
+    # ============================================================================#
+    # = CONSTRUCTEURS / DESTRUCTEUR                                              =#
+    # ============================================================================#
     def __init__(self, nom: str, coordonee: int, argent: int) -> None:
         super().__init__(nom, coordonee)
         self.__prix = argent
 
-    ### Action que la case peut faire ###
+    # ============================================================================#
+    # = ACCESSEURS                                                               =#
+    # ============================================================================#
+    @property
+    def prix(self):
+        return self.__prix
+    
+    
+    # ============================================================================#
+    # = MUTATEUR                                                                 =#
+    # ============================================================================#
+    @prix.setter
+    def prix(self, nvArgent):
+        self.__prix = nvArgent
+    
+    # ============================================================================#
+    # = METHODE                                                                  =#
+    # ============================================================================#
+    
+    # Définition du malus
     def malus(self, joueur,partie):
             joueur.donner_argent(-self.__prix)
             print(f"Vous avez dû payer {self.__prix}€")
             partie.argentPlateau += self.__prix
             
-    
-    @property
-    def prix(self):
-        return self.__prix
-    
-    @prix.setter
-    def prix(self, nvArgent):
-        self.__prix = nvArgent
         
 
 ### Tests ###

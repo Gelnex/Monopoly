@@ -1,18 +1,32 @@
-"""
-Arriaga Diogo 
-08-03-2024
-Case professeur qui donne des bonus 
-"""
-### Imports nécessaires ###
+# ============================================================================#
+# = IMPORTS DES BIBLIOTHEQUES ET DES CLASSES                                 =#
+# ============================================================================#
 from Case import *
 import random
 
-### Définition de la classe ###
-class Professeur (Case):
-    def __init__(self, nom: str, coordonee: int) -> None:
-        super().__init__(nom, coordonee)
 
-    ### Action que la case peut faire ###
+# ============================================================================#
+# = DEFINITION DE LA CLASSE                                                  =#
+# ============================================================================#
+class Professeur (Case):
+    """
+    Qui : Arriaga Diogo
+    Quand : 08/03/2024
+    Quoi : Case professeur qui donne des bonus 
+    """
+    
+    # ============================================================================#
+    # = CONSTRUCTEURS / DESTRUCTEUR                                              =#
+    # ============================================================================#
+    def __init__(self, nom: str, coordonee: int) -> None:
+        super().__init__(nom, coordonee)    
+    
+
+    # ============================================================================#
+    # = METHODE                                                                  =#
+    # ============================================================================#
+    
+    # Définir le bonus
     def bonus(self, joueur, partie):
         
         match random.randint(1,2):
