@@ -209,9 +209,9 @@ class Partie:
                 case_actuelle.actionOr(joueur, self)
                 # Vérifie si le joueur peut acheter
                 if joueur.peut_acheter(case_actuelle) == True:
-                    joueur.acheter_propriete(case_actuelle)
+                    joueur.acheter_propriete(case_actuelle, self)
                 else:
-                    print(joueur, " n'a pas assez d'argent !")
+                    mettre_aux_encheres(case_actuelle)
             case Visite_Prison():
                 case_actuelle.visite(joueur, self.__joueurs)
             case Prison():
@@ -275,18 +275,30 @@ class Partie:
         print(f"Vous avez reçu {self.__argentPlateau}€ et l'argent plateau est vide")
         self.__argentPlateau = 0
         
-    def mettre_aux_encheres(self, propriete:Propriete , joueurGagnant:Joueur):
-        prixBase = propriete.prix / 2
+    def mettre_aux_encheres(self, propriete:Propriete):
+        prix = propriete.prix / 1.5
         print("/n /n *****les encheres ont commencéent !******")
-        print(f"le prix de depart est {prixBase}")
+        print(f"le prix de depart est {prix}")
         
-        inputEnchere = input("Rentrer le nom du joueur au quel vous vouler voler 150€ -> ")
-                    while True:
-                        for iJoueur in self.joueurs:
-                            if iJoueur.nom == inputEnchere:
+        inputEnchere = input("Quel joueur souhaite mettre une enchere ? (laisser vide pour arreter l'enchere) >>> ")
+        if inputEnchere != "":
+            while True:
+                for iJoueur in self.joueurs:
+                    if iJoueur.nom == inputEnchere:
+                        while True:
+                            try:
+                                prixPropose = int(input("Quel est le prix auquel vous voudriez monter l'enchere ? >>> "))
+                            except:
+                                print("L'entrée doit etre un entier.")
+                            else:
+                                if prixPropose > prix:
+                                    prix = prixPropose
+                                    break
                                 
-                                break
-                        inputEnchere = input("Le joueur n'a pas été trouver, verifier le nom et réentrer le -> ")
+                inputEnchere = input("Le joueur n'a pas été trouver, verifier le nom et réeassayer >>>  ")
+        else:
+            propriete.acheter(self.joueurs[inputEnchere])
+
                     
                 
         

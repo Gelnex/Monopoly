@@ -1,5 +1,3 @@
-from Partie import mettre_aux_encheres
-
 # ============================================================================#
 # = DEFINITION DE LA CLASSE                                                  =#
 # ============================================================================#
@@ -95,7 +93,7 @@ class Joueur:
         return self.argent >= propriete.prix
 
     # Permet d'acheter la propriété
-    def acheter_propriete(self, propriete):
+    def acheter_propriete(self, propriete, partie):
         # Vérifie si la propriété appartient deja au joueur
         if propriete in self.__propriete:
             print("Vous possédez déjà cette propriété.")
@@ -112,7 +110,7 @@ class Joueur:
                         break
                     elif reponse == "n":
                         print(f"{self.nom} n'a pas acheté {propriete.nom}")
-                        mettre_aux_encheres(propriete)
+                        partie.mettre_aux_encheres(propriete = propriete)
                         break
                     else:
                         print(f"{reponse} n'est pas une entrée valide, veuiller entrer O ou N")
