@@ -277,7 +277,7 @@ class Partie:
         
     def mettre_aux_encheres(self, propriete:Propriete):
         prix = int(propriete.prix / 1.5)
-        print("\n \n *****les encheres ont commencéent !******")
+        print("\n \n *****les encheres ont commencé !******")
         print(f"le prix de depart est {prix}")
         
         enchere_en_cours = True
@@ -286,12 +286,13 @@ class Partie:
             if inputEnchere != "":
                 boucle = True
                 while boucle:
+                    pasTrouve = True
                     for iJoueur in self.joueurs:
                         if iJoueur.nom == inputEnchere:
                             boucle = False
-                            enchere_en_cours = False
-                        if enchere_en_cours:
-                            inputEnchere = input("Le joueur n'a pas été trouver, verifier le nom et réeassayer >>>  ")
+                            pasTrouve = False
+                    if pasTrouve:
+                        inputEnchere = input("Le joueur n'as pas été trouver, veuiller réessayer >>> ")
                         
                 negociation_en_cours = True
                 while negociation_en_cours:   
