@@ -156,13 +156,25 @@ class Partie:
                 print("Veuillez entrer un nombre entier valide.")
 
     # Demande le nom de chaque joueur
-    def identifier_joueur(self, i):
-            while True:
-                pseudoJoueur = input(f"Entrez le nom du {i+1}e joueur -> ")
-                if isinstance(pseudoJoueur, str):
-                    return pseudoJoueur
+    def identifier_joueur(self, nombre_joueur):
+        liste_joueurs = []
+        i = 1
+        n_joueurs = nombre_joueur
+        
+        while n_joueurs > 0:
+            pseudoJoueur = input(f"Entrez le nom du {i}e joueur -> ")
+            if isinstance(pseudoJoueur, str):
+                if not (pseudoJoueur in liste_joueurs):
+                    liste_joueurs.append(pseudoJoueur)
+                    n_joueurs = n_joueurs - 1
+                    i += 1
                 else:
-                    print("Erreur : Veuillez entrer un pseudo sous forme de texte.")
+                    print ("Le même nom ne peut pas être utilisé 2 fois")
+                
+            else:
+                print("Erreur : Veuillez entrer un pseudo sous forme de texte.")
+
+        return liste_joueurs
 
     # Fonction de deplacement Joueur
     def deplacement(self, joueur):
@@ -328,11 +340,12 @@ if __name__ == "__main__":
     nJoueur = partie.nombre_joueur()
     print("")
 
-    # Initialisation de l'indice i
+    # Initialisation des variables nécessaires 
     i = 1
+    joueur_noms = []
 
     # Demande des noms des joueurs à l'utilisateur et stockage dans une liste
-    joueur_noms = [partie.identifier_joueur(i) for i in range(nJoueur)]
+    joueur_noms = partie.identifier_joueur(nJoueur)
     print("")
 
     # Création d'instances de la classe Joueur à partir des noms fournis par l'utilisateur
