@@ -144,7 +144,7 @@ class Partie:
         
         while n_joueurs > 0:
             pseudoJoueur = input(f"Entrez le nom du {i}e joueur -> ")
-            if isinstance(pseudoJoueur, str):
+            if isinstance(pseudoJoueur, str) and pseudoJoueur != "":
                 if not (pseudoJoueur in liste_joueurs):
                     liste_joueurs.append(pseudoJoueur)
                     n_joueurs = n_joueurs - 1
@@ -270,6 +270,7 @@ class Partie:
         
     def mettre_aux_encheres(self, propriete:Propriete):
         prix = int(propriete.prix / 1.5)
+        iterateur = 0
         print("\n \n *****les encheres ont commencé !******")
         print(f"le prix de depart est {prix}")
         
@@ -281,6 +282,8 @@ class Partie:
                 while boucle:
                     pasTrouve = True
                     for iJoueur in self.joueurs:
+                        if boucle != False:
+                            iterateur += 1
                         if iJoueur.nom == inputEnchere:
                             boucle = False
                             pasTrouve = False
@@ -297,12 +300,14 @@ class Partie:
                         if prixPropose > prix:
                             prix = prixPropose
                             negociation_en_cours = False
+                        else:
+                            print("Prix invalide.")
             else:
                 enchere_en_cours = False
-                if inputEnchere != "":
-                    propriete.acheter_enchere(self.joueurs[inputEnchere], prix)
+                if iterateur != "":
+                    propriete.acheter_enchere(self.joueurs[iterateur % len(self.joueurs)], prix)
                 else:
-                    propriete.acheter_enchere(self.joueurs[self.joueur_actif], prix)
+                    print("personne n'as souhaiter encherir pour cette propriété")
                 
 
                     
