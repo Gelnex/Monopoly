@@ -31,7 +31,6 @@ class Partie:
     def __init__(self, joueurs) -> None:
 
         ### Lister et initialiser les attributs
-        self.__idPartie = 0
         self.__plateau = self.mise_en_place()
         self.__joueur_actif = 0
         self.__joueurs = joueurs
@@ -40,14 +39,6 @@ class Partie:
     # ============================================================================#
     # = ACCESSEURS                                                               =#
     # ============================================================================#
-    @property
-    def idPartie(self) -> int:
-        return self.__idPartie
-
-    @property
-    def tour(self) -> int:
-        return self.__tour
-
     @property
     def plateau(self):
         return self.__plateau
@@ -66,16 +57,6 @@ class Partie:
 
     # ============================================================================#
     # = MUTATEUR                                                                 =#
-    # ============================================================================#
-
-    @idPartie.setter
-    def idPartie(self, nvId):
-        self.__idPartie = nvId
-
-    @tour.setter
-    def tour(self, nvTour):
-        self.__tour = nvTour
-
     @plateau.setter
     def plateau(self, nvPlateau):
         self.__plateau = nvPlateau
