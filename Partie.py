@@ -144,7 +144,7 @@ class Partie:
         
         while n_joueurs > 0:
             pseudoJoueur = input(f"Entrez le nom du {i}e joueur -> ")
-            if isinstance(pseudoJoueur, str):
+            if isinstance(pseudoJoueur, str) and pseudoJoueur != "":
                 if not (pseudoJoueur in liste_joueurs):
                     liste_joueurs.append(pseudoJoueur)
                     n_joueurs = n_joueurs - 1
