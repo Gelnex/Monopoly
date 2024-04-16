@@ -32,7 +32,6 @@ class Partie:
     def __init__(self, joueurs) -> None:
 
         ### Lister et initialiser les attributs
-        self.__idPartie = 0
         self.__plateau = self.mise_en_place()
         self.__joueur_actif = 0
         self.__joueurs = joueurs
@@ -41,14 +40,6 @@ class Partie:
     # ============================================================================#
     # = ACCESSEURS                                                               =#
     # ============================================================================#
-    @property
-    def idPartie(self) -> int:
-        return self.__idPartie
-
-    @property
-    def tour(self) -> int:
-        return self.__tour
-
     @property
     def plateau(self):
         return self.__plateau
@@ -67,16 +58,6 @@ class Partie:
 
     # ============================================================================#
     # = MUTATEUR                                                                 =#
-    # ============================================================================#
-
-    @idPartie.setter
-    def idPartie(self, nvId):
-        self.__idPartie = nvId
-
-    @tour.setter
-    def tour(self, nvTour):
-        self.__tour = nvTour
-
     @plateau.setter
     def plateau(self, nvPlateau):
         self.__plateau = nvPlateau
@@ -157,13 +138,25 @@ class Partie:
                 print("Veuillez entrer un nombre entier valide.")
 
     # Demande le nom de chaque joueur
-    def identifier_joueur(self, i):
-            while True:
-                pseudoJoueur = input(f"Entrez le nom du {i+1}e joueur -> ")
-                if isinstance(pseudoJoueur, str):
-                    return pseudoJoueur
+    def identifier_joueur(self, nombre_joueur):
+        liste_joueurs = []
+        i = 1
+        n_joueurs = nombre_joueur
+        
+        while n_joueurs > 0:
+            pseudoJoueur = input(f"Entrez le nom du {i}e joueur -> ")
+            if isinstance(pseudoJoueur, str):
+                if not (pseudoJoueur in liste_joueurs):
+                    liste_joueurs.append(pseudoJoueur)
+                    n_joueurs = n_joueurs - 1
+                    i += 1
                 else:
-                    print("Erreur : Veuillez entrer un pseudo sous forme de texte.")
+                    print ("Le même nom ne peut pas être utilisé 2 fois")
+                
+            else:
+                print("Erreur : Veuillez entrer un pseudo sous forme de texte.")
+
+        return liste_joueurs
 
     # Fonction de deplacement Joueur
     def deplacement(self, joueur):
@@ -210,9 +203,9 @@ class Partie:
                 case_actuelle.actionOr(joueur, self)
                 # Vérifie si le joueur peut acheter
                 if joueur.peut_acheter(case_actuelle) == True:
-                    joueur.acheter_propriete(case_actuelle)
+                    joueur.acheter_propriete(case_actuelle, self)
                 else:
-                    print(joueur, " n'a pas assez d'argent !")
+                    mettre_aux_encheres(case_actuelle)
             case Visite_Prison():
                 case_actuelle.visite(joueur, self.__joueurs)
             case Prison():
@@ -275,6 +268,49 @@ class Partie:
         joueur.argent += self.__argentPlateau
         print(f"Vous avez reçu {self.__argentPlateau}€ et l'argent plateau est vide")
         self.__argentPlateau = 0
+        
+    def mettre_aux_encheres(self, propriete:Propriete):
+        prix = int(propriete.prix / 1.5)
+        encherrisseurIndex = None
+        print("\n \n *****les encheres ont commencé !******")
+        print(f"le prix de depart est {prix}")
+        
+        enchere_en_cours = True
+        while enchere_en_cours:
+            inputEnchere = input("Quel joueur souhaite mettre une enchere ? (laisser vide pour arreter l'enchere) >>> ")
+            if inputEnchere != "":
+                boucle = True
+                while boucle:
+                    pasTrouve = True
+                    for iJoueur in self.joueurs:
+                        if iJoueur.nom == inputEnchere:
+                            boucle = False
+                            pasTrouve = False
+                            encherrisseurIndex = self.joueurs.index(iJoueur)
+                    if pasTrouve:
+                        inputEnchere = input("Le joueur n'as pas été trouver, veuiller réessayer >>> ")
+                        
+                negociation_en_cours = True
+                while negociation_en_cours:   
+                    try:
+                        prixPropose = int(input("Quel est le prix auquel vous voudriez monter l'enchere ? >>> "))
+                    except:
+                        print("L'entrée doit etre un entier.")
+                    else:
+                        if prixPropose > prix:
+                            prix = prixPropose
+                            negociation_en_cours = False
+            else:
+                enchere_en_cours = False
+                if inputEnchere == "" and encherrisseurIndex != None:
+                    propriete.acheter_enchere(self.joueurs[encherrisseurIndex], prix)
+                else:
+                    print("Personne n'as voulu de l'enchere")
+                
+
+                    
+                
+        
 
 
 # ============================================================================#
@@ -294,11 +330,12 @@ if __name__ == "__main__":
     nJoueur = partie.nombre_joueur()
     print("")
 
-    # Initialisation de l'indice i
+    # Initialisation des variables nécessaires 
     i = 1
+    joueur_noms = []
 
     # Demande des noms des joueurs à l'utilisateur et stockage dans une liste
-    joueur_noms = [partie.identifier_joueur(i) for i in range(nJoueur)]
+    joueur_noms = partie.identifier_joueur(nJoueur)
     print("")
 
     # Création d'instances de la classe Joueur à partir des noms fournis par l'utilisateur

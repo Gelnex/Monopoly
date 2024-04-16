@@ -93,7 +93,7 @@ class Joueur:
         return self.argent >= propriete.prix
 
     # Permet d'acheter la propriété
-    def acheter_propriete(self, propriete):
+    def acheter_propriete(self, propriete, partie):
         # Vérifie si la propriété appartient deja au joueur
         if propriete in self.__propriete:
             print("Vous possédez déjà cette propriété.")
@@ -110,6 +110,7 @@ class Joueur:
                         break
                     elif reponse == "n":
                         print(f"{self.nom} n'a pas acheté {propriete.nom}")
+                        partie.mettre_aux_encheres(propriete = propriete)
                         break
                     else:
                         print(f"{reponse} n'est pas une entrée valide, veuiller entrer O ou N")
@@ -137,7 +138,6 @@ class Joueur:
     # Permet au joueur de choisir un pouvoir
     def set_pouvoir(self):
         setIn = input(f"{self.nom} choisis un pouvoir :\n 1. Voleur pro : Commencer le jeu avec 200€ en plus \n 2. Roi de l'evasion : Pouvoir sauter des cases max. 5\n 3. Voleur de l'etat : Voler l'argent qui est déposé au milieu de plateau \n Rentrer une valeur (entre 1 et 3) -> ")
-        print("")
 
         while True:
                 

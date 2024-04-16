@@ -73,6 +73,14 @@ class Propriete(Case):
         print(
             f"{joueur.nom} a acheté la propriété {self.nom} pour {self.__prix}€ "
         )
+        
+    def acheter_enchere(self, joueur, prix):
+        joueur.propriete.append(self)
+        joueur.argent -= prix
+        self.proprietaire = joueur
+        print(
+            f"{joueur.nom} a acheté la propriété {self.nom} pour {prix}€ "
+        )
     
     # Action de la carte or
     def actionOr(self, joueur, partie):
@@ -90,14 +98,14 @@ class Propriete(Case):
                     vrf = True
                     while vrf:
                         for iJoueur in partie.joueurs:
-                            if iJoueur.nom == iptVol:
+                            if iJoueur.nom == iptVol  and iptVol != joueur.nom:
                                 print(f"{joueur.nom} a volé 150€ à {iptVol} !")                          
                                 iJoueur.argent -= 150
                                 joueur.argent += 150
                                 vrf = False
                                 break
                         if vrf:
-                            iptVol = input("Le joueur n'a pas été trouver, verifier le nom et réentrer le -> ")
+                            iptVol = input("Le joueur n'a pas été trouvé ou il s'agit de vous-même, verifier le nom et réentrer le -> ")
                 case _ :
                     raise TypeError("Case n'existe pas, veuiller verfier le constructeur")
             # Enleve la carte or de la case
