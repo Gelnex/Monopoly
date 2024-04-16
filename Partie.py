@@ -268,43 +268,47 @@ class Partie:
         print(f"Vous avez reçu {self.__argentPlateau}€ et l'argent plateau est vide")
         self.__argentPlateau = 0
         
-    def mettre_aux_encheres(self, propriete:Propriete):
+    def mettre_aux_encheres(self, propriete: Propriete):
         prix = int(propriete.prix / 1.5)
-        encherrisseurIndex = None
         print("\n \n *****les encheres ont commencé !******")
-        print(f"le prix de depart est {prix}")
+        print(f"le prix de départ est {prix}")
         
         enchere_en_cours = True
+        encherrisseurIndex = None  # Initialize the variable outside the loop
+        
         while enchere_en_cours:
             inputEnchere = input("Quel joueur souhaite mettre une enchere ? (laisser vide pour arreter l'enchere) >>> ")
             if inputEnchere != "":
-                boucle = True
-                while boucle:
-                    pasTrouve = True
-                    for iJoueur in self.joueurs:
-                        if iJoueur.nom == inputEnchere:
-                            boucle = False
-                            pasTrouve = False
-                            encherrisseurIndex = self.joueurs.index(iJoueur)
-                    if pasTrouve:
-                        inputEnchere = input("Le joueur n'as pas été trouver, veuiller réessayer >>> ")
-                        
-                negociation_en_cours = True
-                while negociation_en_cours:   
-                    try:
-                        prixPropose = int(input("Quel est le prix auquel vous voudriez monter l'enchere ? >>> "))
-                    except:
-                        print("L'entrée doit etre un entier.")
-                    else:
-                        if prixPropose > prix:
-                            prix = prixPropose
-                            negociation_en_cours = False
+                iJoueur = None
+                for joueur in self.joueurs:
+                    if joueur.nom == inputEnchere and (encherrisseurIndex is None or joueur.nom != self.joueurs[encherrisseurIndex].nom):
+                        iJoueur = joueur
+                        break
+                
+                if iJoueur is not None:
+                    encherrisseurIndex = self.joueurs.index(iJoueur)
+                    
+                    negociation_en_cours = True
+                    while negociation_en_cours:   
+                        try:
+                            prixPropose = int(input("Quel est le prix auquel vous voudriez monter l'enchere ? >>> "))
+                        except ValueError:
+                            print("L'entrée doit être un entier.")
+                        else:
+                            if prixPropose > prix:
+                                prix = prixPropose
+                                negociation_en_cours = False
+                else:
+                    print("Le joueur n'a pas été trouvé ou est deja le top encherisseur, veuillez réessayer.")
             else:
                 enchere_en_cours = False
-                if inputEnchere == "" and encherrisseurIndex != None:
-                    propriete.acheter_enchere(self.joueurs[encherrisseurIndex], prix)
-                else:
-                    print("Personne n'as voulu de l'enchere")
+                
+        if encherrisseurIndex is not None:
+            propriete.acheter_enchere(self.joueurs[encherrisseurIndex], prix)
+        else:
+            print("Personne n'a voulu de l'enchere")
+
+
                 
 
                     
