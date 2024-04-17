@@ -295,7 +295,7 @@ class Partie:
                         except ValueError:
                             print("L'entrée doit être un entier.")
                         else:
-                            if prixPropose > prix:
+                            if self.joueurs[encherrisseurIndex].argent > prixPropose and prixPropose > prix:
                                 prix = prixPropose
                                 negociation_en_cours = False
                 else:
