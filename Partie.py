@@ -314,26 +314,30 @@ class Partie:
 class MaScene(Entity):
         def __init__(self):
             super().__init__()
-            self.ma_image = Entity(
-                model='quad', 
+            self.image = Entity(
+                parent=camera.ui,
+                model='quad',
                 texture='ressource/image/accueil.png', 
-                scale=(window.aspect_ratio, 1)
+                scale=(1.6, 0.9)
                 )
 
+            self.button = Button(
+                parent=camera.ui,
+                model='quad',
+                texture='white_cube',
+                color=color.red,
+                scale=(.4, .1),
+                position=(0, -.3)
+            )
 
 # ============================================================================#
 # = AFFICHAGE                                                                =#
 # ============================================================================#
 
 if __name__ == "__main__":
-    app = Ursina()
     
     # Création d'une instance de la classe Partie avec une liste de joueurs vide
     partie = Partie([])
-
-    ma_scene = MaScene()
-    
-    app.run()
     
     # Demande du nombre de joueurs à l'utilisateur et récupération de la valeur
     nJoueur = partie.nombre_joueur()
@@ -356,3 +360,5 @@ if __name__ == "__main__":
 
     # Début du jeu
     jeu.jouer()
+    
+    app.run()
