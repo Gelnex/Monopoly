@@ -306,16 +306,19 @@ class Partie:
                     propriete.acheter_enchere(self.joueurs[encherrisseurIndex], prix)
                 else:
                     print("Personne n'as voulu de l'enchere")
-                
-
-                    
-                
-        
 
 
 # ============================================================================#
-# = Ursina                                                                   =#
+# = URSINA                                                                   =#
 # ============================================================================#
+class MaScene(Entity):
+        def __init__(self):
+            super().__init__()
+            self.ma_image = Entity(
+                model='quad', 
+                texture='ressource/image/accueil.png', 
+                scale=(window.aspect_ratio, 1)
+                )
 
 
 # ============================================================================#
@@ -323,8 +326,14 @@ class Partie:
 # ============================================================================#
 
 if __name__ == "__main__":
+    app = Ursina()
+    
     # Création d'une instance de la classe Partie avec une liste de joueurs vide
     partie = Partie([])
+
+    ma_scene = MaScene()
+    
+    app.run()
     
     # Demande du nombre de joueurs à l'utilisateur et récupération de la valeur
     nJoueur = partie.nombre_joueur()
