@@ -334,6 +334,8 @@ class MaScene(Entity):
 # = AFFICHAGE                                                                =#
 # ============================================================================#
 
+
+"""
 if __name__ == "__main__":
     
     # Création d'une instance de la classe Partie avec une liste de joueurs vide
@@ -360,5 +362,4 @@ if __name__ == "__main__":
 
     # Début du jeu
     jeu.jouer()
-    
-    app.run()
+"""
