@@ -23,8 +23,7 @@ class Police(Case):
     # ============================================================================#
     # = METHODES                                                                 =#
     # ============================================================================#
-    def malus(self, joueur,partie):
-        
+    def malus(self, joueur, partie):
         match random.randint(1,2):
             case 1:
                 joueur.position -= 3

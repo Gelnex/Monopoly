@@ -33,14 +33,14 @@ class Propriete(Case):
     @property
     def type(self):
         return self.__type
-
-    @property
-    def type(self):
-        return self.__couleur
-
+        
     @property
     def prix(self):
         return self.__prix
+    
+    @property
+    def loyer(self):
+        return self.__loyer
 
     @property
     def proprietaire(self):
