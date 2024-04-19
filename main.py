@@ -1,8 +1,9 @@
 import threading
 from Partie import *
 
+
 def thread():
-    partie = Partie()
+    partie = Partie([])
     
 code_thread = threading.Thread(target=thread)
 code_thread.start()
