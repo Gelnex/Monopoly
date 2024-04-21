@@ -1,22 +1,27 @@
+import mysql.connector
+
 def connectionDB(table):
+    try:
+        conn = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="root",
+            database="monopolyCDP"
+        )
 
-    import mysql.connector
+        cur = conn.cursor()
+        cur.execute(f"SELECT * FROM {table}")
+        result = cur.fetchall()
 
-    conn = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="root",
-        database="monopolyCDP"
-    )
+    except mysql.connector.Error as err:
+        print("Error accessing the database:", err)
+        result = None
 
-
-    cur = conn.cursor()
-    cur.execute(f"SELECT * FROM {table}")
-
-    result = cur.fetchall()
-
-    cur.close()
-    conn.close()
+    finally:
+        if 'cur' in locals():
+            cur.close()
+        if 'conn' in locals():
+            conn.close()
     
     return result
 

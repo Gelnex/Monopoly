@@ -12,6 +12,7 @@ from Case_Police import *
 from Case_Professeur import *
 from Case_Tunnel import *
 from Case_Taxe import *
+from SQL import connectionDB
 
 
 # ============================================================================#
@@ -79,6 +80,12 @@ class Partie:
     # ============================================================================#
     def mise_en_place(self):
         # Créer un plateau de jeu avec des propriétés
+        # db = connectionDB("cases")
+        # if db != None:
+        #     for i in db:
+        #         db[i]
+        #     return db
+        # else:
         plateau = [
             Depart("Case Départ", 0),
             Propriete("Café", 1, "brune", 60),
