@@ -50,6 +50,7 @@ CREATE TABLE `cases` (
 --
 
 INSERT INTO `cases` (`coordonnee`, `nom`, `type`, `prix`, `famille`) VALUES
+(0, 'Case Depart', 'Depart', NULL, NULL),
 (1, 'Café', 'Propriete', 60, 'brune'),
 (2, 'Professeur', 'Professeur', NULL, NULL),
 (3, 'Décharge', 'Propriete', 60, 'brune'),
@@ -88,8 +89,7 @@ INSERT INTO `cases` (`coordonnee`, `nom`, `type`, `prix`, `famille`) VALUES
 (36, 'Police', 'Police', NULL, NULL),
 (37, 'Fabrique de la monnaie', 'Propriete', 350, 'bleu'),
 (38, 'Colonnel Tamayo', 'Taxe', 100, NULL),
-(39, 'La banque', 'Propriete', 400, 'bleu'),
-(0, 'Case Depart', 'Depart', NULL, NULL);
+(39, 'La banque', 'Propriete', 400, 'bleu');
 
 -- --------------------------------------------------------
 

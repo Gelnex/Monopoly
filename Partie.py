@@ -80,54 +80,76 @@ class Partie:
     # ============================================================================#
     def mise_en_place(self):
         # Créer un plateau de jeu avec des propriétés
-        # db = connectionDB("cases")
-        # if db != None:
-        #     for i in db:
-        #         db[i]
-        #     return db
-        # else:
-        plateau = [
-            Depart("Case Départ", 0),
-            Propriete("Café", 1, "brune", 60),
-            Professeur("Professeur", 2),
-            Propriete("Décharge" , 3, "brune", 60),
-            Taxe("Colonel Prieto" , 4, 200),
-            Tunnel("Chambre forte trois", 5),
-            Propriete("Sous-sol", 6, "blanche", 100),
-            Police("Police", 7),
-            Propriete("Toilettes", 8, "blanche", 100),
-            Propriete("Chambre forte deux", 9, "blanche", 120),
-            Visite_Prison("Visite Prison", 10),
-            Propriete("Toit", 11, "violet", 140),
-            Propriete("Pioche", 12 , "outil", 150),
-            Propriete("Tente de commandement", 13, "violet", 140),
-            Propriete("Aire de chargement", 14, "violet", 160),
-            Tunnel("Le hangar", 15),
-            Propriete("Cidrerie", 16, "orange", 180),
-            Professeur("Professeur", 17),
-            Propriete("Hôpital", 18, "orange", 180),
-            Propriete("Maison de Tolède", 19, "orange", 200),
-            Case("Parc gratuit", 20),
-            Propriete("Monastère", 21, "rouge", 220),
-            Police("Police", 22),
-            Propriete("Place de Callad", 23, "rouge", 220),
-            Propriete("Hall", 24, "rouge", 240),
-            Tunnel("Restaurant", 25),
-            Propriete("Bureau du gouverneur", 26, "jaune", 260),
-            Propriete("Antichambre", 27, "jaune", 260),
-            Propriete("Lance-thermique", 28, "outil", 150),
-            Propriete("Chambre forte inondée", 29, "jaune", 260),
-            Prison("Prison", 30),
-            Propriete("Camping-car de commandement", 31 , "vert", 300),
-            Propriete("Réservoir d'eau de pluie", 32, "vert", 300),
-            Professeur("Professeur", 33),
-            Propriete("Pièce sécurisée", 34, "vert", 320),
-            Tunnel("Garage", 35),
-            Police("Police", 36),
-            Propriete("Fabrique de la monnaie", 37, "bleu", 350),
-            Taxe("Colonnel Tamayo", 38, 100),
-            Propriete("La banque", 39, "bleu", 400)
-        ]
+        db = connectionDB("cases")
+        if db != None:
+            plateau = []
+            for i in db:
+                match i[2]:
+                    case "Propriete":
+                       plateau.append(Propriete(i[1], i[0],i[4],i[3]))
+                    case "Visite_Prison":
+                        plateau.append(Visite_Prison(i[1], i[0]))
+                    case "Prison":
+                        plateau.append(Prison(i[1], i[0]))
+                    case "Depart":
+                        plateau.append(Depart(i[1], i[0]))
+                    case "Police":
+                        plateau.append(Police(i[1], i[0]))
+                    case "Professeur":
+                        plateau.append(Professeur(i[1], i[0]))
+                    case "Tunnel":
+                        plateau.append(Tunnel(i[1], i[0]))
+                    case "Taxe":
+                        plateau.append(Taxe(i[1], i[0],i[3]))
+                    case "Case":
+                        plateau.append(Case(i[1], i[0]))
+                    case _:
+                        raise TypeError("case non trouvé")
+            return plateau
+        else:
+            print("connexion a la base de donnée impossible donc utilisation du plateau local")
+            plateau = [
+                Depart("Case Départ", 0),
+                Propriete("Café", 1, "brune", 60),
+                Professeur("Professeur", 2),
+                Propriete("Décharge" , 3, "brune", 60),
+                Taxe("Colonel Prieto" , 4, 200),
+                Tunnel("Chambre forte trois", 5),
+                Propriete("Sous-sol", 6, "blanche", 100),
+                Police("Police", 7),
+                Propriete("Toilettes", 8, "blanche", 100),
+                Propriete("Chambre forte deux", 9, "blanche", 120),
+                Visite_Prison("Visite Prison", 10),
+                Propriete("Toit", 11, "violet", 140),
+                Propriete("Pioche", 12 , "outil", 150),
+                Propriete("Tente de commandement", 13, "violet", 140),
+                Propriete("Aire de chargement", 14, "violet", 160),
+                Tunnel("Le hangar", 15),
+                Propriete("Cidrerie", 16, "orange", 180),
+                Professeur("Professeur", 17),
+                Propriete("Hôpital", 18, "orange", 180),
+                Propriete("Maison de Tolède", 19, "orange", 200),
+                Case("Parc gratuit", 20),
+                Propriete("Monastère", 21, "rouge", 220),
+                Police("Police", 22),
+                Propriete("Place de Callad", 23, "rouge", 220),
+                Propriete("Hall", 24, "rouge", 240),
+                Tunnel("Restaurant", 25),
+                Propriete("Bureau du gouverneur", 26, "jaune", 260),
+                Propriete("Antichambre", 27, "jaune", 260),
+                Propriete("Lance-thermique", 28, "outil", 150),
+                Propriete("Chambre forte inondée", 29, "jaune", 260),
+                Prison("Prison", 30),
+                Propriete("Camping-car de commandement", 31 , "vert", 300),
+                Propriete("Réservoir d'eau de pluie", 32, "vert", 300),
+                Professeur("Professeur", 33),
+                Propriete("Pièce sécurisée", 34, "vert", 320),
+                Tunnel("Garage", 35),
+                Police("Police", 36),
+                Propriete("Fabrique de la monnaie", 37, "bleu", 350),
+                Taxe("Colonnel Tamayo", 38, 100),
+                Propriete("La banque", 39, "bleu", 400)
+            ]
         return plateau
     
     # Demande le nombre de joueur
