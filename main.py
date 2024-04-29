@@ -2,7 +2,7 @@ import threading
 from Partie import *
 from ursina import *
 
-class MaScene(Entity):
+class Accueil(Entity):
     def __init__(self):
         super().__init__()
         self.image = Entity(
@@ -20,6 +20,37 @@ class MaScene(Entity):
             scale=(.4, .1),
             position=(0, -.3),
             text='Jouer',  # Texte à afficher à l'intérieur du bouton
+            text_origin=(0, 0),  # Position du texte (centre du bouton)
+            text_color=color.white,  # Couleur du texte
+            text_font='font/test.otf',
+            text_size=100,
+            on_click=self.switch_nbrJoueur
+        )
+
+    def switch_nbrJoueur(self):
+        self.enabled = False  # Supprimer l'entité "Accueil" et tous ses enfants
+        self.button.enabled = False
+        # Initialiser la scène "NbrJoueur"
+        scene = NbrJoueur()
+
+class NbrJoueur(Entity):
+    def __init__(self):
+        super().__init__()
+        self.image = Entity(
+            parent=camera.ui,
+            model='quad',
+            texture='ressource/image/nbrJoueur.png', 
+            scale=(1.6, 0.9)
+        )
+
+        self.button = Button(
+            parent=camera.ui,
+            model='quad',
+            texture='white_cube',
+            color=color.red,
+            scale=(.4, .1),
+            position=(0, -.3),
+            text='Test',  # Texte à afficher à l'intérieur du bouton
             text_origin=(0, 0),  # Position du texte (centre du bouton)
             text_color=color.white,  # Couleur du texte
             text_font='font/test.otf',
@@ -62,5 +93,5 @@ class MaScene(Entity):
 
 # Initialisation de l'interface graphique dans le thread principal
 app = Ursina()
-scene = MaScene()
+scene = Accueil()
 app.run()
