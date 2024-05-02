@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Basic MySQLi Commands</title>
+<title>Monopoly DB editor</title>
 </head>
 <body>
 	<h2>Edit</h2>
