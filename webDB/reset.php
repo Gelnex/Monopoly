@@ -1,6 +1,7 @@
 <?php
 include('conn.php');
-mysqli_query($conn,"TRUNCATE TABLE cases;
+
+$query = "TRUNCATE TABLE cases;
 INSERT INTO cases (coordonnee, nom, type, prix, famille) VALUES
 (0, 'Case Depart', 'Depart', NULL, NULL),
 (1, 'Café', 'Propriete', 60, 'brune'),
@@ -34,7 +35,7 @@ INSERT INTO cases (coordonnee, nom, type, prix, famille) VALUES
 (29, 'Chambre forte inondée', 'Propriete', 260, 'jaune'),
 (30, 'Prison', 'Prison', NULL, NULL),
 (31, 'Camping-car de commandement', 'Propriete', 300, 'vert'),
-(32, 'Réservoir d\'eau de pluie', 'Propriete', 300, 'vert'),
+(32, 'Réservoir d\\'eau de pluie', 'Propriete', 300, 'vert'),
 (33, 'Professeur', 'Professeur', NULL, NULL),
 (34, 'Pièce sécurisée', 'Propriete', 320, 'vert'),
 (35, 'Garage', 'Tunnel', NULL, NULL),
@@ -42,6 +43,12 @@ INSERT INTO cases (coordonnee, nom, type, prix, famille) VALUES
 (37, 'Fabrique de la monnaie', 'Propriete', 350, 'bleu'),
 (38, 'Colonnel Tamayo', 'Taxe', 100, NULL),
 (39, 'La banque', 'Propriete', 400, 'bleu');
-");
-header('location:index.php');
+";
+
+if(mysqli_multi_query($conn, $query)) {
+    header('location:index.php');
+    exit();
+} else {
+    echo "Error: " . mysqli_error($conn);
+}
 ?>

@@ -14,8 +14,9 @@ label {
 }
 
 input[type="text"],
-input[type="password"],
-input[type="submit"] {
+input[type="number"],
+input[type="submit"],
+select {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
@@ -54,10 +55,21 @@ th {
 <body>
 	<div>
 		<form method="POST" action="add.php">
-			<label>Coordonnee:</label><input type="text" name="coordonnee">
+			<label>Coordonnee:</label><input type="number" name="coordonnee" min=0>
 			<label>Nom:</label><input type="text" name="nom">
-			<label>Type:</label><input type="text" name="type">
-			<label>Prix:</label><input type="text" name="prix">
+				<label for="type">Type:</label>
+				<select name="type" id="type">
+					<option value="Depart">Depart</option>
+					<option value="Propriete">Propriete</option>
+					<option value="Professeur">Professeur</option>
+					<option value="Police">Police</option>
+					<option value="Taxe">Taxe</option>
+					<option value="Visite_Prison">Visite_Prison</option>
+					<option value="Prison">Prison</option>
+					<option value="Tunnel">Tunnel</option>
+					<option value="Case">Case</option>
+				</select>
+			<label>Prix:</label><input type="number" name="prix" min=0>
 			<label>Famille:</label><input type="text" name="famille">
 			<input type="submit" name="add">
 			<a href="reset.php">Hard reset</a>
