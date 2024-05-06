@@ -214,7 +214,7 @@ class Partie:
     # Fonction du tour du joueur
     def tour_joueur(self):
 
-        # Etablie le tour du joueur
+        # Etablie le tour du jotouueur
         joueur = self.__joueurs[self.__joueur_actif]
         print(f"\n C'est au tour de {joueur.nom}.")
 
@@ -294,17 +294,17 @@ class Partie:
     # Donne l'argent du plateau à un joueur
     def donner_argent_plateau(self, joueur):
         joueur.argent += self.__argentPlateau
-        print(f"Vous avez reçu {self.__argentPlateau}€ et l'argent plateau est vide")
+        print(f"{joueur.nom} a reçu {self.__argentPlateau}€ et l'argent plateau est vide")
         self.__argentPlateau = 0
-        
+
     def mettre_aux_encheres(self, propriete: Propriete):
         prix = int(propriete.prix / 1.5)
         print("\n \n *****les encheres ont commencé !******")
         print(f"le prix de départ est {prix}")
         
         enchere_en_cours = True
-        encherrisseurIndex = None  # Initialize the variable outside the loop
-        
+        encherrisseurIndex = None 
+
         while enchere_en_cours:
             inputEnchere = input("Quel joueur souhaite mettre une enchere ? (laisser vide pour arreter l'enchere) >>> ")
             if inputEnchere != "":
