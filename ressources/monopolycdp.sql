@@ -82,7 +82,7 @@ INSERT INTO `cases` (`coordonnee`, `nom`, `type`, `prix`, `famille`) VALUES
 (29, 'Chambre forte inondée', 'Propriete', 260, 'jaune'),
 (30, 'Prison', 'Prison', NULL, NULL),
 (31, 'Camping-car de commandement', 'Propriete', 300, 'vert'),
-(32, 'Réservoir d\'eau de pluie', 'Propriete', 300, 'vert'),
+(32, 'Réservoir d eau de pluie', 'Propriete', 300, 'vert'),
 (33, 'Professeur', 'Professeur', NULL, NULL),
 (34, 'Pièce sécurisée', 'Propriete', 320, 'vert'),
 (35, 'Garage', 'Tunnel', NULL, NULL),
