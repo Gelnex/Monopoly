@@ -1,4 +1,25 @@
 <?php
+function QuerySelector($type, $coordonnee, $nom, $prix, $famille) {
+    switch ($type) {
+        case "Propriete":
+            $query = "INSERT INTO `cases`(`coordonnee`, `nom`, `type`, `prix`, `famille`) VALUES ('$coordonnee','$nom','$type','$prix','$famille')";
+            break;
+        case "Taxe":
+            $query = "INSERT INTO `cases`(`coordonnee`, `nom`, `type`, `prix`) VALUES ('$coordonnee','$nom','$type','$prix')";
+            break;
+        default:
+            $query = "INSERT INTO `cases`(`coordonnee`, `nom`, `type`) VALUES ('$coordonnee','$nom','$type')";
+            break;
+    }
+    return $query;
+}
+
+function selected($typetxt,$sql){
+	if($typetxt == $sql){
+		return "selected";
+	}
+}
+
 	include('conn.php');
 	$id=$_GET['id'];
 	$query=mysqli_query($conn,"select * from `cases` where coordonnee='$id'");
@@ -12,11 +33,37 @@
 <body>
 	<h2>Edit</h2>
 	<form method="POST" action="update.php?id=<?php echo $id; ?>">
-		<label>coordonnee:</label><input type="text" value="<?php echo $row['coordonnee']; ?>" name="coordonnee">
+	<label>coordonnee:</label><input type="text" value="<?php echo $row['coordonnee']; ?>" name="coordonnee">
 		<label>nom:</label><input type="text" value="<?php echo $row['nom']; ?>" name="nom">
-		<label>type:</label><input type="text" value="<?php echo $row['type']; ?>" name="type">
+		<label for="type">Type:</label>
+		<select name="type" id="type">
+			<option value="Depart" <?php echo selected("Depart", $row['type']); ?>>Depart</option>
+			<option value="Propriete" <?php echo selected("Propriete", $row['type']); ?>>Propriete</option>
+			<option value="Professeur" <?php echo selected("Professeur", $row['type']); ?>>Professeur</option>
+			<option value="Police" <?php echo selected("Police", $row['type']); ?>>Police</option>
+			<option value="Taxe" <?php echo selected("Taxe", $row['type']); ?>>Taxe</option>
+			<option value="Visite_Prison" <?php echo selected("Visite_Prison", $row['type']); ?>>Visite_Prison</option>
+			<option value="Prison" <?php echo selected("Prison", $row['type']); ?>>Prison</option>
+			<option value="Tunnel" <?php echo selected("Tunnel", $row['type']); ?>>Tunnel</option>
+			<option value="Case" <?php echo selected("Case", $row['type']); ?>>Case</option>
+		</select>
 		<label>prix:</label><input type="text" value="<?php echo $row['prix']; ?>" name="prix">
 		<label>famille:</label><input type="text" value="<?php echo $row['famille']; ?>" name="famille">
+
+		<?php
+		// Check the selected value and conditionally disable fields
+		if ($row['type'] === 'Propriete') {
+			echo '<script>console.log("test")</script>';
+			echo '<script>document.getElementsByName("prix")[0].removeAttribute("disabled");</script>';
+			echo '<script>document.getElementsByName("famille")[0].removeAttribute("disabled");</script>';
+		} elseif ($row['type'] === 'Taxe') {
+			echo '<script>document.getElementsByName("prix")[0].removeAttribute("disabled");</script>';
+		} else {
+			echo '<script>document.getElementsByName("prix")[0].setAttribute("disabled", "disabled");</script>';
+			echo '<script>document.getElementsByName("famille")[0].setAttribute("disabled", "disabled");</script>';
+		}
+		?>
+
 		<input type="submit" name="submit">
 		<a href="index.php">Back</a>
 	</form>
