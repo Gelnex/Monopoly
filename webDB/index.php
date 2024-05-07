@@ -2,55 +2,7 @@
 <html>
 <head>
 <title>Monopoly DB editor</title>
-<style>
-	form {
-  width: 300px;
-  margin: 0 auto;
-}
-
-label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-input[type="text"],
-input[type="number"],
-input[type="submit"],
-select {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box;
-}
-
-input[type="submit"] {
-  background-color: #007bff;
-  color: #fff;
-  cursor: pointer;
-}
-
-input[type="submit"]:hover {
-  background-color: #0056b3;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-th, td {
-  padding: 8px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-th {
-  background-color: #f2f2f2;
-}
-
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<div>
@@ -99,8 +51,8 @@ th {
 							<td><?php echo $row['prix']; ?></td>
 							<td><?php echo $row['famille']; ?></td>
 							<td>
-								<a href="edit.php?id=<?php echo $row['coordonnee']; ?>">Edit</a>
-								<a href="delete.php?id=<?php echo $row['coordonnee']; ?>">Delete</a>
+								<a href="edit.php?id=<?php echo $row['coordonnee']; ?>">Modifier</a>
+								<a href="delete.php?id=<?php echo $row['coordonnee']; ?>">Supprimer</a>
 							</td>
 						</tr>
 						<?php

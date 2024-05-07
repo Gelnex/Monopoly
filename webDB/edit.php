@@ -28,12 +28,13 @@ function selected($typetxt,$sql){
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="style.css">
 <title>Monopoly DB editor</title>
 </head>
 <body>
 	<h2>Edit</h2>
 	<form method="POST" action="update.php?id=<?php echo $id; ?>">
-	<label>coordonnee:</label><input type="text" value="<?php echo $row['coordonnee']; ?>" name="coordonnee">
+	<label>coordonnee:</label><input type="number" min=0 value="<?php echo $row['coordonnee']; ?>" name="coordonnee">
 		<label>nom:</label><input type="text" value="<?php echo $row['nom']; ?>" name="nom">
 		<label for="type">Type:</label>
 		<select name="type" id="type">
@@ -47,23 +48,8 @@ function selected($typetxt,$sql){
 			<option value="Tunnel" <?php echo selected("Tunnel", $row['type']); ?>>Tunnel</option>
 			<option value="Case" <?php echo selected("Case", $row['type']); ?>>Case</option>
 		</select>
-		<label>prix:</label><input type="text" value="<?php echo $row['prix']; ?>" name="prix">
+		<label>prix:</label><input type="number" min=0 value="<?php echo $row['prix']; ?>" name="prix">
 		<label>famille:</label><input type="text" value="<?php echo $row['famille']; ?>" name="famille">
-
-		<?php
-		// Check the selected value and conditionally disable fields
-		if ($row['type'] === 'Propriete') {
-			echo '<script>console.log("test")</script>';
-			echo '<script>document.getElementsByName("prix")[0].removeAttribute("disabled");</script>';
-			echo '<script>document.getElementsByName("famille")[0].removeAttribute("disabled");</script>';
-		} elseif ($row['type'] === 'Taxe') {
-			echo '<script>document.getElementsByName("prix")[0].removeAttribute("disabled");</script>';
-		} else {
-			echo '<script>document.getElementsByName("prix")[0].setAttribute("disabled", "disabled");</script>';
-			echo '<script>document.getElementsByName("famille")[0].setAttribute("disabled", "disabled");</script>';
-		}
-		?>
-
 		<input type="submit" name="submit">
 		<a href="index.php">Back</a>
 	</form>
