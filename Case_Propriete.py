@@ -18,10 +18,10 @@ class Propriete(Case):
     # ============================================================================#
     # = CONSTRUCTEURS / DESTRUCTEUR                                              =#
     # ============================================================================#
-    def __init__(self, nom, numero, couleur, prix):
+    def __init__(self, nom, numero, famille, prix):
         super().__init__(nom, numero)
         self.__type = "propriete"
-        self.__couleur = couleur
+        self.__famille = famille
         self.__prix = prix
         self.__loyer = prix / 2
         self.__proprietaire = None
@@ -45,6 +45,11 @@ class Propriete(Case):
     @property
     def proprietaire(self):
         return self.__proprietaire
+    
+    @property
+    def famille(self):
+        return self.__famille
+
 
     # ============================================================================#
     # = MUTATEURS                                                                =#
@@ -59,10 +64,15 @@ class Propriete(Case):
     # ============================================================================#
 
     # Retire l'argent du joueur quand il tombe sur la case d'un autre joueur
-    def payer_loyer(self, joueur) -> None:
-        joueur.argent -= self.__loyer
+    def payer_loyer(self, joueur, joueurs) -> None:
+        loyer = self.loyer
+        for itterateurJoueurs in joueurs:
+            if self.famille in itterateurJoueurs.famille:
+                loyer *= 2
+                break
+        joueur.argent -= loyer
         print(
-            f"La propriété {self.nom} appartient déjà à {self.proprietaire.nom}. {joueur.nom} a donc payé {self.__loyer} euros de loyer à {self.proprietaire.nom}."
+            f"La propriété {self.nom} appartient déjà à {self.proprietaire.nom}. {joueur.nom} a donc payé {loyer} euros de loyer à {self.proprietaire.nom}."
         )
 
     # Achat de la case par un joueur
@@ -111,9 +121,6 @@ class Propriete(Case):
             # Enleve la carte or de la case
             self.__carte_or = None
             print("##########################")
-        
-        
-
 # ============================================================================#
 # = test                                                                     =#
 # ============================================================================#

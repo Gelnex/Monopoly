@@ -19,9 +19,10 @@ class Joueur:
         """
 
         self.__nom = nvnom
-        self.__argent = 1500
+        self.__argent = 150000000
         self.__position = 0
         self.__propriete = []
+        self.__famille = []
         self.__nombre_tours = 0
         self.__pouvoir = ""
         self.__mouvement = False
@@ -58,6 +59,10 @@ class Joueur:
     @property
     def pouvoir(self):
         return self.__pouvoir
+    
+    @property
+    def famille(self):
+        return self.__famille
 
     # ============================================================================#
     # = MUTATEURS                                                                =#
@@ -83,6 +88,10 @@ class Joueur:
     def mouvement(self, nvbm):
         self.__mouvement = nvbm
         
+    @famille.setter
+    def famille(self, nvlfamille):
+        self.__famille = nvlfamille
+        
     # ============================================================================#
     # = METHODE                                                                  =#
     # ============================================================================#
@@ -100,7 +109,7 @@ class Joueur:
         else:
             # Vérifie que la propriétée est libre ou non, si elle est prise, le joueur paye le loyer au propriétaire
             if propriete.proprietaire is not None:
-                propriete.payer_loyer(self)
+                propriete.payer_loyer(self,partie.joueurs)
             else:
                 while True:
                     reponse = input(f"Voulez vous acheter cette propriété pour {propriete.prix}€ ? O/N ")   

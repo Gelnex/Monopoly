@@ -174,7 +174,7 @@ class Partie:
         while n_joueurs > 0:
             pseudoJoueur = input(f"Entrez le nom du {i}e joueur -> ")
             if isinstance(pseudoJoueur, str) and pseudoJoueur != "":
-                if not (pseudoJoueur in liste_joueurs):
+                if pseudoJoueur.lower() not in [joueur.lower() for joueur in liste_joueurs]:
                     liste_joueurs.append(pseudoJoueur)
                     n_joueurs = n_joueurs - 1
                     i += 1
@@ -233,7 +233,8 @@ class Partie:
                 if joueur.peut_acheter(case_actuelle) == True:
                     joueur.acheter_propriete(case_actuelle, self)
                 else:
-                    mettre_aux_encheres(case_actuelle)
+                    self.mettre_aux_encheres(case_actuelle)
+                self.CheckFamille(joueur, case_actuelle.famille)
             case Visite_Prison():
                 case_actuelle.visite(joueur, self.__joueurs)
             case Prison():
@@ -337,7 +338,16 @@ class Partie:
         else:
             print("Personne n'a voulu de l'enchere")
 
-
+    def CheckFamille(self,joueur,famille):
+        totalFamille = True
+        for case in self.plateau:
+            if isinstance(case,Propriete):
+                if case.famille == famille:
+                    if not(case.proprietaire == joueur):
+                        totalFamille = False
+        if totalFamille:
+            joueur.famille.append("famille")
+            print(f"{joueur.nom} possede toutes les propriete de la famille {famille}, les loyers sont doublés.")
                 
 
                     
