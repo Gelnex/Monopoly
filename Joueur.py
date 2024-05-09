@@ -19,7 +19,7 @@ class Joueur:
         """
 
         self.__nom = nvnom
-        self.__argent = 150000000
+        self.__argent = 1500
         self.__position = 0
         self.__propriete = []
         self.__famille = []
