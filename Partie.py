@@ -346,7 +346,7 @@ class Partie:
                     if not(case.proprietaire == joueur):
                         totalFamille = False
         if totalFamille:
-            joueur.famille.append("famille")
+            joueur.famille.append(famille)
             print(f"{joueur.nom} possede toutes les propriete de la famille {famille}, les loyers sont doublés.")
                 
 
