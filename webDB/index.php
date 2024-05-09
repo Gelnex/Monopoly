@@ -5,6 +5,10 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<a href="https://github.com/Gelnex/Monopoly/issues/new">
+   <span title="Certaines cases modifiées pourraient ne pas agir comme prévu dans le jeu normal. Veuillez signaler tout comportement imprévu.">⚠ attention ⚠</span>
+</a>
+
 	<div>
 		<form method="POST" action="add.php">
 			<label>Coordonnee:</label><input type="number" name="coordonnee" min=0>
@@ -24,7 +28,7 @@
 			<label>Prix:</label><input type="number" name="prix" min=0>
 			<label>Famille:</label><input type="text" name="famille">
 			<input type="submit" name="add">
-			<a href="reset.php">Hard reset</a>
+			<a href="reset.php" title="Retourner la base de donné à son etat original">Hard reset</a>
 		</form>
 	</div>
 	<br>
