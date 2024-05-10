@@ -45,14 +45,14 @@ class Prison(Case):
             else:
                 while True:
                     reponse = input("Vouler vous payer pour sortir (200€) ? O/N ")
-                    if reponse == "O":
+                    if reponse.lower == "o":
                         joueur.position = 10
                         joueur.mouvement = False
                         joueur.donner_argent(-200)
                         partie.argentPlateau += 200
                         print(f"{joueur.nom} a payer et sort donc de prison")
                         break
-                    elif reponse == "N":
+                    elif reponse.lower == "n":
                         break
                     else:
                         print(f"{reponse} n'est pas une entrée valide, veuiller entrer O ou N")
