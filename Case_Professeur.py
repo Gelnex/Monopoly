@@ -29,7 +29,7 @@ class Professeur (Case):
     # Définir le bonus
     def bonus(self, joueur, partie):
         
-        match random.randint(1,2):
+        match random.randint(1,3):
             case 1:
                 joueur.position += 3
                 print("Le professeur vous a avancer de 3 cases")
