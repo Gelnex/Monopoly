@@ -18,17 +18,21 @@ from SQL import connectionDB
 # ============================================================================#
 # = DEFINITION DE LA CLASSE                                                  =#
 # ============================================================================#
-class Partie:
-    """
+"""
     Qui : Engels Félix
     Quand : 27/02/2024
-    Quoi : recommencer tant que nombre joueur n'est pas correct et ajout de testeur basique.
-    à faire : rendre l'attribut privé parceque sa marche pas et je sais pas pourquoi
-    """
+    Quoi : Création de partie (classe principale du jeu)
+"""
+class Partie:
 
     # ============================================================================#
     # = CONSTRUCTEURS / DESTRUCTEUR                                              =#
     # ============================================================================#
+    """
+        Qui : Engels Félix
+        Quand : 27/02/2024
+        Quoi : Constructeur, rendre attribut privé et setter
+    """
     def __init__(self, joueurs) -> None:
 
         ### Lister et initialiser les attributs
@@ -58,6 +62,7 @@ class Partie:
 
     # ============================================================================#
     # = MUTATEUR                                                                 =#
+    # ============================================================================#
     @plateau.setter
     def plateau(self, nvPlateau):
         self.__plateau = nvPlateau
@@ -78,8 +83,17 @@ class Partie:
     # ============================================================================#
     # = METHODE                                                                  =#
     # ============================================================================#
+    """
+        Qui : Haye Noa
+        Quand : 05/03/2024
+        Quoi : Création de Mise en place, Deplacement, Tour Joueur et Jouer
+    """
     def mise_en_place(self):
-        # Créer un plateau de jeu avec des propriétés
+        """
+        Qui : Engles Felix
+        Quand : 06/05/2024
+        Quoi : Importation de la base de données + option si erreur
+        """
         db = connectionDB("cases")
         if db != None:
             plateau = []
@@ -152,7 +166,11 @@ class Partie:
             ]
         return plateau
     
-    # Demande le nombre de joueur
+    """
+        Qui : Haye Noa
+        Quand : 15/05/2024
+        Quoi : Demande le nombre de joueur
+    """
     def nombre_joueur(self):
         nmbrJoueur = 0
         while True:
@@ -165,7 +183,11 @@ class Partie:
             except ValueError:
                 print("Veuillez entrer un nombre entier valide.")
 
-    # Demande le nom de chaque joueur
+    """
+        Qui : Haye Noa
+        Quand : 15/04/2024
+        Quoi : Demande le nom de chaque joueur
+    """
     def identifier_joueur(self, nombre_joueur):
         liste_joueurs = []
         i = 1
@@ -186,7 +208,11 @@ class Partie:
 
         return liste_joueurs
 
-    # Fonction de deplacement Joueur
+    """
+        Qui : Haye Noa
+        Quand : 05/03/2024
+        Quoi : Fonction qui sert au déplacement du joueur
+    """
     def deplacement(self, joueur):
         if joueur.mouvement == False:
             # Appel la classe Des
@@ -211,7 +237,11 @@ class Partie:
         else:
             print(f"Le joueur {joueur.nom} est emprisonné")
 
-    # Fonction du tour du joueur
+    """
+        Qui : Haye Noa
+        Quand : 05/03/2024
+        Quoi : Définition du tour joueur
+    """
     def tour_joueur(self):
 
         # Etablie le tour du jotouueur
@@ -259,14 +289,23 @@ class Partie:
         print(f"Il lui reste {joueur.argent}€")
         input("Appuyez pour passer au tour suivant")
 
-    # Verifie si il y a un gagnant
+    """
+        Qui : Haye Noa
+        Quand : 05/03/2024
+        Quoi : Vérifie si il y a un gagnant
+    """
     def verification_gagnant(self):
         for joueur in self.__joueurs:
             if joueur.argent <= 0:
                 return joueur
         return None
 
-    # Boucle principale du jeu et vérifie la condition de victoire
+    
+    """
+        Qui : Haye Noa
+        Quand : 05/03/2024
+        Quoi : Vérifie la condition de victoire
+    """
     def jouer(self):
         while len(self.__joueurs) > 1:
             self.tour_joueur()
@@ -292,12 +331,21 @@ class Partie:
             else:
                 pass
 
-    # Donne l'argent du plateau à un joueur
+    """
+        Qui : Engels Felix
+        Quand : 21/04/2024
+        Quoi : Ajoute l'argent au plateau
+    """
     def donner_argent_plateau(self, joueur):
         joueur.argent += self.__argentPlateau
         print(f"{joueur.nom} a reçu {self.__argentPlateau}€ et l'argent plateau est vide")
         self.__argentPlateau = 0
 
+    """
+        Qui : Engles Felix
+        Quand : 17/04/2024
+        Quoi : Sert a enchérire quand une propriete n'est pas acheté
+    """
     def mettre_aux_encheres(self, propriete: Propriete):
         prix = int(propriete.prix / 1.5)
         print("\n \n *****les encheres ont commencé !******")
@@ -338,6 +386,11 @@ class Partie:
         else:
             print("Personne n'a voulu de l'enchere")
 
+    """
+        Qui : Engles Felix
+        Quand : 07/04/2024
+        Quoi : Verifie si un joueur possède toute la familles
+    """
     def CheckFamille(self,joueur,famille):
         totalFamille = True
         for case in self.plateau:
