@@ -1,4 +1,13 @@
+# ============================================================================#
+# = IMPORTS DES BIBLIOTHEQUES ET DES CLASSES                                 =#
+# ============================================================================#
 import mysql.connector
+
+"""
+    Qui : Engles Felix
+    Quand : 07/04/2024
+    Quoi : Importation de la Base De Données MYSQL 
+"""
 
 def connectionDB(table):
     try:

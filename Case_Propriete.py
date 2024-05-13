@@ -5,7 +5,11 @@ from Case import *
 from Joueur import *
 import random
 
-
+"""
+Qui : Félix Engels
+Quand : 04/03/2024
+Quoi : Case qui contient les proprietés (maison)
+"""
 # ============================================================================#
 # = DEFINITION DE LA CLASSE                                                  =#
 # ============================================================================#
@@ -13,7 +17,7 @@ class Propriete(Case):
     """
     Qui : Félix Engels
     Quand : 04/03/2024
-    Quoi : tests
+    Quoi : Constructeur, accesseurs et mutateur
     """
     # ============================================================================#
     # = CONSTRUCTEURS / DESTRUCTEUR                                              =#
@@ -62,8 +66,11 @@ class Propriete(Case):
     # ============================================================================#
     # = METHODE                                                                  =#
     # ============================================================================#
-
-    # Retire l'argent du joueur quand il tombe sur la case d'un autre joueur
+    """
+    Qui : Félix Engels
+    Quand : 04/03/2024
+    Quoi : Retire l'argent du joueur quand il tombe sur la case d'un autre joueur
+    """
     def payer_loyer(self, joueur, joueurs) -> None:
         loyer = self.loyer
         for itterateurJoueurs in joueurs:
@@ -75,7 +82,11 @@ class Propriete(Case):
             f"La propriété {self.nom} appartient déjà à {self.proprietaire.nom}. {joueur.nom} a donc payé {loyer} euros de loyer à {self.proprietaire.nom}."
         )
 
-    # Achat de la case par un joueur
+    """
+    Qui : Félix Engels
+    Quand : 04/03/2024
+    Quoi : Achat de la case par un joueur
+    """
     def acheter(self, joueur):
         joueur.propriete.append(self)
         joueur.argent -= self.__prix
@@ -83,7 +94,12 @@ class Propriete(Case):
         print(
             f"{joueur.nom} a acheté la propriété {self.nom} pour {self.__prix}€ "
         )
-        
+    
+    """
+    Qui : Félix Engels
+    Quand : 04/03/2024
+    Quoi : Achat de la case enchere par un joueur
+    """
     def acheter_enchere(self, joueur, prix):
         joueur.propriete.append(self)
         joueur.argent -= prix
@@ -92,7 +108,11 @@ class Propriete(Case):
             f"{joueur.nom} a acheté la propriété {self.nom} pour {prix}€ "
         )
     
-    # Action de la carte or
+    """
+    Qui : Félix Engels
+    Quand : 04/03/2024
+    Quoi : Définit l'action de la carte or
+    """
     def actionOr(self, joueur, partie):
         # Vérifier si il y a une carte or
         if self.__carte_or != None :

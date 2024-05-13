@@ -9,11 +9,16 @@ from Des import *
 # ============================================================================#
 # = DEFINITION DE LA CLASSE                                                  =#
 # ============================================================================#
+"""
+    Qui : Engels Félix
+    Quand : 06-03-24
+    Quoi : Ajout de la case prison 
+"""
 class Prison(Case):
     """
     Qui : Engels Félix
     Quand : 06-03-24
-    Quoi :
+    Quoi : Constructeur
     """
 
     # ============================================================================#
@@ -28,7 +33,11 @@ class Prison(Case):
     # = METHODES                                                                 =#
     # ============================================================================#
 
-    # Permet de bloquer le joueur quand il se trouve en prison
+    """
+    Qui : Engels Félix
+    Quand : 06-03-24
+    Quoi : Permet de bloquer le joueur quand il se trouve en prison
+    """
     def bloquerMouvement(self, joueur, partie):
         # Condition pour sortir
         if joueur.mouvement == True:

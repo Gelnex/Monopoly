@@ -7,11 +7,16 @@ from Case import *
 # ============================================================================#
 # = DEFINITION DE LA CLASSE                                                  =#
 # ============================================================================#
+"""
+    Qui : Arriaga Diogo
+    Quand : 08/03/2024
+    Quoi : Case police qui donne des malus 
+"""
 class Taxe (Case):
     """
     Qui : Arriaga Diogo
     Quand : 08/03/2024
-    Quoi : Case police qui donne des malus 
+    Quoi : Constructeur et property
     """
     
     # ============================================================================#
@@ -32,7 +37,11 @@ class Taxe (Case):
     # = METHODE                                                                  =#
     # ============================================================================#
     
-    # Définition du malus
+    """
+    Qui : Arriaga Diogo
+    Quand : 08/03/2024
+    Quoi : Définition du malus
+    """
     def malus(self, joueur,partie):
             joueur.donner_argent(-self.__prix)
             print(f"Vous avez dû payer {self.__prix}€")
