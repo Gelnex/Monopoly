@@ -3,12 +3,20 @@
 # ============================================================================#
 from random import *
 
-
+"""
+    Qui : Arriaga Diogo
+    Quand : 27/02/2024
+    Quoi : Permet de lancer les dés
+"""
 class Des:
-
     # ============================================================================#
     # = CONSTRUCTEURS / DESTRUCTEUR                                              =#
     # ============================================================================#
+    """
+    Qui : Arriaga Diogo
+    Quand : 27/02/2024
+    Quoi : Contructeur, Accesseur et Mutateur
+    """
     def __init__(self):
         self.__des_1 = 0
         self.__des_2 = 0
@@ -38,7 +46,11 @@ class Des:
     # = METHODE                                                                  =#
     # ============================================================================#
     
-    # Lance deux dés
+    """
+    Qui : Arriaga Diogo
+    Quand : 27/02/2024
+    Quoi : Lancer les deux dés et etat du double
+    """
     def lancer_des(self):
         # Génerer deux valeur de 1 a 6 pour simuler des dés
         self.__des_1 = randint(1, 6)

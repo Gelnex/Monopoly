@@ -8,11 +8,16 @@ from Partie import *
 # ============================================================================#
 # = DEFINITION DE LA CLASSE                                                  =#
 # ============================================================================#
+"""
+    Qui : Noa Haye
+    Quand : 05/03/2024
+    Quoi : Visiter la prison (Ne Fait Rien)
+"""
 class Visite_Prison(Case):
     """
     Qui : Noa Haye
     Quand : 05/03/2024
-    Quoi : Création de la classe, def__init__ et def visite
+    Quoi : Création de constructeur et Accesseur
     """
 
     # ============================================================================#
@@ -26,7 +31,7 @@ class Visite_Prison(Case):
     # ============================================================================#
     # = ACCESSEURS                                                               =#
     # ============================================================================#
-                
+                 
     @property
     def type(self):
         return self.__type
@@ -34,7 +39,11 @@ class Visite_Prison(Case):
     # ============================================================================#
     # = METHODE                                                               =#
     # ============================================================================#
-    
+    """
+    Qui : Noa Haye
+    Quand : 05/03/2024
+    Quoi : Permet de visiter la prison
+    """
     def visite(self, joueur, joueurs):
         print(f"{joueur.nom} est en visite à la prison.")
         for joueur in joueurs:

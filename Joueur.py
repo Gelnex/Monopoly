@@ -187,7 +187,7 @@ class Joueur:
     """
     Qui : Engles Felix
     Quand : 20/04/2024
-    Quoi : Permet de donner l'argent au plateau
+    Quoi : Permet de donner l'argent a un joueur
     """
     def donner_argent(self, argent):
         self.argent += argent   
