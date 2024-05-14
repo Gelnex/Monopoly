@@ -39,7 +39,7 @@ class Partie:
         self.__plateau = self.mise_en_place()
         self.__joueur_actif = 0
         self.__joueurs = joueurs
-        self.__argentPlateau = 10
+        self.__argentPlateau = 0
 
     # ============================================================================#
     # = ACCESSEURS                                                               =#
