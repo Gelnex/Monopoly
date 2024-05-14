@@ -2,15 +2,6 @@ import threading
 from Partie import *
 from ursina import *
 
-class InputForm(Entity):
-    def __init__(self, **kwargs):
-        super().__init__(parent=camera.ui, scale=0.1, **kwargs)
-        self.input_field = InputField(parent=self, scale=Vec2(1, 0.5))
-
-    def input(self, key):
-        if key == 'enter':
-            print("Entered text:", self.input_field.text)
-
 class Accueil(Entity):
     def __init__(self):
         super().__init__()
@@ -28,50 +19,43 @@ class Accueil(Entity):
             color=color.red,
             scale=(.4, .1),
             position=(0, -.3),
-            text='Jouer',
-            text_origin=(0, 0),
-            text_color=color.white,
+            text='Jouer',  # Texte à afficher à l'intérieur du bouton
+            text_origin=(0, 0),  # Position du texte (centre du bouton)
+            text_color=color.white,  # Couleur du texte
             text_font='font/test.otf',
             text_size=100,
             on_click=self.switch_nbrJoueur
         )
 
     def switch_nbrJoueur(self):
-        self.enabled = False
+        self.enabled = False  # Supprimer l'entité "Accueil" et tous ses enfants
         self.button.enabled = False
+        # Initialiser la scène "NbrJoueur"
         scene = NbrJoueur()
 
 class NbrJoueur(Entity):
     def __init__(self):
         super().__init__()
-
-        screen_width, screen_height = window.size
-
         self.image = Entity(
             parent=camera.ui,
             model='quad',
-            texture='ressource/image/nbrJoueur.png', 
-            scale=(1.6, 0.9),
-            position=(0, screen_height / 4),
-            render_queue=1  # Set a lower render order to render first (background)
-        )
-
-        self.input_form = InputForm(position=(0, 0), render_queue=2)  # Set a higher render order to render last (foreground)
-
+            texture='ressource/image/console.png', 
+            scale=(1.6, 0.9)
+         )
+        
         self.button = Button(
             parent=camera.ui,
             model='quad',
             texture='white_cube',
             color=color.red,
             scale=(.4, .1),
-            position=(0, -screen_height / 4),
-            text='Test',
-            text_origin=(0, 0),
-            text_color=color.white,
+            position=(0, -.3),
+            text='Test',  # Texte à afficher à l'intérieur du bouton
+            text_origin=(0, 0),  # Position du texte (centre du bouton)
+            text_color=color.white,  # Couleur du texte
             text_font='font/test.otf',
             text_size=100,
-            on_click=self.start_game,
-            render_queue=2  # Set the same render order as the input form
+            on_click=self.start_game
         )
 
     # Fonction pour démarrer le jeu
@@ -111,3 +95,4 @@ class NbrJoueur(Entity):
 app = Ursina()
 scene = Accueil()
 app.run()
+        
