@@ -23,19 +23,24 @@ class Accueil(Entity):
             text_origin=(0, 0),  # Position du texte (centre du bouton)
             text_color=color.white,  # Couleur du texte
             text_font='font/test.otf',
-            text_size=100,
+            text_size=3,
             on_click=self.switch_nbrJoueur
         )
 
     def switch_nbrJoueur(self):
         self.enabled = False  # Supprimer l'entité "Accueil" et tous ses enfants
         self.button.enabled = False
+        self.image.enabled = False
         # Initialiser la scène "NbrJoueur"
-        scene = NbrJoueur()
+        scene = Jeu()
 
-class NbrJoueur(Entity):
+class Jeu(Entity):
     def __init__(self):
-        super().__init__()
+        super().__init__(
+            model = "cube",
+            scale = (50, 0.1 ,50),
+            texture = 'ressource/image/plateau.jpg',
+        )
         self.image = Entity(
             parent=camera.ui,
             model='quad',
@@ -54,9 +59,16 @@ class NbrJoueur(Entity):
             text_origin=(0, 0),  # Position du texte (centre du bouton)
             text_color=color.white,  # Couleur du texte
             text_font='font/test.otf',
-            text_size=100,
-            on_click=self.start_game
+            text_size=3,
+            on_click=self.switch_game
         )
+
+    def switch_game(self):
+        self.button.enabled = False
+        self.image.enabled = False
+        camera = EditorCamera()
+        self.start_game()
+
 
     # Fonction pour démarrer le jeu
     def start_game(self):
