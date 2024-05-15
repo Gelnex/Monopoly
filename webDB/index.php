@@ -11,7 +11,7 @@
 
 	<div>
 		<form method="POST" action="add.php">
-			<label>Coordonnee:</label><input type="number" name="coordonnee" min=0>
+		<label>Coordonnee:</label><input type="number" name="coordonnee" min="<?php include('conn.php'); $result = mysqli_query($conn, 'SELECT COUNT(*) AS count FROM cases'); $row = mysqli_fetch_assoc($result); echo $row['count']; ?>">
 			<label>Nom:</label><input type="text" name="nom">
 				<label for="type">Type:</label>
 				<select name="type" id="type">
@@ -44,7 +44,6 @@
 			</thead>
 			<tbody>
 				<?php
-					include('conn.php');
 					$query=mysqli_query($conn,"select * from `cases`");
 					while($row=mysqli_fetch_array($query)){
 						?>

@@ -8,22 +8,22 @@
 	$prix=$_POST['prix'];
 	$famille=$_POST['famille'];
 	
-	function QuerySelector($type, $coordonnee, $nom, $prix, $famille, $id) {
+	function QuerySelector($type, $nom, $prix, $famille, $id) {
 		switch ($type) {
 			case "Propriete":
-				$query = "UPDATE `cases` SET `coordonnee`='$coordonnee',`nom`='$nom',`type`='$type',`prix`='$prix',`famille`='$famille' WHERE coordonnee = '$id'";
+				$query = "UPDATE `cases` SET `nom`='$nom',`type`='$type',`prix`='$prix',`famille`='$famille' WHERE coordonnee = '$id'";
 				break;
 			case "Taxe":
-				$query = "UPDATE `cases` SET `coordonnee`='$coordonnee',`nom`='$nom',`type`='$type',`prix`='$prix' WHERE coordonnee = '$id'";
+				$query = "UPDATE `cases` SET `nom`='$nom',`type`='$type',`prix`='$prix' WHERE coordonnee = '$id'";
 				break;
 			default:
-				$query = "UPDATE `cases` SET `coordonnee`='$coordonnee',`nom`='$nom',`type`='$type' WHERE coordonnee = '$id'";
+				$query = "UPDATE `cases` SET `nom`='$nom',`type`='$type' WHERE coordonnee = '$id'";
 				break;
 		}
 		return $query;
 	}
 	
-	$query = QuerySelector($type, $coordonnee, $nom, $prix, $famille, $id);
+	$query = QuerySelector($type, $nom, $prix, $famille, $id);
 	
 	if(mysqli_query($conn, $query)) {
 		header('location:index.php');

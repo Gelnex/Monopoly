@@ -1,19 +1,4 @@
 <?php
-function QuerySelector($type, $coordonnee, $nom, $prix, $famille) {
-    switch ($type) {
-        case "Propriete":
-            $query = "INSERT INTO `cases`(`coordonnee`, `nom`, `type`, `prix`, `famille`) VALUES ('$coordonnee','$nom','$type','$prix','$famille')";
-            break;
-        case "Taxe":
-            $query = "INSERT INTO `cases`(`coordonnee`, `nom`, `type`, `prix`) VALUES ('$coordonnee','$nom','$type','$prix')";
-            break;
-        default:
-            $query = "INSERT INTO `cases`(`coordonnee`, `nom`, `type`) VALUES ('$coordonnee','$nom','$type')";
-            break;
-    }
-    return $query;
-}
-
 function selected($typetxt,$sql){
 	if($typetxt == $sql){
 		return "selected";
@@ -34,7 +19,6 @@ function selected($typetxt,$sql){
 <body>
 	<h2>Edit</h2>
 	<form method="POST" action="update.php?id=<?php echo $id; ?>">
-	<label>coordonnee:</label><input type="number" min=0 value="<?php echo $row['coordonnee']; ?>" name="coordonnee">
 		<label>nom:</label><input type="text" value="<?php echo $row['nom']; ?>" name="nom">
 		<label for="type">Type:</label>
 		<select name="type" id="type">
