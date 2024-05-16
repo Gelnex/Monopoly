@@ -11,7 +11,7 @@
 
 	<div>
 		<form method="POST" action="add.php">
-		<label>Coordonnee:</label><input type="number" name="coordonnee" min="<?php include('conn.php'); $result = mysqli_query($conn, 'SELECT COUNT(*) AS count FROM cases'); $row = mysqli_fetch_assoc($result); echo $row['count']; ?>">
+		<label>Coordonnee:</label><input type="number" name="coordonnee" min="0">
 			<label>Nom:</label><input type="text" name="nom">
 				<label for="type">Type:</label>
 				<select name="type" id="type">
@@ -26,7 +26,19 @@
 					<option value="Case">Case</option>
 				</select>
 			<label>Prix:</label><input type="number" name="prix" min=0>
-			<label>Famille:</label><input type="text" name="famille">
+			<label for="famille">Famille:</label>
+			<select name="famille" id="famille">
+					<option value="" select>--Vide--</option>
+					<option value="brune">brune</option>
+					<option value="blanche">blanche</option>
+					<option value="violet">violet</option>
+					<option value="outil">outil</option>
+					<option value="orange">orange</option>
+					<option value="rouge">rouge</option>
+					<option value="jaune">jaune</option>
+					<option value="vert">vert</option>
+					<option value="bleu">bleu</option>
+				</select>
 			<input type="submit" name="add">
 			<a href="reset.php" title="Retourner la base de donné à son etat original">Hard reset</a>
 		</form>
@@ -44,6 +56,7 @@
 			</thead>
 			<tbody>
 				<?php
+					include('conn.php');
 					$query=mysqli_query($conn,"select * from `cases`");
 					while($row=mysqli_fetch_array($query)){
 						?>
@@ -60,7 +73,12 @@
 						</tr>
 						<?php
 					}
-				?>
+				$result = mysqli_query($conn, 'SELECT COUNT(*) AS count FROM cases'); 
+				$length = mysqli_fetch_assoc($result)['count']; // Fetch the count directly
+				if ($length % 4 != 0) {
+					echo "La longueur totale de la table n'est pas un multiple de 4, cela risque de causer des problèmes avec la partie graphique du jeu.";
+				}
+			?>
 			</tbody>
 		</table>
 	</div>

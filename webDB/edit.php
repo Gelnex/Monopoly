@@ -33,7 +33,19 @@ function selected($typetxt,$sql){
 			<option value="Case" <?php echo selected("Case", $row['type']); ?>>Case</option>
 		</select>
 		<label>prix:</label><input type="number" min=0 value="<?php echo $row['prix']; ?>" name="prix">
-		<label>famille:</label><input type="text" value="<?php echo $row['famille']; ?>" name="famille">
+		<label for="famille">Famille:</label>
+			<select name="famille" id="famille">
+					<option value="" <?php echo selected("", $row['famille']); ?>>--Vide--</option>
+					<option value="brune" <?php echo selected("brune", $row['famille']); ?>>brune</option>
+					<option value="blanche" <?php echo selected("blanche", $row['famille']); ?>>blanche</option>
+					<option value="violet" <?php echo selected("violet", $row['famille']); ?>>violet</option>
+					<option value="outil" <?php echo selected("outil", $row['famille']); ?>>outil</option>
+					<option value="orange" <?php echo selected("orange", $row['famille']); ?>>orange</option>
+					<option value="rouge" <?php echo selected("rouge", $row['famille']); ?>>rouge</option>
+					<option value="jaune" <?php echo selected("jaune", $row['famille']); ?>>jaune</option>
+					<option value="vert" <?php echo selected("vert", $row['famille']); ?>>vert</option>
+					<option value="bleu" <?php echo selected("bleu", $row['famille']); ?>>bleu</option>
+				</select>
 		<input type="submit" name="submit">
 		<a href="index.php">Back</a>
 	</form>
