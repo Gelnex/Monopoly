@@ -9,11 +9,16 @@ from Des import *
 # ============================================================================#
 # = DEFINITION DE LA CLASSE                                                  =#
 # ============================================================================#
+"""
+    Qui : Engels Félix
+    Quand : 06-03-24
+    Quoi : Ajout de la case prison 
+"""
 class Prison(Case):
     """
     Qui : Engels Félix
     Quand : 06-03-24
-    Quoi :
+    Quoi : Constructeur
     """
 
     # ============================================================================#
@@ -28,7 +33,11 @@ class Prison(Case):
     # = METHODES                                                                 =#
     # ============================================================================#
 
-    # Permet de bloquer le joueur quand il se trouve en prison
+    """
+    Qui : Engels Félix
+    Quand : 06-03-24
+    Quoi : Permet de bloquer le joueur quand il se trouve en prison
+    """
     def bloquerMouvement(self, joueur, partie):
         # Condition pour sortir
         if joueur.mouvement == True:
@@ -45,14 +54,14 @@ class Prison(Case):
             else:
                 while True:
                     reponse = input("Vouler vous payer pour sortir (200€) ? O/N ")
-                    if reponse == "O":
+                    if reponse.lower == "o":
                         joueur.position = 10
                         joueur.mouvement = False
                         joueur.donner_argent(-200)
                         partie.argentPlateau += 200
                         print(f"{joueur.nom} a payer et sort donc de prison")
                         break
-                    elif reponse == "N":
+                    elif reponse.lower == "n":
                         break
                     else:
                         print(f"{reponse} n'est pas une entrée valide, veuiller entrer O ou N")

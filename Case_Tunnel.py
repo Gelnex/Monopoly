@@ -8,11 +8,16 @@ from Joueur import *
 # ============================================================================#
 # = DEFINITION DE LA CLASSE                                                  =#
 # ============================================================================#
+"""
+    Qui : Félix Engels
+    Quand : 04/03/2024
+    Quoi : Permet de se déplacer de plusieurs cases
+"""
 class Tunnel(Case):
     """
         Qui : Félix Engels
         Quand : 04/03/2024
-        Quoi : tests
+        Quoi : Création de Constructeur
     """
     # ============================================================================#
     # = CONSTRUCTEURS / DESTRUCTEUR                                              =#
@@ -24,7 +29,11 @@ class Tunnel(Case):
     # = METHODE                                                                  =#
     # ============================================================================#
     
-    # Demande au joueur combien de case veut-il sauter
+    """
+        Qui : Félix Engels
+        Quand : 04/03/2024
+        Quoi : Demande au joueur  de combiens de cases veut-il sauter 
+    """
     def transporter(self, joueur):
         while True:
             try:

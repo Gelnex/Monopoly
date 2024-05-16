@@ -8,22 +8,22 @@ from Joueur import *
 # ============================================================================#
 # = DEFINITION DE LA CLASSE                                                  =#
 # ============================================================================#
+"""
+Qui : Arriaga Diogo
+Quand : 05-03-24
+Quoi : Case départ qui donne de l'argent
+"""
 class Depart(Case):
     """
     Qui : Arriaga Diogo
     Quand : 05-03-24
-    Quoi : Case départ qui donne de l'argent
+    Quoi : Constructeur et accesseur
     """
 
     # ============================================================================#
     # = CONSTRUCTEURS / DESTRUCTEUR                                              =#
     # ============================================================================#
     def __init__(self, nom: str, coordonee: int) -> None:
-        """
-        Qui : Arriaga Diogo
-        Quand : 05-03-24
-        Quoi : Constructeur
-        """
 
         ### Lister et initialiser les attributs
         super().__init__(nom, coordonee)
@@ -40,7 +40,11 @@ class Depart(Case):
     # = METHODE                                                                  =#
     # ============================================================================#
     
-    # Donner l'argent de la case départ au joueur
+    """
+    Qui : Arriaga Diogo
+    Quand : 05-03-24
+    Quoi : Donner l'argent de la case de départ
+    """
     def donner_argent(self, joueur):
         print(f"{joueur.nom} est arrivé sur la case Départ. Il reçoit 200 euros.")
         joueur.argent += 200

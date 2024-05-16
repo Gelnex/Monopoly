@@ -8,11 +8,16 @@ import random
 # ============================================================================#
 # = DEFINITION DE LA CLASSE                                                  =#
 # ============================================================================#
+"""
+    Qui : Arriaga Diogo
+    Quand : 08/03/2024
+    Quoi : Case professeur qui donne des bonus 
+"""
 class Professeur (Case):
     """
     Qui : Arriaga Diogo
     Quand : 08/03/2024
-    Quoi : Case professeur qui donne des bonus 
+    Quoi : Constructeur
     """
     
     # ============================================================================#
@@ -26,10 +31,14 @@ class Professeur (Case):
     # = METHODE                                                                  =#
     # ============================================================================#
     
-    # Définir le bonus
+    """
+        Qui : Arriaga Diogo
+        Quand : 08/03/2024
+        Quoi : Définir le bonus
+    """
     def bonus(self, joueur, partie):
         
-        match random.randint(1,2):
+        match random.randint(1,3):
             case 1:
                 joueur.position += 3
                 print("Le professeur vous a avancer de 3 cases")

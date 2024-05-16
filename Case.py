@@ -5,7 +5,7 @@ class Case:
     """
     Qui : Engels Félix
     Quand : 28/02/2024
-    Quoi : codage de la classe, la classe au paravant possedait une list(range(40)), elle sera deplacer dans plateau car cette classe seras utiliser pour generer toutes les autres cases
+    Quoi : Permet de gérer toute les autres classe, Attribut et accesseurs
     """
 
     def __init__(self, nom: str, coordonee: int) -> None:

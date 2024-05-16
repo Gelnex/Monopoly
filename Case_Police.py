@@ -7,11 +7,16 @@ import random
 # ============================================================================#
 # = DEFINITION DE LA CLASSE                                                  =#
 # ============================================================================#
+"""
+Qui : Arriaga Diogo
+Quand : 08/03/2024
+Quoi : Case police qui donne des malus 
+"""
 class Police(Case):
     """
     Qui : Arriaga Diogo
     Quand : 08/03/2024
-    Quoi : Case police qui donne des malus 
+    Quoi : Constructeur
     """
     
     # ============================================================================#
@@ -23,8 +28,12 @@ class Police(Case):
     # ============================================================================#
     # = METHODES                                                                 =#
     # ============================================================================#
-    def malus(self, joueur,partie):
-        
+    """
+    Qui : Arriaga Diogo
+    Quand : 08/03/2024
+    Quoi : Définire les malus
+    """
+    def malus(self, joueur, partie):
         match random.randint(1,2):
             case 1:
                 joueur.position -= 3
