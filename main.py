@@ -75,12 +75,12 @@ class Jeu(Entity):
             text_color=color.white,  # Couleur du texte
             text_font='font/test.otf',
             text_size=3,
-            on_click=self.passer_au_tour_suivant(),
+            on_click = self.passer_au_tour_suivant(),
             enabled = False
         )
 
     def passer_au_tour_suivant (self):
-        
+        return True
 
 
     def switch_game(self):
@@ -126,6 +126,9 @@ class Jeu(Entity):
         while len(jeu.joueurs) > 1:
             jeu.jouer()
             self.button2.enabled = True
+            verif_tour_suivant = False
+            while verif_tour_suivant != True:
+                verif_tour_suivant = self.passer_au_tour_suivant()
 
 
 ### Définition d'un boutton pour quitter ###
