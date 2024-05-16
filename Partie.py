@@ -228,7 +228,6 @@ class Partie:
         # Passer au prochain joueur
         self.__joueur_actif = (self.__joueur_actif + 1) % len(self.__joueurs)
         print(f"Il lui reste {joueur.argent}€")
-        input("Appuyez pour passer au tour suivant")
 
     # Verifie si il y a un gagnant
     def verification_gagnant(self):
@@ -239,29 +238,28 @@ class Partie:
 
     # Boucle principale du jeu et vérifie la condition de victoire
     def jouer(self):
-        while len(self.__joueurs) > 1:
-            self.tour_joueur()
-            perdant = self.verification_gagnant()
+        
+        self.tour_joueur()
+        perdant = self.verification_gagnant()
 
-            if perdant:
-                # Stocker le nom du joueur perdant
-                nom_perdant = perdant.nom
+        if perdant:
+            # Stocker le nom du joueur perdant
+            nom_perdant = perdant.nom
 
-                # Retirer le joueur perdant de la liste
-                self.__joueurs.remove(perdant)
+            # Retirer le joueur perdant de la liste
+            self.__joueurs.remove(perdant)
 
-                # Vérifier s'il reste des joueurs actifs
-                if len(self.__joueurs) == 1:
-                    # Afficher le message de victoire avec le nom du joueur restant
-                    print(
-                        f"{nom_perdant} est en faillite. {self.__joueurs[0].nom} a gagné !"
-                    )
-                    break
-                else:
-                    # Afficher le message du joueur en faillite et continuer le jeu
-                    print(f"{nom_perdant} est en faillite.")
+            # Vérifier s'il reste des joueurs actifs
+            if len(self.__joueurs) == 1:
+                # Afficher le message de victoire avec le nom du joueur restant
+                print(
+                    f"{nom_perdant} est en faillite. {self.__joueurs[0].nom} a gagné !"
+                )
             else:
-                pass
+                # Afficher le message du joueur en faillite et continuer le jeu
+                print(f"{nom_perdant} est en faillite.")
+        else:
+            pass
 
     # Donne l'argent du plateau à un joueur
     def donner_argent_plateau(self, joueur):
@@ -306,26 +304,3 @@ class Partie:
                     propriete.acheter_enchere(self.joueurs[encherrisseurIndex], prix)
                 else:
                     print("Personne n'as voulu de l'enchere")
-
-
-# ============================================================================#
-# = URSINA                                                                   =#
-# ============================================================================#
-class MaScene(Entity):
-        def __init__(self):
-            super().__init__()
-            self.image = Entity(
-                parent=camera.ui,
-                model='quad',
-                texture='ressource/image/accueil.png', 
-                scale=(1.6, 0.9)
-                )
-
-            self.button = Button(
-                parent=camera.ui,
-                model='quad',
-                texture='white_cube',
-                color=color.red,
-                scale=(.4, .1),
-                position=(0, -.3)
-            )

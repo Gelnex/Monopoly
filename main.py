@@ -38,7 +38,7 @@ class Jeu(Entity):
     def __init__(self):
         super().__init__(
             model = "cube",
-            scale = (50, 0.1 ,50),
+            scale = (50, 0.01 ,50),
             texture = 'ressource/image/plateau.jpg',
         )
         self.image = Entity(
@@ -46,9 +46,9 @@ class Jeu(Entity):
             model='quad',
             texture='ressource/image/console.png', 
             scale=(1.6, 0.9)
-         )
+        )
         
-        self.button = Button(
+        self.button1 = Button(
             parent=camera.ui,
             model='quad',
             texture='white_cube',
@@ -63,8 +63,28 @@ class Jeu(Entity):
             on_click=self.switch_game
         )
 
+        self.button2 = Button(
+            parent=camera.ui,
+            model='quad',
+            texture='white_cube',
+            color=color.red,
+            scale=(.4, .1),
+            position=(0, -.3),
+            text='Tour suivant',  # Texte à afficher à l'intérieur du bouton
+            text_origin=(0, 0),  # Position du texte (centre du bouton)
+            text_color=color.white,  # Couleur du texte
+            text_font='font/test.otf',
+            text_size=3,
+            on_click=self.passer_au_tour_suivant(),
+            enabled = False
+        )
+
+    def passer_au_tour_suivant (self):
+        
+
+
     def switch_game(self):
-        self.button.enabled = False
+        self.button1.enabled = False
         self.image.enabled = False
         camera = EditorCamera()
         self.start_game()
@@ -100,8 +120,18 @@ class Jeu(Entity):
         jeu = Partie(joueurs)
         print("Ce pouvoir s'activera quand le joueur fera un double !")
 
+        self.button2.enabled = True
+
         # Début du jeu
-        jeu.jouer()
+        while len(jeu.joueurs) > 1:
+            jeu.jouer()
+            self.button2.enabled = True
+
+
+### Définition d'un boutton pour quitter ###
+def input(key):
+    if key == "escape":
+        quit()
 
 # Initialisation de l'interface graphique dans le thread principal
 app = Ursina()
