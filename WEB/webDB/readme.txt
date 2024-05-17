@@ -1,0 +1,1 @@
+l'index doit etre executer via uwamp, ou un serveur capable de faire tourner php
