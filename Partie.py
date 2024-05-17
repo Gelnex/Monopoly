@@ -37,6 +37,7 @@ class Partie:
 
         ### Lister et initialiser les attributs
         self.__plateau = self.mise_en_place()
+        self.__longueur_plateau = 0
         self.__joueur_actif = 0
         self.__joueurs = joueurs
         self.__argentPlateau = 0
@@ -47,6 +48,10 @@ class Partie:
     @property
     def plateau(self):
         return self.__plateau
+    
+    @property
+    def longueur_plateau(self):
+        return self.__longueur_plateau
 
     @property
     def joueur_actif(self):
@@ -100,7 +105,7 @@ class Partie:
             for i in db:
                 match i[2]:
                     case "Propriete":
-                       plateau.append(Propriete(i[1], i[0],i[4],i[3]))
+                       plateau.append(Propriete(i[1], i[0], i[4], i[3]))
                     case "Visite_Prison":
                         plateau.append(Visite_Prison(i[1], i[0]))
                     case "Prison":

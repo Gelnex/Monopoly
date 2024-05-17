@@ -1,7 +1,12 @@
 # ============================================================================#
+# = IMPORTS DES BIBLIOTHEQUES ET DES CLASSES                                 =#
+# ============================================================================#
+from ursina import *
+
+# ============================================================================#
 # = DEFINITION DE LA CLASSE                                                  =#
 # ============================================================================#
-class Case:
+class Case (Entity):
     """
     Qui : Engels Félix
     Quand : 28/02/2024
@@ -11,6 +16,13 @@ class Case:
     def __init__(self, nom: str, coordonee: int) -> None:
         self.__nom = nom
         self.__coordonee = coordonee
+
+        ### Initialisation des attributs graphiques ###
+        super().__init__(
+            model = "cube",
+            color = 'red',
+            position = position
+        )
 
     # ============================================================================#
     # = ACCESSEURS                                                               =#
