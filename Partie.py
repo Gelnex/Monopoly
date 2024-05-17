@@ -244,7 +244,7 @@ class Partie:
     """
     def tour_joueur(self):
 
-        # Etablie le tour du jotouueur
+        # Etablir le tour du joueur
         joueur = self.__joueurs[self.__joueur_actif]
         print(f"\n C'est au tour de {joueur.nom}.")
 
@@ -306,29 +306,28 @@ class Partie:
         Quoi : Vérifie la condition de victoire
     """
     def jouer(self):
-        while len(self.__joueurs) > 1:
-            self.tour_joueur()
-            perdant = self.verification_gagnant()
+    
+        self.tour_joueur()
+        perdant = self.verification_gagnant()
 
-            if perdant:
-                # Stocker le nom du joueur perdant
-                nom_perdant = perdant.nom
+        if perdant:
+            # Stocker le nom du joueur perdant
+            nom_perdant = perdant.nom
 
-                # Retirer le joueur perdant de la liste
-                self.__joueurs.remove(perdant)
+            # Retirer le joueur perdant de la liste
+            self.__joueurs.remove(perdant)
 
-                # Vérifier s'il reste des joueurs actifs
-                if len(self.__joueurs) == 1:
-                    # Afficher le message de victoire avec le nom du joueur restant
-                    print(
-                        f"{nom_perdant} est en faillite. {self.__joueurs[0].nom} a gagné !"
-                    )
-                    break
-                else:
-                    # Afficher le message du joueur en faillite et continuer le jeu
-                    print(f"{nom_perdant} est en faillite.")
+            # Vérifier s'il reste des joueurs actifs
+            if len(self.__joueurs) == 1:
+                # Afficher le message de victoire avec le nom du joueur restant
+                print(
+                    f"{nom_perdant} est en faillite. {self.__joueurs[0].nom} a gagné !"
+                )
             else:
-                pass
+                # Afficher le message du joueur en faillite et continuer le jeu
+                print(f"{nom_perdant} est en faillite.")
+        else:
+            pass
 
     """
         Qui : Engels Felix

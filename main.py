@@ -36,6 +36,7 @@ class Accueil(Entity):
 
 class Jeu(Entity):
     def __init__(self):
+        self.passer_au_tour_suivant = False
         super().__init__(
             model = "cube",
             scale = (50, 0.01 ,50),
@@ -69,18 +70,18 @@ class Jeu(Entity):
             texture='white_cube',
             color=color.red,
             scale=(.4, .1),
-            position=(0, -.3),
+            position=(0.6, -0.4),
             text='Tour suivant',  # Texte à afficher à l'intérieur du bouton
             text_origin=(0, 0),  # Position du texte (centre du bouton)
             text_color=color.white,  # Couleur du texte
             text_font='font/test.otf',
             text_size=3,
-            on_click = self.passer_au_tour_suivant(),
+            on_click = self.passer_tour_suivant,
             enabled = False
         )
 
-    def passer_au_tour_suivant (self):
-        return True
+    def passer_tour_suivant (self):
+        self.passer_au_tour_suivant = True
 
 
     def switch_game(self):
@@ -120,15 +121,15 @@ class Jeu(Entity):
         jeu = Partie(joueurs)
         print("Ce pouvoir s'activera quand le joueur fera un double !")
 
-        self.button2.enabled = True
-
         # Début du jeu
         while len(jeu.joueurs) > 1:
             jeu.jouer()
             self.button2.enabled = True
-            verif_tour_suivant = False
-            while verif_tour_suivant != True:
-                verif_tour_suivant = self.passer_au_tour_suivant()
+            while True:
+                if self.passer_au_tour_suivant == True:
+                    self.button2.enabled = False
+                    self.passer_au_tour_suivant = False
+                    break
 
 
 ### Définition d'un boutton pour quitter ###
