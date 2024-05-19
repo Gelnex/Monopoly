@@ -103,8 +103,9 @@ class Partie:
                        plateau.append(Propriete(i[1], i[0],i[4],i[3]))
                     case "Visite_Prison":
                         plateau.append(Visite_Prison(i[1], i[0]))
+                        visite_prisoncoo = i[0]
                     case "Prison":
-                        plateau.append(Prison(i[1], i[0]))
+                        plateau.append(Prison(i[1], i[0],visite_prisoncoo))
                     case "Depart":
                         plateau.append(Depart(i[1], i[0]))
                     case "Police":
@@ -153,7 +154,7 @@ class Partie:
                 Propriete("Antichambre", 27, "jaune", 260),
                 Propriete("Lance-thermique", 28, "outil", 150),
                 Propriete("Chambre forte inondée", 29, "jaune", 260),
-                Prison("Prison", 30),
+                Prison("Prison", 30,10),
                 Propriete("Camping-car de commandement", 31 , "vert", 300),
                 Propriete("Réservoir d'eau de pluie", 32, "vert", 300),
                 Professeur("Professeur", 33),
