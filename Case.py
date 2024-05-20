@@ -20,10 +20,9 @@ class Case (Entity):
         ### Initialisation des attributs graphiques ###
         super().__init__(
             model = "cube",
-            color = 'red',
             position = position,
             scale = (1, 0.1, 1),
-            collider = 'box'
+            color = color.red
         )
 
     # ============================================================================#

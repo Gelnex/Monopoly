@@ -43,6 +43,7 @@ class Accueil(Entity):
         self.button.enabled = False
         self.image.enabled = False
         camera = EditorCamera()
+        Sky()
         interface = Jeu()
         interface.start_game()
 
@@ -61,6 +62,12 @@ class Jeu(Entity):
             scale = (15, 0.5, 15),
             position = (5, -0.25, 5)
         )
+        centre_plateau = Entity(
+            model = 'cube',
+            texture = 'ressource/image/plateau.png',
+            scale = (9, 0.1, 9),
+            position = (5, 0, 5)
+        )
 
         self.button = Button(
             parent=camera.ui,
@@ -73,7 +80,7 @@ class Jeu(Entity):
             text_origin=(0, 0),  # Position du texte (centre du bouton)
             text_color=color.white,  # Couleur du texte
             text_font='font/test.otf',
-            text_size=3,
+            text_size=2,
             on_click = self.passer_tour_suivant,
             enabled = False
         )
