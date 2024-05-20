@@ -13,7 +13,7 @@ class Case (Entity):
     Quoi : Permet de gérer toute les autres classe, Attribut et accesseurs
     """
 
-    def __init__(self, nom: str, coordonee: int) -> None:
+    def __init__(self, position, nom: str, coordonee: int) -> None:
         self.__nom = nom
         self.__coordonee = coordonee
 
@@ -21,7 +21,9 @@ class Case (Entity):
         super().__init__(
             model = "cube",
             color = 'red',
-            position = position
+            position = position,
+            scale = (1, 0.1, 1),
+            collider = 'box'
         )
 
     # ============================================================================#

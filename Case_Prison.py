@@ -4,6 +4,7 @@
 from Case import *
 from Joueur import *
 from Des import *
+from ursina import *
 
 
 # ============================================================================#
@@ -24,9 +25,9 @@ class Prison(Case):
     # ============================================================================#
     # = CONSTRUCTEURS / DESTRUCTEUR                                              =#
     # ============================================================================#
-    def __init__(self, nom: str, coordonee: int) -> None:
+    def __init__(self, position, nom: str, coordonee: int) -> None:
         super().__init__(
-            nom, coordonee
+            position, nom, coordonee
         )  # la coordonée devrait etre fix a une case unique
 
     # ============================================================================#

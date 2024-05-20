@@ -56,9 +56,10 @@ class Jeu(Entity):
     def __init__(self):
         self.passer_au_tour_suivant = False
         super().__init__(
-            model = "cube",
-            scale = (30, 0.01 ,30),
-            texture = 'ressource/image/plateau.jpg',
+            model = 'cube',
+            texture = 'ressource/image/planche.jfif',
+            scale = (15, 0.5, 15),
+            position = (5, -0.25, 5)
         )
 
         self.button = Button(
@@ -68,7 +69,7 @@ class Jeu(Entity):
             color=color.red,
             scale=(.4, .1),
             position=(0.6, -0.4),
-            text='Tour suivant',  # Texte à afficher à l'intérieur du bouton
+            text='Lancer les dés',  # Texte à afficher à l'intérieur du bouton
             text_origin=(0, 0),  # Position du texte (centre du bouton)
             text_color=color.white,  # Couleur du texte
             text_font='font/test.otf',

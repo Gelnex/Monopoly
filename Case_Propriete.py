@@ -4,6 +4,7 @@
 from Case import *
 from Joueur import *
 import random
+from ursina import *
 
 """
 Qui : Félix Engels
@@ -22,8 +23,8 @@ class Propriete(Case):
     # ============================================================================#
     # = CONSTRUCTEURS / DESTRUCTEUR                                              =#
     # ============================================================================#
-    def __init__(self, nom, numero, famille, prix):
-        super().__init__(nom, numero)
+    def __init__(self, position, nom, numero, famille, prix):
+        super().__init__(position, nom, numero)
         self.__type = "propriete"
         self.__famille = famille
         self.__prix = prix

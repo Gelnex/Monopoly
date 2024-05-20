@@ -3,6 +3,7 @@
 # ============================================================================#
 from Case import *
 from Partie import *
+from ursina import *
 
 
 # ============================================================================#
@@ -24,8 +25,8 @@ class Visite_Prison(Case):
     # = CONSTRUCTEURS / DESTRUCTEUR                                              =#
     # ============================================================================#
     
-    def __init__(self, nom, coordonnee):
-        super().__init__(nom, coordonnee)
+    def __init__(self, position, nom, coordonnee):
+        super().__init__(position, nom, coordonnee)
 
 
     # ============================================================================#
