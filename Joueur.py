@@ -1,3 +1,5 @@
+from ursina import *
+
 # ============================================================================#
 # = DEFINITION DE LA CLASSE                                                  =#
 # ============================================================================#
@@ -6,7 +8,7 @@
     Quand : 15/02/2024
     Quoi : Création classe joueur
 """
-class Joueur:
+class Joueur(Entity):
 
     # ============================================================================#
     # = CONSTRUCTEURS / DESTRUCTEUR                                              =#
@@ -21,6 +23,7 @@ class Joueur:
         self.__nom = nvnom
         self.__argent = 1500
         self.__position = 0
+        self.__position_plateau = (0, 0, 0)
         self.__propriete = []
         self.__famille = []
         self.__nombre_tours = 0
@@ -28,6 +31,14 @@ class Joueur:
         self.__mouvement = False
         
         self.set_pouvoir()
+
+        ### Définition d'un pion ###
+        super().__init__(
+            model = 'cube',
+            texture = 'white_cube',
+            scale = (0.5, 2, 0.5),
+            position = (self.__position_plateau, 0, 0)
+        )
 
     # ============================================================================#
     # = ACCESSEURS                                                               =#

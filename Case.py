@@ -20,10 +20,11 @@ class Case (Entity):
         ### Initialisation des attributs graphiques ###
         super().__init__(
             model = "cube",
+            texture = 'ressource/image/case.png',
             position = position,
-            scale = (1, 0.1, 1),
-            color = color.red
+            scale = (1, 0.1, 1)
         )
+
 
     # ============================================================================#
     # = ACCESSEURS                                                               =#

@@ -55,11 +55,11 @@ class Accueil(Entity):
 # ============================================================================#
 class Jeu(Entity):
     def __init__(self):
-        self.passer_au_tour_suivant = False
+        self.__passer_au_tour_suivant = False
         super().__init__(
             model = 'cube',
             texture = 'ressource/image/planche.jfif',
-            scale = (15, 0.5, 15),
+            scale = (15, 0.3, 15),
             position = (5, -0.25, 5)
         )
         centre_plateau = Entity(
@@ -86,7 +86,7 @@ class Jeu(Entity):
         )
 
     def passer_tour_suivant (self):
-        self.passer_au_tour_suivant = True
+        self.__passer_au_tour_suivant = True
 
 
     # Fonction pour démarrer le jeu
@@ -105,9 +105,9 @@ class Jeu(Entity):
             jeu.jouer()
             self.button.enabled = True
             while True:
-                if self.passer_au_tour_suivant == True:
+                if self.__passer_au_tour_suivant == True:
                     self.button.enabled = False
-                    self.passer_au_tour_suivant = False
+                    self.__passer_au_tour_suivant = False
                     break
 
 
@@ -115,6 +115,10 @@ class Jeu(Entity):
 def input(key):
     if key == "escape":
         quit()
+
+
+### Création de ursina ###
+app = Ursina()
 
 ### Entrer les données des joueurs ###
 # Création d'une instance de la classe Partie avec une liste de joueurs vide
@@ -140,6 +144,5 @@ print("Ce pouvoir s'activera quand le joueur fera un double !")
 
 
 # Initialisation de l'interface graphique dans le thread principal
-app = Ursina()
 scene = Accueil()
 app.run()
