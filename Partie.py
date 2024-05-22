@@ -225,6 +225,18 @@ class Partie:
             # Appel la classe Des
             des = Des()
             somme_des, double = des.lancer_des()
+            
+
+            if joueur.position + somme_des >= 10:
+                joueur.pion.position = (0, 0.5, 10)
+                joueur.pion.position += (somme_des, 0, 0)
+            elif joueur.position + somme_des >= 20:
+                joueur.pion.position = (10, 0.5, 10)
+                joueur.pion.position -= (0, 0, somme_des)
+            else:
+                joueur.pion.position += (0, 0, somme_des)
+
+
 
             # Affiche la somme des dés et de l'état du double
             print(f"{joueur.nom} a fait une somme de dés de {somme_des}.")

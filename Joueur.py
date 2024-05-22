@@ -8,7 +8,7 @@ from ursina import *
     Quand : 15/02/2024
     Quoi : Création classe joueur
 """
-class Joueur(Entity):
+class Joueur:
 
     # ============================================================================#
     # = CONSTRUCTEURS / DESTRUCTEUR                                              =#
@@ -23,22 +23,14 @@ class Joueur(Entity):
         self.__nom = nvnom
         self.__argent = 1500
         self.__position = 0
-        self.__position_plateau = (0, 0, 0)
         self.__propriete = []
         self.__famille = []
         self.__nombre_tours = 0
         self.__pouvoir = ""
         self.__mouvement = False
+        self.pion = Pion()
         
         self.set_pouvoir()
-
-        ### Définition d'un pion ###
-        super().__init__(
-            model = 'cube',
-            texture = 'white_cube',
-            scale = (0.5, 2, 0.5),
-            position = (self.__position_plateau, 0, 0)
-        )
 
     # ============================================================================#
     # = ACCESSEURS                                                               =#
@@ -202,3 +194,14 @@ class Joueur(Entity):
     """
     def donner_argent(self, argent):
         self.argent += argent   
+
+
+
+class Pion (Entity):
+    def __init__(self):
+        super().__init__(
+            model = "cube",
+            texture = "white_cube",
+            scale = (0.5, 1, 0.5),
+            position = (0, 0.5, 0)
+        )
