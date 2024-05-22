@@ -227,6 +227,7 @@ class Partie:
             somme_des, double = des.lancer_des()
             
 
+            ### Nuuuul
             if joueur.position + somme_des >= 10:
                 joueur.pion.position = (0, 0.5, 10)
                 joueur.pion.position += (somme_des, 0, 0)
