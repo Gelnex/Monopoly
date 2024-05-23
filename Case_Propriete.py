@@ -23,8 +23,15 @@ class Propriete(Case):
     # ============================================================================#
     # = CONSTRUCTEURS / DESTRUCTEUR                                              =#
     # ============================================================================#
-    def __init__(self, position, nom, numero, famille, prix):
-        super().__init__(position, nom, numero, texture = 'ressource\image\cases\propriete.png')
+    def __init__(self, positioninit, nom, numero, famille, prix):
+        super().__init__(positioninit, nom, numero, texture = 'ressource\image\cases\propriete.png')
+        famille_cube = Entity(
+            model = 'cube',
+            texture = 'white_cube',
+            color = color.red,
+            scale = (.5, .5, .5),
+            position = positioninit + (0, 0.5, 0)
+        )
         self.__type = "propriete"
         self.__famille = famille
         self.__prix = prix
