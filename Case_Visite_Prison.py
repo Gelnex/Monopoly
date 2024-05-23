@@ -26,7 +26,7 @@ class Visite_Prison(Case):
     # ============================================================================#
     
     def __init__(self, position, nom, coordonnee):
-        super().__init__(position, nom, coordonnee)
+        super().__init__(position, nom, coordonnee,couleur=color.dark_gray)
 
 
     # ============================================================================#

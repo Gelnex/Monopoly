@@ -24,7 +24,7 @@ class Tunnel(Case):
     # = CONSTRUCTEURS / DESTRUCTEUR                                              =#
     # ============================================================================#
     def __init__(self, position, nom, numero):
-        super().__init__(position, nom, numero)
+        super().__init__(position, nom, numero, couleur = color.gold)
         
     # ============================================================================#
     # = METHODE                                                                  =#

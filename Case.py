@@ -13,14 +13,16 @@ class Case (Entity):
     Quoi : Permet de gérer toute les autres classe, Attribut et accesseurs
     """
 
-    def __init__(self, position, nom: str, coordonee: int) -> None:
+    def __init__(self, position, nom: str, coordonee: int,  texture = 'white_cube' ,couleur = color.white,) -> None:
         self.__nom = nom
         self.__coordonee = coordonee
+        
 
         ### Initialisation des attributs graphiques ###
         super().__init__(
             model = "cube",
-            texture = 'ressource/image/case.png',
+            texture = texture,
+            color = couleur,
             position = position,
             scale = (1, 0.1, 1)
         )

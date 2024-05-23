@@ -27,7 +27,7 @@ class Prison(Case):
     # ============================================================================#
     def __init__(self, position, nom: str, coordonee: int) -> None:
         super().__init__(
-            position, nom, coordonee
+            position, nom, coordonee, color.black
         )  # la coordonée devrait etre fix a une case unique
 
     # ============================================================================#

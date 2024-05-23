@@ -25,7 +25,7 @@ class Professeur (Case):
     # = CONSTRUCTEURS / DESTRUCTEUR                                              =#
     # ============================================================================#
     def __init__(self, position, nom: str, coordonee: int) -> None:
-        super().__init__(position, nom, coordonee)    
+        super().__init__(position, nom, coordonee, couleur = color.white)    
     
 
     # ============================================================================#
