@@ -26,13 +26,23 @@ class Propriete(Case):
     def __init__(self, positioninit, nom, numero, famille, prix):
         super().__init__(positioninit, nom, numero, texture = 'ressource\image\cases\propriete.png')
         famille_cube = Entity(
-            model = 'cube',
-            texture = 'white_cube',
+            model = 'sphere',
             color = self.matchFamille(input = famille),
-            scale = (.2, .2, .2),
+            scale = (.1, .1, .1),
             position = positioninit + (0, 0.25, 0),
             alpha = .2
         )
+        
+        self.lingot_or = Entity(
+            model = 'cube',
+            texture = 'white_cube',
+            color = color.yellow,
+            scale = (.2, .1, .1),
+            position = positioninit + (0, 0.1, 0),
+            alpha = .5
+        )
+        self.lingot_or.name = 'lingot_or'
+        
         self.__type = "propriete"
         self.__famille = famille
         self.__prix = prix
@@ -149,6 +159,7 @@ class Propriete(Case):
                     raise TypeError("Case n'existe pas, veuiller verfier le constructeur")
             # Enleve la carte or de la case
             self.__carte_or = None
+            destroy(self.lingot_or)
             print("##########################")
             
             

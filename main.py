@@ -7,6 +7,7 @@ Interface graphique pour jouer au jeu
 # = IMPORTS DES BIBLIOTHEQUES ET DES CLASSES                                 =#
 # ============================================================================#
 import threading
+import time
 from Partie import *
 from ursina import *
 
@@ -107,6 +108,7 @@ class Jeu(Entity):
                 self.button.enabled = False
                 self.__passer_au_tour_suivant = False
                 break
+            time.sleep(1)
 
         
         ### Boucle pour faire passer les tours des joueurs ###
@@ -118,6 +120,7 @@ class Jeu(Entity):
                     self.button.enabled = False
                     self.__passer_au_tour_suivant = False
                     break
+                time.sleep(1)
 
 
 ### Définition d'un boutton pour quitter ###
