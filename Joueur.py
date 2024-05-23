@@ -151,7 +151,7 @@ class Joueur:
             case "position":
                 posPouvoir = int(input(f"Vous etes sur la case N°{self.__position} de combien de case voulez vous sauter ? (max 5) -> "))
                 while True:
-                    if 0 < posPouvoir <= 5:
+                    if isinstance(posPouvoir,int) and  0 < posPouvoir <= 5:
                         self.__position += posPouvoir
                         break
                     else:

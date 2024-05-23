@@ -24,11 +24,11 @@ class Prison(Case):
     # ============================================================================#
     # = CONSTRUCTEURS / DESTRUCTEUR                                              =#
     # ============================================================================#
-    def __init__(self, nom: str, coordonee: int) -> None:
+    def __init__(self, nom: str, coordonee: int,visite_prisoncoo) -> None:
         super().__init__(
             nom, coordonee
         )  # la coordonée devrait etre fix a une case unique
-
+        self.__visite_prisoncoo = visite_prisoncoo
     # ============================================================================#
     # = METHODES                                                                 =#
     # ============================================================================#
@@ -48,20 +48,20 @@ class Prison(Case):
             # Condition pour que le joueur puisse sortir
             if double:
                 print(f"{joueur.nom} a fait un double et sort donc de prison")
-                joueur.position = 10
+                joueur.position = self.__visite_prisoncoo
                 joueur.mouvement = False
 
             else:
                 while True:
                     reponse = input("Vouler vous payer pour sortir (200€) ? O/N ")
-                    if reponse.lower == "o":
-                        joueur.position = 10
+                    if reponse == "o" or reponse == "O":
+                        joueur.position = self.__visite_prisoncoo
                         joueur.mouvement = False
                         joueur.donner_argent(-200)
                         partie.argentPlateau += 200
                         print(f"{joueur.nom} a payer et sort donc de prison")
                         break
-                    elif reponse.lower == "n":
+                    elif reponse == "n" or reponse == "N":
                         break
                     else:
                         print(f"{reponse} n'est pas une entrée valide, veuiller entrer O ou N")
