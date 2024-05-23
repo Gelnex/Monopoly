@@ -100,7 +100,7 @@ class Jeu(Entity):
     # Fonction pour initialiser le jeu
     def thread(self):
 
-        # Début du jeu
+        ### Début du jeu ###
         self.button.enabled = True
         while True:
             if self.__passer_au_tour_suivant == True:
@@ -108,6 +108,8 @@ class Jeu(Entity):
                 self.__passer_au_tour_suivant = False
                 break
 
+        
+        ### Boucle pour faire passer les tours des joueurs ###
         while len(jeu.joueurs) > 1:
             jeu.jouer()
             self.button.enabled = True

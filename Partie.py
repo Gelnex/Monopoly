@@ -200,18 +200,6 @@ class Partie:
             somme_des, double = des.lancer_des()
             
 
-            ### Nuuuul
-            if joueur.position + somme_des >= 10:
-                joueur.pion.position = (0, 0.5, 10)
-                joueur.pion.position += (somme_des, 0, 0)
-            elif joueur.position + somme_des >= 20:
-                joueur.pion.position = (10, 0.5, 10)
-                joueur.pion.position -= (0, 0, somme_des)
-            else:
-                joueur.pion.position += (0, 0, somme_des)
-
-
-
             # Affiche la somme des dés et de l'état du double
             print(f"{joueur.nom} a fait une somme de dés de {somme_des}.")
             if double:
@@ -229,6 +217,10 @@ class Partie:
                 joueur.position = (joueur.position + somme_des) % len(self.plateau)
         else:
             print(f"Le joueur {joueur.nom} est emprisonné")
+
+        ### Déplacement du pion sur l'interface graphique ###
+        case_actuelle = self.__plateau[joueur.position]
+        joueur.pion.position = case_actuelle.position + (0, 0.5, 0)
 
     """
         Qui : Haye Noa
@@ -270,6 +262,8 @@ class Partie:
                 case_actuelle.bonus(joueur, self)
             case Tunnel():
                 case_actuelle.transporter(joueur)
+                case_actuelle = self.__plateau[joueur.position]
+                joueur.pion.position = case_actuelle.position + (0, 0.5, 0)
             case Taxe():
                 case_actuelle.malus(joueur, self)
             case _ if case_actuelle.nom == "Parc gratuit":
