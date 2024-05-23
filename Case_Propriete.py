@@ -28,9 +28,10 @@ class Propriete(Case):
         famille_cube = Entity(
             model = 'cube',
             texture = 'white_cube',
-            color = color.red,
-            scale = (.5, .5, .5),
-            position = positioninit + (0, 0.5, 0)
+            color = self.matchFamille(input = famille),
+            scale = (.2, .2, .2),
+            position = positioninit + (0, 0.25, 0),
+            alpha = .2
         )
         self.__type = "propriete"
         self.__famille = famille
@@ -149,6 +150,30 @@ class Propriete(Case):
             # Enleve la carte or de la case
             self.__carte_or = None
             print("##########################")
+            
+            
+    def matchFamille(self,input):
+        match input:
+            case "brune":
+                return color.brown
+            case "blanche":
+                return color.white
+            case "violet":
+                return color.violet
+            case "outil":
+                return color.black
+            case "orange":
+                return color.orange
+            case "rouge":
+                return color.red
+            case "jaune":
+                return color.yellow
+            case "vert":
+                return color.green
+            case "bleu":
+                return color.blue
+            case _ :
+                raise TypeError("couleur non trouvé")
 # ============================================================================#
 # = test                                                                     =#
 # ============================================================================#
