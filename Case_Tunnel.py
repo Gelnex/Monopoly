@@ -24,7 +24,7 @@ class Tunnel(Case):
     # = CONSTRUCTEURS / DESTRUCTEUR                                              =#
     # ============================================================================#
     def __init__(self, position, nom, numero):
-        super().__init__(position, nom, numero, couleur = color.gold)
+        super().__init__(position, nom, numero, texture = 'ressource\image\cases\Tunnel.png')
         
     # ============================================================================#
     # = METHODE                                                                  =#

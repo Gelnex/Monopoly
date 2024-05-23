@@ -58,7 +58,7 @@ class Jeu(Entity):
         self.__passer_au_tour_suivant = False
         super().__init__(
             model = 'cube',
-            texture = 'ressource/image/planche.jfif',
+            color = color.black,
             scale = (15, 0.3, 15),
             position = (5, -0.25, 5)
         )

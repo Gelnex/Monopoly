@@ -27,7 +27,7 @@ class Depart(Case):
     def __init__(self, position, nom: str, coordonee: int) -> None:
 
         ### Lister et initialiser les attributs
-        super().__init__(position, nom, coordonee,color.green)
+        super().__init__(position, nom, coordonee,texture = 'ressource\image\cases\départ.png')
         self.__type = "depart"
 
     # ============================================================================#

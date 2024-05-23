@@ -188,7 +188,7 @@ class Joueur:
                     setIn = input(f"L'entrée {setIn} est incorrect, réessayer avec 1, 2 ou 3 -> ")
                     
     """
-    Qui : Engles Felix
+    Qui : Engels Felix
     Quand : 20/04/2024
     Quoi : Permet de donner l'argent a un joueur
     """
@@ -203,5 +203,8 @@ class Pion (Entity):
             model = "cube",
             texture = "white_cube",
             scale = (0.5, 1, 0.5),
-            position = (0, 0.5, 0)
+            position = (0, 0.5, 0),
+            color = color.random_color(),
+            alpha = .5
         )
+        

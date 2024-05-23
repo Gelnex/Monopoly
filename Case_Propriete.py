@@ -24,7 +24,7 @@ class Propriete(Case):
     # = CONSTRUCTEURS / DESTRUCTEUR                                              =#
     # ============================================================================#
     def __init__(self, position, nom, numero, famille, prix):
-        super().__init__(position, nom, numero, color.black, 'ressource\image\maison.png')
+        super().__init__(position, nom, numero, texture = 'ressource\image\cases\propriete.png')
         self.__type = "propriete"
         self.__famille = famille
         self.__prix = prix
