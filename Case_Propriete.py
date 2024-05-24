@@ -30,7 +30,7 @@ class Propriete(Case):
             color = self.matchFamille(input = famille),
             scale = (.1, .1, .1),
             position = positioninit + (0, 0.25, 0),
-            alpha = .2
+            alpha = .6
         )
         
         
@@ -40,7 +40,6 @@ class Propriete(Case):
         self.__loyer = prix / 2
         self.__proprietaire = None
         self.__carte_or = random.choice(["argent", "parc", "vol"])
-        self.lingot_or = Lingot_or(positioninit)
 
     # ============================================================================#
     # = ACCESSEURS                                                               =#
@@ -151,7 +150,6 @@ class Propriete(Case):
                     raise TypeError("Case n'existe pas, veuiller verfier le constructeur")
             # Enleve la carte or de la case
             self.__carte_or = None
-            self.lingot_or.enabled = False
             print("##########################")
 
 
@@ -178,21 +176,6 @@ class Propriete(Case):
                 return color.blue
             case _ :
                 raise TypeError("couleur non trouvé")
-            
-
-class Lingot_or(Entity):
-    def __init__(self, positioninit):
-        super().__init__(
-            model = 'cube',
-            name = 'lingot_or',
-            texture = 'white_cube',
-            color = color.yellow,
-            scale = (.2, .1, .1),
-            position = positioninit + (0, 0.1, 0),
-            alpha = .5,
-            enabled = True
-        )
-
 # ============================================================================#
 # = test                                                                     =#
 # ============================================================================#
