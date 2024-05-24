@@ -12,6 +12,7 @@ from Case_Police import *
 from Case_Professeur import *
 from Case_Tunnel import *
 from Case_Taxe import *
+from ursina import *
 
 
 # ============================================================================#
