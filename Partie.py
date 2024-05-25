@@ -206,10 +206,18 @@ class Partie:
             if double:
                 print(f"{joueur.nom} a fait un double !")
                 joueur.position = (joueur.position + somme_des) % len(self.plateau)
-                joueur.pouvoir(self)
+                case_actuelle = self.__plateau[joueur.position]
+                joueur.pion.position = case_actuelle.position + (0, 0.1, 0)
+                joueur.pouvoir(self,case_actuelle.position)
+                ### Déplacement du pion sur l'interface graphique ###
+                case_actuelle = self.__plateau[joueur.position]
+                joueur.pion.position = case_actuelle.position + (0, 0.1, 0)
             else:
                 print(f"{joueur.nom} n'a pas fait de double.")
                 joueur.position = (joueur.position + somme_des) % len(self.plateau)
+                ### Déplacement du pion sur l'interface graphique ###
+                case_actuelle = self.__plateau[joueur.position]
+                joueur.pion.position = case_actuelle.position + (0, 0.1, 0)
 
             # Donne 200 d'argent au joueurs quand il dépasse est sur ou dépasse la case départ
             if joueur.position + somme_des > len(self.plateau) + 1:
@@ -219,9 +227,7 @@ class Partie:
         else:
             print(f"Le joueur {joueur.nom} est emprisonné")
 
-        ### Déplacement du pion sur l'interface graphique ###
-        case_actuelle = self.__plateau[joueur.position]
-        joueur.pion.position = case_actuelle.position + (0, 0.5, 0)
+        
 
     """
         Qui : Haye Noa
@@ -264,7 +270,7 @@ class Partie:
             case Tunnel():
                 case_actuelle.transporter(joueur)
                 case_actuelle = self.__plateau[joueur.position]
-                joueur.pion.position = case_actuelle.position + (0, 0.5, 0)
+                joueur.pion.position = case_actuelle.position + (0, 0.1, 0)
             case Taxe():
                 case_actuelle.malus(joueur, self)
             case _ if case_actuelle.nom == "Parc gratuit":

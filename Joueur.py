@@ -145,7 +145,7 @@ class Joueur:
     Quand : 20/04/2024
     Quoi : Active les pouvoirs joueurs
     """
-    def pouvoir(self, partie) -> None:
+    def pouvoir(self, partie,case_actuelle_pos) -> None:
         # regarder pour la valeur correspondante du pouvoir et l'executer
         match self.__pouvoir:
             case "argent":
@@ -200,11 +200,10 @@ class Joueur:
 class Pion (Entity):
     def __init__(self):
         super().__init__(
-            model = "cube",
-            texture = "white_cube",
-            scale = (0.5, 1, 0.5),
-            position = (0, 0.5, 0),
+            model = "ressource\pawn.obj",
+            scale = (0.2, 0.2, 0.2),
+            position = (0, 0.1, 0),
             color = color.random_color(),
-            alpha = .5
+            alpha = .6
         )
         
