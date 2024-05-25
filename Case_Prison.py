@@ -4,6 +4,7 @@
 from Case import *
 from Joueur import *
 from Des import *
+from ursina import *
 
 
 # ============================================================================#
@@ -24,9 +25,9 @@ class Prison(Case):
     # ============================================================================#
     # = CONSTRUCTEURS / DESTRUCTEUR                                              =#
     # ============================================================================#
-    def __init__(self, nom: str, coordonee: int,visite_prisoncoo) -> None:
+    def __init__(self, position, nom: str, coordonee: int,visite_prisoncoo) -> None:
         super().__init__(
-            nom, coordonee
+            position, nom, coordonee, texture = 'ressource\image\cases\prison.png'
         )  # la coordonée devrait etre fix a une case unique
         self.__visite_prisoncoo = visite_prisoncoo
     # ============================================================================#

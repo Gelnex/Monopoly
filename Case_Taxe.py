@@ -2,6 +2,7 @@
 # = IMPORTS DES BIBLIOTHEQUES ET DES CLASSES                                 =#
 # ============================================================================#
 from Case import *
+from ursina import *
 
 
 # ============================================================================#
@@ -22,8 +23,8 @@ class Taxe (Case):
     # ============================================================================#
     # = CONSTRUCTEURS / DESTRUCTEUR                                              =#
     # ============================================================================#
-    def __init__(self, nom: str, coordonee: int, argent: int) -> None:
-        super().__init__(nom, coordonee)
+    def __init__(self, position, nom: str, coordonee: int, argent: int) -> None:
+        super().__init__(position, nom, coordonee, couleur= color.blue)
         self.__prix = argent
 
     # ============================================================================#

@@ -1,3 +1,5 @@
+from ursina import *
+
 # ============================================================================#
 # = DEFINITION DE LA CLASSE                                                  =#
 # ============================================================================#
@@ -26,6 +28,7 @@ class Joueur:
         self.__nombre_tours = 0
         self.__pouvoir = ""
         self.__mouvement = False
+        self.pion = Pion()
         
         self.set_pouvoir()
 
@@ -142,7 +145,7 @@ class Joueur:
     Quand : 20/04/2024
     Quoi : Active les pouvoirs joueurs
     """
-    def pouvoir(self, partie) -> None:
+    def pouvoir(self, partie,case_actuelle_pos) -> None:
         # regarder pour la valeur correspondante du pouvoir et l'executer
         match self.__pouvoir:
             case "argent":
@@ -185,9 +188,22 @@ class Joueur:
                     setIn = input(f"L'entrée {setIn} est incorrect, réessayer avec 1, 2 ou 3 -> ")
                     
     """
-    Qui : Engles Felix
+    Qui : Engels Felix
     Quand : 20/04/2024
     Quoi : Permet de donner l'argent a un joueur
     """
     def donner_argent(self, argent):
         self.argent += argent   
+
+
+
+class Pion (Entity):
+    def __init__(self):
+        super().__init__(
+            model = "ressource\pawn.obj",
+            scale = (0.2, 0.2, 0.2),
+            position = (0, 0.1, 0),
+            color = color.random_color(),
+            alpha = .6
+        )
+        

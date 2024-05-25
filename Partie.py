@@ -12,7 +12,7 @@ from Case_Police import *
 from Case_Professeur import *
 from Case_Tunnel import *
 from Case_Taxe import *
-from SQL import connectionDB
+from ursina import *
 
 
 # ============================================================================#
@@ -37,6 +37,7 @@ class Partie:
 
         ### Lister et initialiser les attributs
         self.__plateau = self.mise_en_place()
+        self.__longueur_plateau = 0
         self.__joueur_actif = 0
         self.__joueurs = joueurs
         self.__argentPlateau = 0
@@ -47,6 +48,10 @@ class Partie:
     @property
     def plateau(self):
         return self.__plateau
+    
+    @property
+    def longueur_plateau(self):
+        return self.__longueur_plateau
 
     @property
     def joueur_actif(self):
@@ -94,77 +99,49 @@ class Partie:
         Quand : 06/05/2024
         Quoi : Importation de la base de données + option si erreur
         """
-        db = connectionDB("cases")
-        if db != None:
-            plateau = []
-            for i in db:
-                match i[2]:
-                    case "Propriete":
-                       plateau.append(Propriete(i[1], i[0],i[4],i[3]))
-                    case "Visite_Prison":
-                        plateau.append(Visite_Prison(i[1], i[0]))
-                        visite_prisoncoo = i[0]
-                    case "Prison":
-                        plateau.append(Prison(i[1], i[0],visite_prisoncoo))
-                    case "Depart":
-                        plateau.append(Depart(i[1], i[0]))
-                    case "Police":
-                        plateau.append(Police(i[1], i[0]))
-                    case "Professeur":
-                        plateau.append(Professeur(i[1], i[0]))
-                    case "Tunnel":
-                        plateau.append(Tunnel(i[1], i[0]))
-                    case "Taxe":
-                        plateau.append(Taxe(i[1], i[0],i[3]))
-                    case "Case":
-                        plateau.append(Case(i[1], i[0]))
-                    case _:
-                        raise TypeError("case non trouvé")
-            return plateau
-        else:
-            print("connexion a la base de donnée impossible donc utilisation du plateau local")
-            plateau = [
-                Depart("Case Départ", 0),
-                Propriete("Café", 1, "brune", 60),
-                Professeur("Professeur", 2),
-                Propriete("Décharge" , 3, "brune", 60),
-                Taxe("Colonel Prieto" , 4, 200),
-                Tunnel("Chambre forte trois", 5),
-                Propriete("Sous-sol", 6, "blanche", 100),
-                Police("Police", 7),
-                Propriete("Toilettes", 8, "blanche", 100),
-                Propriete("Chambre forte deux", 9, "blanche", 120),
-                Visite_Prison("Visite Prison", 10),
-                Propriete("Toit", 11, "violet", 140),
-                Propriete("Pioche", 12 , "outil", 150),
-                Propriete("Tente de commandement", 13, "violet", 140),
-                Propriete("Aire de chargement", 14, "violet", 160),
-                Tunnel("Le hangar", 15),
-                Propriete("Cidrerie", 16, "orange", 180),
-                Professeur("Professeur", 17),
-                Propriete("Hôpital", 18, "orange", 180),
-                Propriete("Maison de Tolède", 19, "orange", 200),
-                Case("Parc gratuit", 20),
-                Propriete("Monastère", 21, "rouge", 220),
-                Police("Police", 22),
-                Propriete("Place de Callad", 23, "rouge", 220),
-                Propriete("Hall", 24, "rouge", 240),
-                Tunnel("Restaurant", 25),
-                Propriete("Bureau du gouverneur", 26, "jaune", 260),
-                Propriete("Antichambre", 27, "jaune", 260),
-                Propriete("Lance-thermique", 28, "outil", 150),
-                Propriete("Chambre forte inondée", 29, "jaune", 260),
-                Prison("Prison", 30,10),
-                Propriete("Camping-car de commandement", 31 , "vert", 300),
-                Propriete("Réservoir d'eau de pluie", 32, "vert", 300),
-                Professeur("Professeur", 33),
-                Propriete("Pièce sécurisée", 34, "vert", 320),
-                Tunnel("Garage", 35),
-                Police("Police", 36),
-                Propriete("Fabrique de la monnaie", 37, "bleu", 350),
-                Taxe("Colonnel Tamayo", 38, 100),
-                Propriete("La banque", 39, "bleu", 400)
-            ]
+        
+        plateau = [
+        Depart((0, 0, 0), "Case Départ", 0),
+        Propriete((0, 0, 1), "Café", 1, "brune", 60),
+        Professeur((0, 0, 2), "Professeur", 2),
+        Propriete((0, 0, 3), "Décharge", 3, "brune", 60),
+        Taxe((0, 0, 4), "Colonel Prieto", 4, 200),
+        Tunnel((0, 0, 5), "Chambre forte trois", 5),
+        Propriete((0, 0, 6), "Sous-sol", 6, "blanche", 100),
+        Police((0, 0, 7), "Police", 7),
+        Propriete((0, 0, 8), "Toilettes", 8, "blanche", 100),
+        Propriete((0, 0, 9), "Chambre forte deux", 9, "blanche", 120),
+        Visite_Prison((0, 0, 10), "Visite Prison", 10),
+        Propriete((1, 0, 10), "Toit", 11, "violet", 140),
+        Propriete((2, 0, 10), "Pioche", 12, "outil", 150),
+        Propriete((3, 0, 10), "Tente de commandement", 13, "violet", 140),
+        Propriete((4, 0, 10), "Aire de chargement", 14, "violet", 160),
+        Tunnel((5, 0, 10), "Le hangar", 15),
+        Propriete((6, 0, 10), "Cidrerie", 16, "orange", 180),
+        Professeur((7, 0, 10), "Professeur", 17),
+        Propriete((8, 0, 10), "Hôpital", 18, "orange", 180),
+        Propriete((9, 0, 10), "Maison de Tolède", 19, "orange", 200),
+        Case((10, 0, 10), "Parc gratuit", 20),
+        Propriete((10, 0, 9), "Monastère", 21, "rouge", 220),
+        Police((10, 0, 8), "Police", 22),
+        Propriete((10, 0, 7), "Place de Callad", 23, "rouge", 220),
+        Propriete((10, 0, 6), "Hall", 24, "rouge", 240),
+        Tunnel((10, 0, 5), "Restaurant", 25),
+        Propriete((10, 0, 4), "Bureau du gouverneur", 26, "jaune", 260),
+        Propriete((10, 0, 3), "Antichambre", 27, "jaune", 260),
+        Propriete((10, 0, 2), "Lance-thermique", 28, "outil", 150),
+        Propriete((10, 0, 1), "Chambre forte inondée", 29, "jaune", 260),
+        Prison((10, 0, 0), "Prison", 30),
+        Propriete((9, 0, 0), "Camping-car de commandement", 31, "vert", 300),
+        Propriete((8, 0, 0), "Réservoir d'eau de pluie", 32, "vert", 300),
+        Professeur((7, 0, 0), "Professeur", 33),
+        Propriete((6, 0, 0), "Pièce sécurisée", 34, "vert", 320),
+        Tunnel((5, 0, 0), "Garage", 35),
+        Police((4, 0, 0), "Police", 36),
+        Propriete((3, 0, 0), "Fabrique de la monnaie", 37, "bleu", 350),
+        Taxe((2, 0, 0), "Colonel Tamayo", 38, 100),
+        Propriete((1, 0, 0), "La banque", 39, "bleu", 400)
+        ]
         return plateau
     
     """
@@ -219,16 +196,25 @@ class Partie:
             # Appel la classe Des
             des = Des()
             somme_des, double = des.lancer_des()
+            
 
             # Affiche la somme des dés et de l'état du double
             print(f"{joueur.nom} a fait une somme de dés de {somme_des}.")
             if double:
                 print(f"{joueur.nom} a fait un double !")
                 joueur.position = (joueur.position + somme_des) % len(self.plateau)
-                joueur.pouvoir(self)
+                case_actuelle = self.__plateau[joueur.position]
+                joueur.pion.position = case_actuelle.position + (0, 0.1, 0)
+                joueur.pouvoir(self,case_actuelle.position)
+                ### Déplacement du pion sur l'interface graphique ###
+                case_actuelle = self.__plateau[joueur.position]
+                joueur.pion.position = case_actuelle.position + (0, 0.1, 0)
             else:
                 print(f"{joueur.nom} n'a pas fait de double.")
                 joueur.position = (joueur.position + somme_des) % len(self.plateau)
+                ### Déplacement du pion sur l'interface graphique ###
+                case_actuelle = self.__plateau[joueur.position]
+                joueur.pion.position = case_actuelle.position + (0, 0.1, 0)
 
             # Donne 200 d'argent au joueurs quand il dépasse est sur ou dépasse la case départ
             if joueur.position + somme_des > len(self.plateau) + 1:
@@ -238,6 +224,8 @@ class Partie:
         else:
             print(f"Le joueur {joueur.nom} est emprisonné")
 
+        
+
     """
         Qui : Haye Noa
         Quand : 05/03/2024
@@ -245,7 +233,7 @@ class Partie:
     """
     def tour_joueur(self):
 
-        # Etablie le tour du jotouueur
+        # Etablir le tour du joueur
         joueur = self.__joueurs[self.__joueur_actif]
         print(f"\n C'est au tour de {joueur.nom}.")
 
@@ -278,6 +266,8 @@ class Partie:
                 case_actuelle.bonus(joueur, self)
             case Tunnel():
                 case_actuelle.transporter(joueur)
+                case_actuelle = self.__plateau[joueur.position]
+                joueur.pion.position = case_actuelle.position + (0, 0.1, 0)
             case Taxe():
                 case_actuelle.malus(joueur, self)
             case _ if case_actuelle.nom == "Parc gratuit":
@@ -288,7 +278,6 @@ class Partie:
         # Passer au prochain joueur
         self.__joueur_actif = (self.__joueur_actif + 1) % len(self.__joueurs)
         print(f"Il lui reste {joueur.argent}€")
-        input("Appuyez pour passer au tour suivant")
 
     """
         Qui : Haye Noa
@@ -308,29 +297,28 @@ class Partie:
         Quoi : Vérifie la condition de victoire
     """
     def jouer(self):
-        while len(self.__joueurs) > 1:
-            self.tour_joueur()
-            perdant = self.verification_gagnant()
+    
+        self.tour_joueur()
+        perdant = self.verification_gagnant()
 
-            if perdant:
-                # Stocker le nom du joueur perdant
-                nom_perdant = perdant.nom
+        if perdant:
+            # Stocker le nom du joueur perdant
+            nom_perdant = perdant.nom
 
-                # Retirer le joueur perdant de la liste
-                self.__joueurs.remove(perdant)
+            # Retirer le joueur perdant de la liste
+            self.__joueurs.remove(perdant)
 
-                # Vérifier s'il reste des joueurs actifs
-                if len(self.__joueurs) == 1:
-                    # Afficher le message de victoire avec le nom du joueur restant
-                    print(
-                        f"{nom_perdant} est en faillite. {self.__joueurs[0].nom} a gagné !"
-                    )
-                    break
-                else:
-                    # Afficher le message du joueur en faillite et continuer le jeu
-                    print(f"{nom_perdant} est en faillite.")
+            # Vérifier s'il reste des joueurs actifs
+            if len(self.__joueurs) == 1:
+                # Afficher le message de victoire avec le nom du joueur restant
+                print(
+                    f"{nom_perdant} est en faillite. {self.__joueurs[0].nom} a gagné !"
+                )
             else:
-                pass
+                # Afficher le message du joueur en faillite et continuer le jeu
+                print(f"{nom_perdant} est en faillite.")
+        else:
+            pass
 
     """
         Qui : Engels Felix
@@ -402,38 +390,3 @@ class Partie:
         if totalFamille:
             joueur.famille.append(famille)
             print(f"{joueur.nom} possede toutes les propriete de la famille {famille}, les loyers sont doublés.")
-                
-
-                    
-                
-        
-
-# ============================================================================#
-# = AFFICHAGE                                                                =#
-# ============================================================================#
-
-if __name__ == "__main__":
-    # Création d'une instance de la classe Partie avec une liste de joueurs vide
-    partie = Partie([])
-    
-    # Demande du nombre de joueurs à l'utilisateur et récupération de la valeur
-    nJoueur = partie.nombre_joueur()
-    print("")
-
-    # Initialisation des variables nécessaires 
-    i = 1
-    joueur_noms = []
-
-    # Demande des noms des joueurs à l'utilisateur et stockage dans une liste
-    joueur_noms = partie.identifier_joueur(nJoueur)
-    print("")
-
-    # Création d'instances de la classe Joueur à partir des noms fournis par l'utilisateur
-    joueurs = [Joueur(nom) for nom in joueur_noms]
-
-    # Création d'une nouvelle instance de la classe Partie avec les joueurs créés
-    jeu = Partie(joueurs)
-    print("Ce pouvoir s'activera quand le joueur fera un double !")
-
-    # Début du jeu
-    jeu.jouer()

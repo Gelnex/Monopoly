@@ -3,6 +3,7 @@
 # ============================================================================#
 from Case import *
 import random
+from ursina import *
 
 # ============================================================================#
 # = DEFINITION DE LA CLASSE                                                  =#
@@ -22,8 +23,8 @@ class Police(Case):
     # ============================================================================#
     # = CONSTRUCTEURS / DESTRUCTEUR                                              =#
     # ============================================================================#
-    def __init__(self, nom: str, coordonee: int) -> None:
-        super().__init__(nom, coordonee)
+    def __init__(self, position, nom: str, coordonee: int) -> None:
+        super().__init__(position, nom, coordonee , texture = 'ressource\image\cases\police.png')
 
     # ============================================================================#
     # = METHODES                                                                 =#

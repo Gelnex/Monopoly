@@ -3,6 +3,7 @@
 # ============================================================================#
 from Case import *
 from Joueur import *
+from ursina import *
 
 
 # ============================================================================#
@@ -23,10 +24,10 @@ class Depart(Case):
     # ============================================================================#
     # = CONSTRUCTEURS / DESTRUCTEUR                                              =#
     # ============================================================================#
-    def __init__(self, nom: str, coordonee: int) -> None:
+    def __init__(self, position, nom: str, coordonee: int) -> None:
 
         ### Lister et initialiser les attributs
-        super().__init__(nom, coordonee)
+        super().__init__(position, nom, coordonee,texture = 'ressource\image\cases\départ.png')
         self.__type = "depart"
 
     # ============================================================================#

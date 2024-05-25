@@ -4,6 +4,7 @@
 from Case import *
 from Joueur import *
 import random
+from ursina import *
 
 """
 Qui : Félix Engels
@@ -22,8 +23,17 @@ class Propriete(Case):
     # ============================================================================#
     # = CONSTRUCTEURS / DESTRUCTEUR                                              =#
     # ============================================================================#
-    def __init__(self, nom, numero, famille, prix):
-        super().__init__(nom, numero)
+    def __init__(self, positioninit, nom, numero, famille, prix):
+        super().__init__(positioninit, nom, numero, texture = 'ressource\image\cases\propriete.png')
+        famille_cube = Entity(
+            model = 'sphere',
+            color = self.matchFamille(input = famille),
+            scale = (.1, .1, .1),
+            position = positioninit + (0, 0.25, 0),
+            alpha = .6
+        )
+        
+        
         self.__type = "propriete"
         self.__famille = famille
         self.__prix = prix
@@ -141,6 +151,31 @@ class Propriete(Case):
             # Enleve la carte or de la case
             self.__carte_or = None
             print("##########################")
+
+
+            
+    def matchFamille(self,input):
+        match input:
+            case "brune":
+                return color.brown
+            case "blanche":
+                return color.white
+            case "violet":
+                return color.violet
+            case "outil":
+                return color.black
+            case "orange":
+                return color.orange
+            case "rouge":
+                return color.red
+            case "jaune":
+                return color.yellow
+            case "vert":
+                return color.green
+            case "bleu":
+                return color.blue
+            case _ :
+                raise TypeError("couleur non trouvé")
 # ============================================================================#
 # = test                                                                     =#
 # ============================================================================#
