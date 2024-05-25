@@ -99,8 +99,6 @@ class Partie:
         Quand : 06/05/2024
         Quoi : Importation de la base de données + option si erreur
         """
-
-        ### Essai de connection à la base de donnée ###
         
         plateau = [
         Depart((0, 0, 0), "Case Départ", 0),
@@ -144,7 +142,6 @@ class Partie:
         Taxe((2, 0, 0), "Colonel Tamayo", 38, 100),
         Propriete((1, 0, 0), "La banque", 39, "bleu", 400)
         ]
-
         return plateau
     
     """

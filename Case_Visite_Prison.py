@@ -33,9 +33,7 @@ class Visite_Prison(Case):
     # = ACCESSEURS                                                               =#
     # ============================================================================#
                  
-    @property
-    def type(self):
-        return self.__type
+
 
     # ============================================================================#
     # = METHODE                                                               =#
@@ -51,4 +49,5 @@ class Visite_Prison(Case):
             if joueur.mouvement:
                 # si nimporte quelle joueur est emprisonnée, il sera libéré.
                 joueur.mouvement = False
+                joueur.position = self.coordonee
                 print(f"Vous avez libéré {joueur.nom} de prison.")
