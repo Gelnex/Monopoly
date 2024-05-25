@@ -241,6 +241,11 @@ class Partie:
         propriete_noms = [propriete.nom for propriete in joueur.propriete]
         print(f"\n Argent : {joueur.argent} / Propriétés possédées : {', '.join(propriete_noms)}")
 
+        # Affiche l'argent et les propriétés possédées par le joueur
+        propriete_noms = [propriete.nom for propriete in joueur.propriete]
+        print(f"\n Argent : {joueur.argent} / Propriétés possédées : {', '.join(propriete_noms)}")
+
+
         # Deplacer Joueur
         self.deplacement(joueur)
         case_actuelle = self.__plateau[joueur.position]
