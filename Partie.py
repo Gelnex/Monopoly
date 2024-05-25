@@ -131,7 +131,7 @@ class Partie:
         Propriete((10, 0, 3), "Antichambre", 27, "jaune", 260),
         Propriete((10, 0, 2), "Lance-thermique", 28, "outil", 150),
         Propriete((10, 0, 1), "Chambre forte inondée", 29, "jaune", 260),
-        Prison((10, 0, 0), "Prison", 30),
+        Prison((10, 0, 0), "Prison", 30,10),
         Propriete((9, 0, 0), "Camping-car de commandement", 31, "vert", 300),
         Propriete((8, 0, 0), "Réservoir d'eau de pluie", 32, "vert", 300),
         Professeur((7, 0, 0), "Professeur", 33),
