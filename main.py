@@ -130,7 +130,7 @@ def input(key):
 
 
 ### Création de ursina ###
-app = Ursina()
+app = Ursina(borderless=False,title="La Maison De Papier",icon="ressource/CDP.ico")
 
 ### Entrer les données des joueurs ###
 # Création d'une instance de la classe Partie avec une liste de joueurs vide

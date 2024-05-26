@@ -74,3 +74,23 @@ class Prison(Case):
     # ============================================================================#
     def __str__(self):
         return f"Prison {super().__nom} et je suis situé en {super().__coordonee}"
+    
+### Tests ###
+# pour faire les test il faut mettre en commentaire super().__init__()
+if __name__ == "__main__":
+    class faux():
+        def __init__(self):
+            self.argentPlateau = 100
+            self.position = 0
+            self.mouvement = True
+            self.nom = "test"
+            print(f" valeurs avant modifications : {self.argentPlateau,self.position,self.mouvement}")
+        def donner_argent(self, prix):
+            print("argent modifié !")
+
+    partie= faux()
+    prison = Prison((0,0,0),"test",10,20)
+    prison.bloquerMouvement(partie,partie)
+    print(f" valeurs après modifications : {partie.argentPlateau,partie.position,partie.mouvement}")
+    
+            

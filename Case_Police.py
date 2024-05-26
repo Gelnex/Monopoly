@@ -25,6 +25,7 @@ class Police(Case):
     # ============================================================================#
     def __init__(self, position, nom: str, coordonee: int) -> None:
         super().__init__(position, nom, coordonee , texture = 'ressource\image\cases\police.png')
+        pass
 
     # ============================================================================#
     # = METHODES                                                                 =#
@@ -49,11 +50,23 @@ class Police(Case):
 
 
 ### Tests ###
+# pour faire le test il faut mettre en commentaire super().__init__()
+
 if __name__ == "__main__":
-    
-    from Joueur import *
-    
-    case = Police("Police", 3)
-    monJoueur = Joueur("george")
-    case.malus(monJoueur)
-    
+    class fauxjoueur():
+        def __init__(self) -> None:
+            self.position = 0
+        def donner_argent(self,argent):
+            print("argent donné")
+    class fauxpartie():
+        def __init__(self):
+            self.argentPlateau = 100
+        def donner_argent_plateau(self,joueur):
+            print("argent donnée")
+            
+    prof = Police(1,"1",1)
+    partie = fauxpartie()
+    joueur = fauxjoueur()
+    for i in range(5):
+        prof.malus(joueur,partie)
+        
