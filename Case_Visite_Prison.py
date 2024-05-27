@@ -26,7 +26,7 @@ class Visite_Prison(Case):
     # ============================================================================#
     
     def __init__(self, position, nom, coordonnee):
-        """super().__init__(position, nom, coordonnee,couleur=color.dark_gray)
+        super().__init__(position, nom, coordonnee,texture = 'ressource\image\cases\Visite.png')
 
 
     # ============================================================================#
@@ -38,7 +38,7 @@ class Visite_Prison(Case):
     # ============================================================================#
     # = METHODE                                                               =#
     # ============================================================================#
-    
+    """
     Qui : Noa Haye
     Quand : 05/03/2024
     Quoi : Permet de visiter la prison
