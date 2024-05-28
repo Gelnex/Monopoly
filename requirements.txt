@@ -1,0 +1,4 @@
+# ce fichier sert a recuperer tout les modules pythons nécessaires, si python n'est pas installer, vous pouver le telecharger ici: https://www.python.org/downloads/
+# pour telecharger les modules nécessaires, ouvrer une invite de commande (CMD) à partir de ce répertoire et entrer "pip install -r requirements.txt"
+ursina
+mysql-connector-python

@@ -3,3 +3,4 @@ __pycahe__\
 /__pycache__
 *.pyc
 *.json
+/models_compressed
