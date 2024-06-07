@@ -13,6 +13,7 @@ from Case_Professeur import *
 from Case_Tunnel import *
 from Case_Taxe import *
 from ursina import *
+from SQL import connectionDB
 
 
 # ============================================================================#
@@ -93,56 +94,94 @@ class Partie:
         Quand : 05/03/2024
         Quoi : Création de Mise en place, Deplacement, Tour Joueur et Jouer
     """
+    def posConv(self, length, coo):
+        if 0 <= coo <= length / 4:
+            return (coo, 0, 0)
+        elif length / 4 < coo <= length / 2:
+            return (length / 4, 0, coo - length / 4)
+        elif length / 2 < coo <= 3 * length / 4:
+            return (length / 4 - (coo - length / 2), 0, length / 4)
+        else:
+            return (0, 0, length - coo)
+
     def mise_en_place(self):
         """
         Qui : Engles Felix
         Quand : 06/05/2024
         Quoi : Importation de la base de données + option si erreur
         """
-        
-        plateau = [
-        Depart((0, 0, 0), "Case Départ", 0),
-        Propriete((0, 0, 1), "Café", 1, "brune", 60),
-        Professeur((0, 0, 2), "Professeur", 2),
-        Propriete((0, 0, 3), "Décharge", 3, "brune", 60),
-        Taxe((0, 0, 4), "Colonel Prieto", 4, 200),
-        Tunnel((0, 0, 5), "Chambre forte trois", 5),
-        Propriete((0, 0, 6), "Sous-sol", 6, "blanche", 100),
-        Police((0, 0, 7), "Police", 7),
-        Propriete((0, 0, 8), "Toilettes", 8, "blanche", 100),
-        Propriete((0, 0, 9), "Chambre forte deux", 9, "blanche", 120),
-        Visite_Prison((0, 0, 10), "Visite Prison", 10),
-        Propriete((1, 0, 10), "Toit", 11, "violet", 140),
-        Propriete((2, 0, 10), "Pioche", 12, "outil", 150),
-        Propriete((3, 0, 10), "Tente de commandement", 13, "violet", 140),
-        Propriete((4, 0, 10), "Aire de chargement", 14, "violet", 160),
-        Tunnel((5, 0, 10), "Le hangar", 15),
-        Propriete((6, 0, 10), "Cidrerie", 16, "orange", 180),
-        Professeur((7, 0, 10), "Professeur", 17),
-        Propriete((8, 0, 10), "Hôpital", 18, "orange", 180),
-        Propriete((9, 0, 10), "Maison de Tolède", 19, "orange", 200),
-        Case((10, 0, 10), "Parc gratuit", 20),
-        Propriete((10, 0, 9), "Monastère", 21, "rouge", 220),
-        Police((10, 0, 8), "Police", 22),
-        Propriete((10, 0, 7), "Place de Callad", 23, "rouge", 220),
-        Propriete((10, 0, 6), "Hall", 24, "rouge", 240),
-        Tunnel((10, 0, 5), "Restaurant", 25),
-        Propriete((10, 0, 4), "Bureau du gouverneur", 26, "jaune", 260),
-        Propriete((10, 0, 3), "Antichambre", 27, "jaune", 260),
-        Propriete((10, 0, 2), "Lance-thermique", 28, "outil", 150),
-        Propriete((10, 0, 1), "Chambre forte inondée", 29, "jaune", 260),
-        Prison((10, 0, 0), "Prison", 30,10),
-        Propriete((9, 0, 0), "Camping-car de commandement", 31, "vert", 300),
-        Propriete((8, 0, 0), "Réservoir d'eau de pluie", 32, "vert", 300),
-        Professeur((7, 0, 0), "Professeur", 33),
-        Propriete((6, 0, 0), "Pièce sécurisée", 34, "vert", 320),
-        Tunnel((5, 0, 0), "Garage", 35),
-        Police((4, 0, 0), "Police", 36),
-        Propriete((3, 0, 0), "Fabrique de la monnaie", 37, "bleu", 350),
-        Taxe((2, 0, 0), "Colonel Tamayo", 38, 100),
-        Propriete((1, 0, 0), "La banque", 39, "bleu", 400)
-        ]
-        return plateau
+        db = connectionDB("cases")
+        if db != None:
+            plateau = []
+            plateau_longueur = len(db)
+            for i in db:
+                match i[2]:
+                    case "Propriete":
+                       plateau.append(Propriete(self.posConv(plateau_longueur,i[0]),i[1], i[0],i[4],i[3]))
+                    case "Visite_Prison":
+                        plateau.append(Visite_Prison(self.posConv(plateau_longueur,i[0]),i[1], i[0]))
+                        visite_prisoncoo = i[0]
+                    case "Prison":
+                        plateau.append(Prison(self.posConv(plateau_longueur,i[0]),i[1], i[0],visite_prisoncoo))
+                    case "Depart":
+                        plateau.append(Depart(self.posConv(plateau_longueur,i[0]),i[1], i[0]))
+                    case "Police":
+                        plateau.append(Police(self.posConv(plateau_longueur,i[0]),i[1], i[0]))
+                    case "Professeur":
+                        plateau.append(Professeur(self.posConv(plateau_longueur,i[0]),i[1], i[0]))
+                    case "Tunnel":
+                        plateau.append(Tunnel(self.posConv(plateau_longueur,i[0]),i[1], i[0]))
+                    case "Taxe":
+                        plateau.append(Taxe(self.posConv(plateau_longueur,i[0]),i[1], i[0],i[3]))
+                    case "Case":
+                        plateau.append(Case(self.posConv(plateau_longueur,i[0]),i[1], i[0]))
+                    case _:
+                        raise TypeError("case non trouvé")
+            return plateau
+        else:
+            plateau = [
+            Depart((0, 0, 0), "Case Départ", 0),
+            Propriete((0, 0, 1), "Café", 1, "brune", 60),
+            Professeur((0, 0, 2), "Professeur", 2),
+            Propriete((0, 0, 3), "Décharge", 3, "brune", 60),
+            Taxe((0, 0, 4), "Colonel Prieto", 4, 200),
+            Tunnel((0, 0, 5), "Chambre forte trois", 5),
+            Propriete((0, 0, 6), "Sous-sol", 6, "blanche", 100),
+            Police((0, 0, 7), "Police", 7),
+            Propriete((0, 0, 8), "Toilettes", 8, "blanche", 100),
+            Propriete((0, 0, 9), "Chambre forte deux", 9, "blanche", 120),
+            Visite_Prison((0, 0, 10), "Visite Prison", 10),
+            Propriete((1, 0, 10), "Toit", 11, "violet", 140),
+            Propriete((2, 0, 10), "Pioche", 12, "outil", 150),
+            Propriete((3, 0, 10), "Tente de commandement", 13, "violet", 140),
+            Propriete((4, 0, 10), "Aire de chargement", 14, "violet", 160),
+            Tunnel((5, 0, 10), "Le hangar", 15),
+            Propriete((6, 0, 10), "Cidrerie", 16, "orange", 180),
+            Professeur((7, 0, 10), "Professeur", 17),
+            Propriete((8, 0, 10), "Hôpital", 18, "orange", 180),
+            Propriete((9, 0, 10), "Maison de Tolède", 19, "orange", 200),
+            Case((10, 0, 10), "Parc gratuit", 20),
+            Propriete((10, 0, 9), "Monastère", 21, "rouge", 220),
+            Police((10, 0, 8), "Police", 22),
+            Propriete((10, 0, 7), "Place de Callad", 23, "rouge", 220),
+            Propriete((10, 0, 6), "Hall", 24, "rouge", 240),
+            Tunnel((10, 0, 5), "Restaurant", 25),
+            Propriete((10, 0, 4), "Bureau du gouverneur", 26, "jaune", 260),
+            Propriete((10, 0, 3), "Antichambre", 27, "jaune", 260),
+            Propriete((10, 0, 2), "Lance-thermique", 28, "outil", 150),
+            Propriete((10, 0, 1), "Chambre forte inondée", 29, "jaune", 260),
+            Prison((10, 0, 0), "Prison", 30,10),
+            Propriete((9, 0, 0), "Camping-car de commandement", 31, "vert", 300),
+            Propriete((8, 0, 0), "Réservoir d'eau de pluie", 32, "vert", 300),
+            Professeur((7, 0, 0), "Professeur", 33),
+            Propriete((6, 0, 0), "Pièce sécurisée", 34, "vert", 320),
+            Tunnel((5, 0, 0), "Garage", 35),
+            Police((4, 0, 0), "Police", 36),
+            Propriete((3, 0, 0), "Fabrique de la monnaie", 37, "bleu", 350),
+            Taxe((2, 0, 0), "Colonel Tamayo", 38, 100),
+            Propriete((1, 0, 0), "La banque", 39, "bleu", 400)
+            ]
+            return plateau
     
     """
         Qui : Haye Noa
