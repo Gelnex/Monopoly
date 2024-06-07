@@ -96,13 +96,13 @@ class Partie:
     """
     def posConv(self, length, coo):
         if 0 <= coo <= length / 4:
-            return (coo, 0, 0)
+            return (0, 0, coo)
         elif length / 4 < coo <= length / 2:
-            return (length / 4, 0, coo - length / 4)
+            return (coo - length / 4, 0,length / 4)
         elif length / 2 < coo <= 3 * length / 4:
-            return (length / 4 - (coo - length / 2), 0, length / 4)
+            return (length / 4, 0, length/4-(coo - (length*2/ 4)))
         else:
-            return (0, 0, length - coo)
+            return (length/4 - (coo - (length*3/4)), 0, 0)
 
     def mise_en_place(self):
         """
