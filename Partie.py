@@ -274,6 +274,7 @@ class Partie:
 
         # Etablir le tour du joueur
         joueur = self.__joueurs[self.__joueur_actif]
+        print("\033c", end='')
         print(f"\n C'est au tour de {joueur.nom}.")
         
         # Affiche l'argent et les propriétés possédées par le joueur
