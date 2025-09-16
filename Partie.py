@@ -13,7 +13,7 @@ from Case_Professeur import *
 from Case_Tunnel import *
 from Case_Taxe import *
 from ursina import *
-from SQL import connectionDB
+#from SQL import connectionDB
 
 
 # ============================================================================#
@@ -110,7 +110,7 @@ class Partie:
         Quand : 06/05/2024
         Quoi : Importation de la base de données + option si erreur
         """
-        db = connectionDB("cases")
+        db = None #connectionDB("cases")
         if db != None:
             plateau = []
             plateau_longueur = len(db)
